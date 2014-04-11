@@ -1,0 +1,254 @@
+﻿@model ChampionshipMvc3.Models.DataContext.Schedule
+    
+<link href="../../Content/customBootstrap.css" rel="stylesheet" />
+<script src="../../Scripts/CustomScripts/jQueryLibrary.js"></script>
+<script src="@Url.Content("~/Scripts/CustomScripts/tableFillerScheduleLayout.js")" type="text/javascript"></script>
+<script src="../../Scripts/CustomScripts/bootstrap.minPlayNow.js"></script>
+
+<table id="structureTable">
+  
+    <tr>
+         <td>
+            <table>
+                <tr>
+                    <td>
+                       <div>  &nbsp </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      9:00 - 10:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       10:00 - 11:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        11:00 - 12:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        12:00 - 13:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        13:00 - 14:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        14:00 - 15:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        15:00 - 16:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        16:00 - 17:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        17:00 - 18:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        18:00 - 19:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        19:00 - 20:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        20:00 - 21:00
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        21:00 - 22:00
+                    </td>
+                </tr>
+            </table>
+        </td>
+        @foreach (ChampionshipMvc3.Models.DataContext.Day day in Model.Days.OrderBy(d => d.DayOrderID))
+        {
+            <td>
+                <label>@day.DayName</label>
+                
+                <table id="scheduleTableID">
+                    @foreach (var hour in @day.Hour1s)
+                    {
+                        <tr>
+                            <td>
+                                @hour.IsReserved
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HourID" data-details="@day.DaysID" data-rowid="9">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                @*<table id="scheduleTableID" style="border-spacing: 1px;">
+                    @foreach (var hour in @day.Hours)
+                    {
+                        <tr>
+                            <td>
+                                @hour._9till10
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="9">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._10till11
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="10">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._11till12
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="11">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._12till13
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="12">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._13till14
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="13">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._14till15
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="14">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._15till16
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="15">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._16till17
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="16">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._17till18
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="17">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._18till19
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="18">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._19till20
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="19">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._20till21
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="20">
+                                   &nbsp &nbsp  &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @hour._21till22
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="21">
+                                   &nbsp &nbsp &nbsp &nbsp
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </table>*@
+            </td>
+        }
+    </tr>
+
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary reservationButton">Reserve</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="../../Scripts/CustomScripts/reservationJS.js"></script>

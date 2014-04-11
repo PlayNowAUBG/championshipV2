@@ -1,0 +1,27 @@
+﻿#mainCustom{
+    position:relative;
+    text-align:center;
+    vertical-align:middle;
+}
+
+#mainCustom label {
+    position:relative;
+    bottom:250px;
+    left:140px;
+    text-align:center;
+    vertical-align:middle;
+}
+
+#mainCustomFieldInfo {
+    position:relative;
+    bottom:250px;
+    float:right;
+    vertical-align:middle;
+}
+
+ #mainCustom #map_canvas {
+    position:absolute;
+    width: 250px;
+    height: 230px;
+    background-color: #CCC;
+}

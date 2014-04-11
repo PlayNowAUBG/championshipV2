@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="../../Content/bootstrapPlayNow.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+    <script src="../../Scripts/CustomScripts/bootstrap.minPlayNow.js"></script>
+    <script src="../../Scripts/CustomScripts/regPopUp.js"></script>
+</head>
+<body>
+    <div class="page">
+        <div id="header">
+            <div id="title">
+                <h1>Play Now</h1>
+            </div>
+            <div id="logindisplay">
+                @Html.Partial("_LogOnPartial")
+            </div>
+            <div id="menucontainer">
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Register","Register","Account")</li>
+                    <li>@Html.ActionLink("Reg Team", "RegisterTeam", "Account")</li>
+                    <li>@Html.ActionLink("Reg Player", "RegisterPlayer", "Account")</li>
+                    <li>@Html.ActionLink("Add new playfield", "Create", "Playfield")</li>
+                    <li>@Html.ActionLink("Add new tournament","Create","Tournament")</li>
+                    <li>@Html.ActionLink("Add new reservation", "Create", "Reservation")</li>
+                    <li>@Html.ActionLink("Admin panel", "Index", "Admin")</li>
+                    <li>@Html.ActionLink("Playfield owner panel", "PlayfieldAdminPanel", "Admin")</li>
+                </ul>
+            </div>
+        </div>
+        <div id="main">
+            @RenderBody()
+            <button id="regPlayer" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#regPlayerModal">
+                Register Player
+            </button>
+
+            <button id="regTeam" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#regTeamModal">
+                 Register Team
+            </button>
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+
+    <div class="modal fade" id="regPlayerModal" tabindex="-1" role="dialog" data-url="@Url.Action("RegisterPlayer","Account")" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    
+                </div>
+                <div id="playerContainer" class="modal-body">
+                   
+                </div>
+                <div class="modal-footer">
+                 </div>
+            </div>
+        </div>
+    </div>
+
+   <div class="modal fade" id="regTeamModal" tabindex="-1" role="dialog" data-url="@Url.Action("RegisterTeam","Account")" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    
+                </div>
+                <div id="teamContainer" class="modal-body">
+                   
+                </div>
+                <div class="modal-footer">
+                 </div>
+            </div>
+        </div>
+    </div>
+   
+</body>
+</html>

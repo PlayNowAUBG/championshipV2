@@ -1,0 +1,73 @@
+﻿@model ChampionshipMvc3.Models.DataContext.Playfield
+
+@{
+    ViewBag.Title = "PlayfieldDetails";
+}
+
+<link href="../../Content/CustomStyles/PlayfieldLayoutDesign.css" rel="stylesheet" />
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/CustomScripts/jQueryLibrary.js")" type="text/javascript"></script>
+
+<script src="@Url.Content("~/Scripts/CustomScripts/googleMapsLoad.js")" type="text/javascript"></script>
+
+<h2>PlayfieldDetails</h2>
+
+<div>
+
+    <script>
+    </script>
+
+    <div id="mainCustom">
+        <div id="map_canvas"></div>
+        <label>@Html.DisplayFor(model => model.Name)</label>
+        <img src="../../@Model.ImageLink" width="250" height="230" />
+    </div>
+
+    <div id="mainCustomFieldInfo">
+        <table>
+            <tr>
+                <td>
+                    <div class="display-label">FieldType: @Html.DisplayFor(model => model.FieldType)</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-label">SurfaceType: @Html.DisplayFor(model => model.SurfaceType)</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-label">Address: @Html.DisplayFor(model => model.Address)</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-label">Length: @Html.DisplayFor(model => model.Length)</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-label">Width: @Html.DisplayFor(model => model.Width)</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-label">Neighbourhood: @Html.DisplayFor(model => model.Neighbourhood)</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-label">Price: @Html.DisplayFor(model => model.Price)</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<div>
+    @Html.Partial("_Schedule", Model.Schedule)
+</div>
+
+

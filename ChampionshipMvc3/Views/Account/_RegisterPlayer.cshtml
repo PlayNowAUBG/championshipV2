@@ -1,0 +1,37 @@
+﻿@model ChampionshipMvc3.Models.DataContext.Team
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/CustomScripts/autocomplete.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+
+        @Html.Partial("~/Views/Account/_Register.cshtml", new ChampionshipMvc3.Models.RegisterModel())
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TeamName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TeamName, new { data_autocomplete = Url.Action("FilterTeams", "Account") })
+            @Html.ValidationMessageFor(model => model.TeamName)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TeamPassword)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TeamPassword)
+            @Html.ValidationMessageFor(model => model.TeamPassword)
+        </div>
+        <br />
+        <br />
+        <br />
+        <p>
+            <input type="submit" value="Register" />
+        </p>
+    </fieldset>
+}
+

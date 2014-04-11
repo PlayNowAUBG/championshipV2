@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ChampionshipMvc3.Models.DataContext.Reservation>
+
+<table id="pendingReservations">
+    <tr>
+        <th>
+            StartHour
+        </th>
+        <th>
+            EndHour
+        </th>
+        <th>
+            TeamID
+        </th>
+        <th>
+            PlayerID
+        </th>
+        <th>
+            ReservationDate
+        </th>
+        <th>
+            DayName
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartHour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndHour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlayerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReservationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DayName)
+        </td>
+        <td>
+            @using (Ajax.BeginForm("ApproveReservation", "Admin", new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "pendingReservations"
+            }))
+            {
+                <input type="submit" value="Approve" />
+                <input type="hidden" name="reservationId" value="@item.ReservationID" />
+            }
+        </td>
+    </tr>
+}
+
+</table>
