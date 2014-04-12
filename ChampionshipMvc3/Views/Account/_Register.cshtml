@@ -13,8 +13,6 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
     <div>
-            @Html.Partial("~/Views/Player/_CreatePlayer.cshtml", new ChampionshipMvc3.Models.DataContext.Player())
-
             <div class="editor-label">
                 @Html.LabelFor(m => m.UserName)
             </div>

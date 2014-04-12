@@ -10,6 +10,7 @@ using ChampionshipMvc3.Models.DataContext;
 using ChampionshipMvc3.Models.Repositories;
 using ChampionshipMvc3.Models.Interfaces;
 using ChampionshipMvc3.Models.Enums;
+using ChampionshipMvc3.Models.ViewModels;
 
 namespace ChampionshipMvc3.Controllers
 {
@@ -21,6 +22,7 @@ namespace ChampionshipMvc3.Controllers
 
         private IPlayerRepository playerRepository;
         private ITeamRepository teamRepository;
+        private IOwnerPlayfieldRepository ownerRepository;
         //
         // GET: /Account/LogOn
 
@@ -28,6 +30,7 @@ namespace ChampionshipMvc3.Controllers
         {
             playerRepository = new PlayerRepository();
             teamRepository = new TeamRepository();
+            ownerRepository = new OwnerPlayfieldRepository();
         }
 
         public ActionResult LogOn()
@@ -79,7 +82,40 @@ namespace ChampionshipMvc3.Controllers
         //
         // GET: /Account/Register
 
-        
+
+        public ActionResult RegisterOwner()
+        {
+            RegisterOwnerViewModel regViewModel = new RegisterOwnerViewModel();
+            List<PlayfieldOwner> listOfOwners = ownerRepository.GetAllOwners().ToList();
+
+            regViewModel.OwnersSelectList = new List<SelectListItem>();
+            foreach (var owner in listOfOwners)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = owner.Name;
+                item.Value = owner.OwnerPlayfieldID.ToString();
+                regViewModel.OwnersSelectList.Add(item);
+            }
+
+            return View("RegisterOwnerView", regViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult RegisterOwner(RegisterModel regModel, RegisterOwnerViewModel ownerViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                MembershipCreateStatus createStatus = RegisterUser(regModel);
+
+                if (createStatus == MembershipCreateStatus.Success)
+                {
+                    Guid userId = ownerRepository.GetUserId(regModel.UserName);
+                    ownerRepository.UpdatePlayfieldOwner(ownerViewModel.SelectedId, userId);
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
         public ActionResult RegisterTeam()
         {
             return PartialView(registerTeamView);

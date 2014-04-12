@@ -16,64 +16,64 @@
         <legend>Playfield</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.playfieldModel.PlayfieldName)
+            @Html.LabelFor(model => model.PlayfieldModel.PlayfieldName)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.playfieldModel.PlayfieldName)
-            @Html.ValidationMessageFor(model => model.playfieldModel.PlayfieldName)
+            @Html.EditorFor(model => model.PlayfieldModel.PlayfieldName)
+            @Html.ValidationMessageFor(model => model.PlayfieldModel.PlayfieldName)
         </div>
 
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.playfieldModel.FieldType)
+            @Html.LabelFor(model => model.PlayfieldModel.FieldType)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.playfieldModel.FieldType)
-            @Html.ValidationMessageFor(model => model.playfieldModel.FieldType)
+            @Html.EditorFor(model => model.PlayfieldModel.FieldType)
+            @Html.ValidationMessageFor(model => model.PlayfieldModel.FieldType)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.playfieldModel.SurfaceType)
+            @Html.LabelFor(model => model.PlayfieldModel.SurfaceType)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.playfieldModel.SurfaceType)
-            @Html.ValidationMessageFor(model => model.playfieldModel.SurfaceType)
+            @Html.EditorFor(model => model.PlayfieldModel.SurfaceType)
+            @Html.ValidationMessageFor(model => model.PlayfieldModel.SurfaceType)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.playfieldModel.Length)
+            @Html.LabelFor(model => model.PlayfieldModel.Length)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.playfieldModel.Length)
-            @Html.ValidationMessageFor(model => model.playfieldModel.Length)
+            @Html.EditorFor(model => model.PlayfieldModel.Length)
+            @Html.ValidationMessageFor(model => model.PlayfieldModel.Length)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.playfieldModel.Width)
+            @Html.LabelFor(model => model.PlayfieldModel.Width)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.playfieldModel.Width)
-            @Html.ValidationMessageFor(model => model.playfieldModel.Width)
+            @Html.EditorFor(model => model.PlayfieldModel.Width)
+            @Html.ValidationMessageFor(model => model.PlayfieldModel.Width)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.playfieldModel.PriceLights)
+            @Html.LabelFor(model => model.PlayfieldModel.PriceLights)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.playfieldModel.PriceLights)
-            @Html.ValidationMessageFor(model => model.playfieldModel.PriceLights)
+            @Html.EditorFor(model => model.PlayfieldModel.PriceLights)
+            @Html.ValidationMessageFor(model => model.PlayfieldModel.PriceLights)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.playfieldModel.PriceNoLights)
+            @Html.LabelFor(model => model.PlayfieldModel.PriceNoLights)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.playfieldModel.PriceNoLights)
-            @Html.ValidationMessageFor(model => model.playfieldModel.PriceNoLights)
+            @Html.EditorFor(model => model.PlayfieldModel.PriceNoLights)
+            @Html.ValidationMessageFor(model => model.PlayfieldModel.PriceNoLights)
         </div>
         
         <div>
-            @Html.DropDownListFor(m => m.SelectedId, Model.ownersSelectList)
+            @Html.DropDownListFor(m => m.SelectedId, Model.OwnersSelectList)
         </div>
 
         <input type="file" name="files" value="" multiple="multiple" />

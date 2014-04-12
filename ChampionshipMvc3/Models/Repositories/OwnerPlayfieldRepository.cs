@@ -28,7 +28,7 @@ namespace ChampionshipMvc3.Models.Repositories
         }
 
 
-        public ICollection<PlayfieldOwner> GetAllOwners()
+        public IList<PlayfieldOwner> GetAllOwners()
         {
             return RepositoryBase.DataContext.PlayfieldOwners.ToList();
         }
@@ -36,16 +36,35 @@ namespace ChampionshipMvc3.Models.Repositories
 
         public PlayfieldOwner GetCurrentOwnerByUserId(Guid userId)
         {
-            //TO DO: IMPLEMENT USER LOGIC HERE
-
             return RepositoryBase.DataContext.PlayfieldOwners
-                .Where(owner => owner.Name == "Ria").FirstOrDefault();
+                .Where(o => o.UserId == userId)
+                .FirstOrDefault();
         }
 
 
         public PlayfieldOwner GetOwnerById(Guid id)
         {
             throw new NotImplementedException();
+        }
+
+
+        public void UpdatePlayfieldOwner(Guid ownerId, Guid userId)
+        {
+            PlayfieldOwner currentOwner = RepositoryBase.DataContext.PlayfieldOwners
+                .Where(owner => owner.OwnerPlayfieldID == ownerId)
+                .FirstOrDefault();
+
+            currentOwner.UserId = userId;
+            SaveChanges();
+        }
+
+
+        public Guid GetUserId(string userName)
+        {
+            return RepositoryBase.DataContext.aspnet_Users
+                .Where(u => u.UserName == userName)
+                .Select(u => u.UserId)
+                .FirstOrDefault();
         }
     }
 }

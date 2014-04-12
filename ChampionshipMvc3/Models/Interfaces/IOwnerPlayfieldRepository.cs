@@ -10,9 +10,11 @@ namespace ChampionshipMvc3.Models.Interfaces
     {
         void AddNewOwner(PlayfieldOwner owner);
         PlayfieldOwner GetModel();
-        ICollection<PlayfieldOwner> GetAllOwners();
+        IList<PlayfieldOwner> GetAllOwners();
         PlayfieldOwner GetCurrentOwnerByUserId(Guid userId);
         PlayfieldOwner GetOwnerById(Guid id);
+        void UpdatePlayfieldOwner(Guid ownerId, Guid userId);
+        Guid GetUserId(string userName);
         void SaveChanges();
     }
 }

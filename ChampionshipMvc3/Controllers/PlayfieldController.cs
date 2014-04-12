@@ -36,7 +36,6 @@ namespace ChampionshipMvc3.Controllers
             return View("PlayfieldDetails", playfield);
         }
 
-        
         public ActionResult CreateOwnerPlayfield()
         {
             return View("CreateOwnerPlayfieldView", ownerRepository.GetModel());
@@ -61,14 +60,14 @@ namespace ChampionshipMvc3.Controllers
 
             List<PlayfieldOwner> listOfOwners = ownerRepository.GetAllOwners().ToList();
 
-            viewModel.ownersSelectList = new List<SelectListItem>();
+            viewModel.OwnersSelectList = new List<SelectListItem>();
             for(int index = 0; index < listOfOwners.Count; index++)
             {
                 SelectListItem currentItem = new SelectListItem();
                 currentItem.Text = listOfOwners[index].Name;
                 currentItem.Value = listOfOwners[index].OwnerPlayfieldID.ToString();
 
-                viewModel.ownersSelectList.Add(currentItem);
+                viewModel.OwnersSelectList.Add(currentItem);
             }
 
              
@@ -80,7 +79,7 @@ namespace ChampionshipMvc3.Controllers
         {
             if (ModelState.IsValid)
             {
-                Playfield playfieldModel = playfieldViewModel.playfieldModel;
+                Playfield playfieldModel = playfieldViewModel.PlayfieldModel;
 
                 playfieldModel.PLayfieldID = Guid.NewGuid();
 
@@ -89,6 +88,10 @@ namespace ChampionshipMvc3.Controllers
                 Schedule playfieldSchedule = new Schedule();
                 scheduleRepository.AddNewSchedule(playfieldSchedule, playfieldModel.PlayfieldOwner.StartHour, playfieldModel.PlayfieldOwner.EndHour);
                 playfieldModel.Schedule = playfieldSchedule;
+
+                Picture newPicture = new Picture();
+                newPicture.PictureID = Guid.NewGuid();
+                newPicture.PlayfieldId = playfieldModel.PLayfieldID;
 
                 playfieldRepository.AddNewPlayfield(playfieldModel);
                 
@@ -112,6 +115,13 @@ namespace ChampionshipMvc3.Controllers
         {
             IList<PlayfieldOwner> playfieldResult = playfieldRepository.GetAllPlayfieldsByName(name);
             return View("PlayfieldOwnerResult", playfieldResult);
+        }
+
+        public ActionResult PlayfieldSchedule(Guid playfieldId)
+        {
+            Playfield currentPlayfield = playfieldRepository.GetPlayfieldById(playfieldId);
+
+            return PartialView("_PlayfieldScheduleView", currentPlayfield);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

@@ -20,12 +20,12 @@ namespace ChampionshipMvc3.Controllers
         private IPlayerRepository playerRepository;
         private IReservationRepository reservationRepository;
         private IPlayfieldRepository playfieldRepository;
-        private IOwnerPlayfieldRepository ownerPlayfieldRepository;
+        private IOwnerPlayfieldRepository ownerRepoitory;
 
         public AdminController()
         {
             playfieldRepository = new PlayfieldRepository();
-            ownerPlayfieldRepository = new OwnerPlayfieldRepository();
+            ownerRepoitory = new OwnerPlayfieldRepository();
         }
 
         public ActionResult Index()
@@ -35,15 +35,17 @@ namespace ChampionshipMvc3.Controllers
 
         public ActionResult OwnerPanel()
         {
-            PlayfieldOwner owner = ownerPlayfieldRepository.GetAllOwners().FirstOrDefault();
-            IList<Playfield> allPlayfields = playfieldRepository.GetPlayfieldsByOwner(owner.OwnerPlayfieldID); 
+            Guid userId = ownerRepoitory.GetUserId(HttpContext.User.Identity.Name);
+            PlayfieldOwner currentOwner = ownerRepoitory.GetCurrentOwnerByUserId(userId);
+            
+            IList<Playfield> allPlayfields = playfieldRepository.GetPlayfieldsByOwner(currentOwner.OwnerPlayfieldID); 
 
             return View(playfieldAdminViewName, allPlayfields);
         }
 
         public ActionResult OwnerSchedule()
         {
-            PlayfieldOwner owner = ownerPlayfieldRepository.GetCurrentOwnerByUserId(Guid.NewGuid());
+            PlayfieldOwner owner = ownerRepoitory.GetCurrentOwnerByUserId(Guid.NewGuid());
             
 
             return PartialView("_OwnerScheduleView"); 

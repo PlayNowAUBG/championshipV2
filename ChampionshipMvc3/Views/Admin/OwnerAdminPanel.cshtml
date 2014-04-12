@@ -9,6 +9,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.PlayfieldName);
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.FieldType)
         </td>
         <td>
@@ -30,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.PriceNoLights)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.PLayfieldID }) |
+            @Html.ActionLink("Go to schedule", "DisplaySchedule", new { id=item.PLayfieldID }) |
         </td>
     </tr>
 }

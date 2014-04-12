@@ -1,0 +1,27 @@
+﻿@model ChampionshipMvc3.Models.ViewModels.RegisterOwnerViewModel
+
+@{
+    ViewBag.Title = "RegisterOwnerView";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+
+@using( Html.BeginForm("RegisterOwner","Account", FormMethod.Post))
+{
+    <fieldset>
+         @Html.Partial("~/Views/Account/_Register.cshtml", new ChampionshipMvc3.Models.RegisterModel())
+        
+         <div>
+            <label>Select a complex name</label>
+        </div>
+        <div>
+            @Html.DropDownListFor(m => m.SelectedId, Model.OwnersSelectList)
+        </div>
+            
+        <input type="submit" value="Register"/>
+    </fieldset>
+    
+}
+

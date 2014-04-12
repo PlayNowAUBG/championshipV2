@@ -33,15 +33,18 @@ namespace ChampionshipMvc3.Models.DataContext
     partial void InsertDay(Day instance);
     partial void UpdateDay(Day instance);
     partial void DeleteDay(Day instance);
+    partial void InsertVideo(Video instance);
+    partial void UpdateVideo(Video instance);
+    partial void DeleteVideo(Video instance);
     partial void InsertHour(Hour instance);
     partial void UpdateHour(Hour instance);
     partial void DeleteHour(Hour instance);
-    partial void InsertPicture(Picture instance);
-    partial void UpdatePicture(Picture instance);
-    partial void DeletePicture(Picture instance);
     partial void InsertPlayer(Player instance);
     partial void UpdatePlayer(Player instance);
     partial void DeletePlayer(Player instance);
+    partial void InsertPlayfieldOwner(PlayfieldOwner instance);
+    partial void UpdatePlayfieldOwner(PlayfieldOwner instance);
+    partial void DeletePlayfieldOwner(PlayfieldOwner instance);
     partial void InsertProfile(Profile instance);
     partial void UpdateProfile(Profile instance);
     partial void DeleteProfile(Profile instance);
@@ -69,18 +72,15 @@ namespace ChampionshipMvc3.Models.DataContext
     partial void InsertTournamentsTeam(TournamentsTeam instance);
     partial void UpdateTournamentsTeam(TournamentsTeam instance);
     partial void DeleteTournamentsTeam(TournamentsTeam instance);
-    partial void InsertVideo(Video instance);
-    partial void UpdateVideo(Video instance);
-    partial void DeleteVideo(Video instance);
     partial void Insertaspnet_User(aspnet_User instance);
     partial void Updateaspnet_User(aspnet_User instance);
     partial void Deleteaspnet_User(aspnet_User instance);
+    partial void InsertPicture(Picture instance);
+    partial void UpdatePicture(Picture instance);
+    partial void DeletePicture(Picture instance);
     partial void InsertPlayfield(Playfield instance);
     partial void UpdatePlayfield(Playfield instance);
     partial void DeletePlayfield(Playfield instance);
-    partial void InsertPlayfieldOwner(PlayfieldOwner instance);
-    partial void UpdatePlayfieldOwner(PlayfieldOwner instance);
-    partial void DeletePlayfieldOwner(PlayfieldOwner instance);
     #endregion
 		
 		public PlayNowDataContext() : 
@@ -121,6 +121,14 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
+		public System.Data.Linq.Table<Video> Videos
+		{
+			get
+			{
+				return this.GetTable<Video>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Hour> Hours
 		{
 			get
@@ -129,19 +137,19 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
-		public System.Data.Linq.Table<Picture> Pictures
-		{
-			get
-			{
-				return this.GetTable<Picture>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Player> Players
 		{
 			get
 			{
 				return this.GetTable<Player>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PlayfieldOwner> PlayfieldOwners
+		{
+			get
+			{
+				return this.GetTable<PlayfieldOwner>();
 			}
 		}
 		
@@ -217,14 +225,6 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
-		public System.Data.Linq.Table<Video> Videos
-		{
-			get
-			{
-				return this.GetTable<Video>();
-			}
-		}
-		
 		public System.Data.Linq.Table<aspnet_User> aspnet_Users
 		{
 			get
@@ -233,19 +233,19 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
+		public System.Data.Linq.Table<Picture> Pictures
+		{
+			get
+			{
+				return this.GetTable<Picture>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Playfield> Playfields
 		{
 			get
 			{
 				return this.GetTable<Playfield>();
-			}
-		}
-		
-		public System.Data.Linq.Table<PlayfieldOwner> PlayfieldOwners
-		{
-			get
-			{
-				return this.GetTable<PlayfieldOwner>();
 			}
 		}
 	}
@@ -453,6 +453,181 @@ namespace ChampionshipMvc3.Models.DataContext
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Videos")]
+	public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _VideoID;
+		
+		private string _Name;
+		
+		private System.Guid _TeamID;
+		
+		private System.DateTime _TimeStamp;
+		
+		private EntityRef<Team> _Team;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnVideoIDChanging(System.Guid value);
+    partial void OnVideoIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnTeamIDChanging(System.Guid value);
+    partial void OnTeamIDChanged();
+    partial void OnTimeStampChanging(System.DateTime value);
+    partial void OnTimeStampChanged();
+    #endregion
+		
+		public Video()
+		{
+			this._Team = default(EntityRef<Team>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid VideoID
+		{
+			get
+			{
+				return this._VideoID;
+			}
+			set
+			{
+				if ((this._VideoID != value))
+				{
+					this.OnVideoIDChanging(value);
+					this.SendPropertyChanging();
+					this._VideoID = value;
+					this.SendPropertyChanged("VideoID");
+					this.OnVideoIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid TeamID
+		{
+			get
+			{
+				return this._TeamID;
+			}
+			set
+			{
+				if ((this._TeamID != value))
+				{
+					if (this._Team.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTeamIDChanging(value);
+					this.SendPropertyChanging();
+					this._TeamID = value;
+					this.SendPropertyChanged("TeamID");
+					this.OnTeamIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStamp", DbType="Date NOT NULL")]
+		public System.DateTime TimeStamp
+		{
+			get
+			{
+				return this._TimeStamp;
+			}
+			set
+			{
+				if ((this._TimeStamp != value))
+				{
+					this.OnTimeStampChanging(value);
+					this.SendPropertyChanging();
+					this._TimeStamp = value;
+					this.SendPropertyChanged("TimeStamp");
+					this.OnTimeStampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Video", Storage="_Team", ThisKey="TeamID", OtherKey="TeamID", IsForeignKey=true)]
+		public Team Team
+		{
+			get
+			{
+				return this._Team.Entity;
+			}
+			set
+			{
+				Team previousValue = this._Team.Entity;
+				if (((previousValue != value) 
+							|| (this._Team.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Team.Entity = null;
+						previousValue.Videos.Remove(this);
+					}
+					this._Team.Entity = value;
+					if ((value != null))
+					{
+						value.Videos.Add(this);
+						this._TeamID = value.TeamID;
+					}
+					else
+					{
+						this._TeamID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Team");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Hour")]
 	public partial class Hour : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -627,157 +802,6 @@ namespace ChampionshipMvc3.Models.DataContext
 						this._DaysID = default(System.Guid);
 					}
 					this.SendPropertyChanged("Day");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Pictures")]
-	public partial class Picture : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _PictureID;
-		
-		private System.Guid _OwnerPlayfieldId;
-		
-		private string _Path;
-		
-		private EntityRef<PlayfieldOwner> _PlayfieldOwner;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPictureIDChanging(System.Guid value);
-    partial void OnPictureIDChanged();
-    partial void OnOwnerPlayfieldIdChanging(System.Guid value);
-    partial void OnOwnerPlayfieldIdChanged();
-    partial void OnPathChanging(string value);
-    partial void OnPathChanged();
-    #endregion
-		
-		public Picture()
-		{
-			this._PlayfieldOwner = default(EntityRef<PlayfieldOwner>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PictureID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid PictureID
-		{
-			get
-			{
-				return this._PictureID;
-			}
-			set
-			{
-				if ((this._PictureID != value))
-				{
-					this.OnPictureIDChanging(value);
-					this.SendPropertyChanging();
-					this._PictureID = value;
-					this.SendPropertyChanged("PictureID");
-					this.OnPictureIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerPlayfieldId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid OwnerPlayfieldId
-		{
-			get
-			{
-				return this._OwnerPlayfieldId;
-			}
-			set
-			{
-				if ((this._OwnerPlayfieldId != value))
-				{
-					if (this._PlayfieldOwner.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOwnerPlayfieldIdChanging(value);
-					this.SendPropertyChanging();
-					this._OwnerPlayfieldId = value;
-					this.SendPropertyChanged("OwnerPlayfieldId");
-					this.OnOwnerPlayfieldIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Path", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Path
-		{
-			get
-			{
-				return this._Path;
-			}
-			set
-			{
-				if ((this._Path != value))
-				{
-					this.OnPathChanging(value);
-					this.SendPropertyChanging();
-					this._Path = value;
-					this.SendPropertyChanged("Path");
-					this.OnPathChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PlayfieldOwner_Picture", Storage="_PlayfieldOwner", ThisKey="OwnerPlayfieldId", OtherKey="OwnerPlayfieldID", IsForeignKey=true)]
-		public PlayfieldOwner PlayfieldOwner
-		{
-			get
-			{
-				return this._PlayfieldOwner.Entity;
-			}
-			set
-			{
-				PlayfieldOwner previousValue = this._PlayfieldOwner.Entity;
-				if (((previousValue != value) 
-							|| (this._PlayfieldOwner.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._PlayfieldOwner.Entity = null;
-						previousValue.Pictures.Remove(this);
-					}
-					this._PlayfieldOwner.Entity = value;
-					if ((value != null))
-					{
-						value.Pictures.Add(this);
-						this._OwnerPlayfieldId = value.OwnerPlayfieldID;
-					}
-					else
-					{
-						this._OwnerPlayfieldId = default(System.Guid);
-					}
-					this.SendPropertyChanged("PlayfieldOwner");
 				}
 			}
 		}
@@ -1277,6 +1301,377 @@ namespace ChampionshipMvc3.Models.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.Player = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PlayfieldOwner")]
+	public partial class PlayfieldOwner : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _OwnerPlayfieldID;
+		
+		private string _Name;
+		
+		private string _Address;
+		
+		private int _StartHour;
+		
+		private int _EndHour;
+		
+		private string _Long;
+		
+		private string _Lat;
+		
+		private string _Neighbourhood;
+		
+		private string _PhoneNumber;
+		
+		private System.Nullable<System.Guid> _UserId;
+		
+		private string _City;
+		
+		private EntitySet<Playfield> _Playfields;
+		
+		private EntityRef<aspnet_User> _aspnet_User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnOwnerPlayfieldIDChanging(System.Guid value);
+    partial void OnOwnerPlayfieldIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnStartHourChanging(int value);
+    partial void OnStartHourChanged();
+    partial void OnEndHourChanging(int value);
+    partial void OnEndHourChanged();
+    partial void OnLongChanging(string value);
+    partial void OnLongChanged();
+    partial void OnLatChanging(string value);
+    partial void OnLatChanged();
+    partial void OnNeighbourhoodChanging(string value);
+    partial void OnNeighbourhoodChanged();
+    partial void OnPhoneNumberChanging(string value);
+    partial void OnPhoneNumberChanged();
+    partial void OnUserIdChanging(System.Nullable<System.Guid> value);
+    partial void OnUserIdChanged();
+    partial void OnCityChanging(string value);
+    partial void OnCityChanged();
+    #endregion
+		
+		public PlayfieldOwner()
+		{
+			this._Playfields = new EntitySet<Playfield>(new Action<Playfield>(this.attach_Playfields), new Action<Playfield>(this.detach_Playfields));
+			this._aspnet_User = default(EntityRef<aspnet_User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerPlayfieldID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid OwnerPlayfieldID
+		{
+			get
+			{
+				return this._OwnerPlayfieldID;
+			}
+			set
+			{
+				if ((this._OwnerPlayfieldID != value))
+				{
+					this.OnOwnerPlayfieldIDChanging(value);
+					this.SendPropertyChanging();
+					this._OwnerPlayfieldID = value;
+					this.SendPropertyChanged("OwnerPlayfieldID");
+					this.OnOwnerPlayfieldIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartHour", DbType="Int NOT NULL")]
+		public int StartHour
+		{
+			get
+			{
+				return this._StartHour;
+			}
+			set
+			{
+				if ((this._StartHour != value))
+				{
+					this.OnStartHourChanging(value);
+					this.SendPropertyChanging();
+					this._StartHour = value;
+					this.SendPropertyChanged("StartHour");
+					this.OnStartHourChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndHour", DbType="Int NOT NULL")]
+		public int EndHour
+		{
+			get
+			{
+				return this._EndHour;
+			}
+			set
+			{
+				if ((this._EndHour != value))
+				{
+					this.OnEndHourChanging(value);
+					this.SendPropertyChanging();
+					this._EndHour = value;
+					this.SendPropertyChanged("EndHour");
+					this.OnEndHourChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Long", DbType="NVarChar(50)")]
+		public string Long
+		{
+			get
+			{
+				return this._Long;
+			}
+			set
+			{
+				if ((this._Long != value))
+				{
+					this.OnLongChanging(value);
+					this.SendPropertyChanging();
+					this._Long = value;
+					this.SendPropertyChanged("Long");
+					this.OnLongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lat", DbType="NVarChar(50)")]
+		public string Lat
+		{
+			get
+			{
+				return this._Lat;
+			}
+			set
+			{
+				if ((this._Lat != value))
+				{
+					this.OnLatChanging(value);
+					this.SendPropertyChanging();
+					this._Lat = value;
+					this.SendPropertyChanged("Lat");
+					this.OnLatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Neighbourhood", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Neighbourhood
+		{
+			get
+			{
+				return this._Neighbourhood;
+			}
+			set
+			{
+				if ((this._Neighbourhood != value))
+				{
+					this.OnNeighbourhoodChanging(value);
+					this.SendPropertyChanging();
+					this._Neighbourhood = value;
+					this.SendPropertyChanged("Neighbourhood");
+					this.OnNeighbourhoodChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string PhoneNumber
+		{
+			get
+			{
+				return this._PhoneNumber;
+			}
+			set
+			{
+				if ((this._PhoneNumber != value))
+				{
+					this.OnPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNumber = value;
+					this.SendPropertyChanged("PhoneNumber");
+					this.OnPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._aspnet_User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this.OnCityChanging(value);
+					this.SendPropertyChanging();
+					this._City = value;
+					this.SendPropertyChanged("City");
+					this.OnCityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PlayfieldOwner_Playfield", Storage="_Playfields", ThisKey="OwnerPlayfieldID", OtherKey="OwnerPlayfieldID")]
+		public EntitySet<Playfield> Playfields
+		{
+			get
+			{
+				return this._Playfields;
+			}
+			set
+			{
+				this._Playfields.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_User_PlayfieldOwner", Storage="_aspnet_User", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
+		public aspnet_User aspnet_User
+		{
+			get
+			{
+				return this._aspnet_User.Entity;
+			}
+			set
+			{
+				aspnet_User previousValue = this._aspnet_User.Entity;
+				if (((previousValue != value) 
+							|| (this._aspnet_User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._aspnet_User.Entity = null;
+						previousValue.PlayfieldOwners.Remove(this);
+					}
+					this._aspnet_User.Entity = value;
+					if ((value != null))
+					{
+						value.PlayfieldOwners.Add(this);
+						this._UserId = value.UserId;
+					}
+					else
+					{
+						this._UserId = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("aspnet_User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Playfields(Playfield entity)
+		{
+			this.SendPropertyChanging();
+			entity.PlayfieldOwner = this;
+		}
+		
+		private void detach_Playfields(Playfield entity)
+		{
+			this.SendPropertyChanging();
+			entity.PlayfieldOwner = null;
 		}
 	}
 	
@@ -2141,6 +2536,8 @@ namespace ChampionshipMvc3.Models.DataContext
 		
 		private string _CoverImageLink;
 		
+		private EntitySet<Video> _Videos;
+		
 		private EntitySet<Player> _Players;
 		
 		private EntitySet<Reservation> _Reservations;
@@ -2150,8 +2547,6 @@ namespace ChampionshipMvc3.Models.DataContext
 		private EntitySet<TeamsVideo> _TeamsVideos;
 		
 		private EntitySet<TournamentsTeam> _TournamentsTeams;
-		
-		private EntitySet<Video> _Videos;
 		
 		private EntityRef<Schedule> _Schedule;
 		
@@ -2175,12 +2570,12 @@ namespace ChampionshipMvc3.Models.DataContext
 		
 		public Team()
 		{
+			this._Videos = new EntitySet<Video>(new Action<Video>(this.attach_Videos), new Action<Video>(this.detach_Videos));
 			this._Players = new EntitySet<Player>(new Action<Player>(this.attach_Players), new Action<Player>(this.detach_Players));
 			this._Reservations = new EntitySet<Reservation>(new Action<Reservation>(this.attach_Reservations), new Action<Reservation>(this.detach_Reservations));
 			this._TeamsPictures = new EntitySet<TeamsPicture>(new Action<TeamsPicture>(this.attach_TeamsPictures), new Action<TeamsPicture>(this.detach_TeamsPictures));
 			this._TeamsVideos = new EntitySet<TeamsVideo>(new Action<TeamsVideo>(this.attach_TeamsVideos), new Action<TeamsVideo>(this.detach_TeamsVideos));
 			this._TournamentsTeams = new EntitySet<TournamentsTeam>(new Action<TournamentsTeam>(this.attach_TournamentsTeams), new Action<TournamentsTeam>(this.detach_TournamentsTeams));
-			this._Videos = new EntitySet<Video>(new Action<Video>(this.attach_Videos), new Action<Video>(this.detach_Videos));
 			this._Schedule = default(EntityRef<Schedule>);
 			OnCreated();
 		}
@@ -2309,6 +2704,19 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Video", Storage="_Videos", ThisKey="TeamID", OtherKey="TeamID")]
+		public EntitySet<Video> Videos
+		{
+			get
+			{
+				return this._Videos;
+			}
+			set
+			{
+				this._Videos.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Player", Storage="_Players", ThisKey="TeamID", OtherKey="TeamID")]
 		public EntitySet<Player> Players
 		{
@@ -2374,19 +2782,6 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Video", Storage="_Videos", ThisKey="TeamID", OtherKey="TeamID")]
-		public EntitySet<Video> Videos
-		{
-			get
-			{
-				return this._Videos;
-			}
-			set
-			{
-				this._Videos.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Schedule_Team", Storage="_Schedule", ThisKey="ScheduleID", OtherKey="ScheduleID", IsForeignKey=true)]
 		public Schedule Schedule
 		{
@@ -2439,6 +2834,18 @@ namespace ChampionshipMvc3.Models.DataContext
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Videos(Video entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = this;
+		}
+		
+		private void detach_Videos(Video entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = null;
 		}
 		
 		private void attach_Players(Player entity)
@@ -2496,18 +2903,6 @@ namespace ChampionshipMvc3.Models.DataContext
 		}
 		
 		private void detach_TournamentsTeams(TournamentsTeam entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = null;
-		}
-		
-		private void attach_Videos(Video entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = this;
-		}
-		
-		private void detach_Videos(Video entity)
 		{
 			this.SendPropertyChanging();
 			entity.Team = null;
@@ -3170,181 +3565,6 @@ namespace ChampionshipMvc3.Models.DataContext
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Videos")]
-	public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _VideoID;
-		
-		private string _Name;
-		
-		private System.Guid _TeamID;
-		
-		private System.DateTime _TimeStamp;
-		
-		private EntityRef<Team> _Team;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnVideoIDChanging(System.Guid value);
-    partial void OnVideoIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnTeamIDChanging(System.Guid value);
-    partial void OnTeamIDChanged();
-    partial void OnTimeStampChanging(System.DateTime value);
-    partial void OnTimeStampChanged();
-    #endregion
-		
-		public Video()
-		{
-			this._Team = default(EntityRef<Team>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid VideoID
-		{
-			get
-			{
-				return this._VideoID;
-			}
-			set
-			{
-				if ((this._VideoID != value))
-				{
-					this.OnVideoIDChanging(value);
-					this.SendPropertyChanging();
-					this._VideoID = value;
-					this.SendPropertyChanged("VideoID");
-					this.OnVideoIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NChar(10) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid TeamID
-		{
-			get
-			{
-				return this._TeamID;
-			}
-			set
-			{
-				if ((this._TeamID != value))
-				{
-					if (this._Team.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTeamIDChanging(value);
-					this.SendPropertyChanging();
-					this._TeamID = value;
-					this.SendPropertyChanged("TeamID");
-					this.OnTeamIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeStamp", DbType="Date NOT NULL")]
-		public System.DateTime TimeStamp
-		{
-			get
-			{
-				return this._TimeStamp;
-			}
-			set
-			{
-				if ((this._TimeStamp != value))
-				{
-					this.OnTimeStampChanging(value);
-					this.SendPropertyChanging();
-					this._TimeStamp = value;
-					this.SendPropertyChanged("TimeStamp");
-					this.OnTimeStampChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Video", Storage="_Team", ThisKey="TeamID", OtherKey="TeamID", IsForeignKey=true)]
-		public Team Team
-		{
-			get
-			{
-				return this._Team.Entity;
-			}
-			set
-			{
-				Team previousValue = this._Team.Entity;
-				if (((previousValue != value) 
-							|| (this._Team.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Team.Entity = null;
-						previousValue.Videos.Remove(this);
-					}
-					this._Team.Entity = value;
-					if ((value != null))
-					{
-						value.Videos.Add(this);
-						this._TeamID = value.TeamID;
-					}
-					else
-					{
-						this._TeamID = default(System.Guid);
-					}
-					this.SendPropertyChanged("Team");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.aspnet_Users")]
 	public partial class aspnet_User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3607,6 +3827,157 @@ namespace ChampionshipMvc3.Models.DataContext
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Pictures")]
+	public partial class Picture : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _PictureID;
+		
+		private System.Guid _PlayfieldId;
+		
+		private string _Path;
+		
+		private EntityRef<Playfield> _Playfield;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPictureIDChanging(System.Guid value);
+    partial void OnPictureIDChanged();
+    partial void OnPlayfieldIdChanging(System.Guid value);
+    partial void OnPlayfieldIdChanged();
+    partial void OnPathChanging(string value);
+    partial void OnPathChanged();
+    #endregion
+		
+		public Picture()
+		{
+			this._Playfield = default(EntityRef<Playfield>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PictureID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid PictureID
+		{
+			get
+			{
+				return this._PictureID;
+			}
+			set
+			{
+				if ((this._PictureID != value))
+				{
+					this.OnPictureIDChanging(value);
+					this.SendPropertyChanging();
+					this._PictureID = value;
+					this.SendPropertyChanged("PictureID");
+					this.OnPictureIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlayfieldId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PlayfieldId
+		{
+			get
+			{
+				return this._PlayfieldId;
+			}
+			set
+			{
+				if ((this._PlayfieldId != value))
+				{
+					if (this._Playfield.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPlayfieldIdChanging(value);
+					this.SendPropertyChanging();
+					this._PlayfieldId = value;
+					this.SendPropertyChanged("PlayfieldId");
+					this.OnPlayfieldIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Path", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Path
+		{
+			get
+			{
+				return this._Path;
+			}
+			set
+			{
+				if ((this._Path != value))
+				{
+					this.OnPathChanging(value);
+					this.SendPropertyChanging();
+					this._Path = value;
+					this.SendPropertyChanged("Path");
+					this.OnPathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Playfield_Picture", Storage="_Playfield", ThisKey="PlayfieldId", OtherKey="PLayfieldID", IsForeignKey=true)]
+		public Playfield Playfield
+		{
+			get
+			{
+				return this._Playfield.Entity;
+			}
+			set
+			{
+				Playfield previousValue = this._Playfield.Entity;
+				if (((previousValue != value) 
+							|| (this._Playfield.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Playfield.Entity = null;
+						previousValue.Pictures.Remove(this);
+					}
+					this._Playfield.Entity = value;
+					if ((value != null))
+					{
+						value.Pictures.Add(this);
+						this._PlayfieldId = value.PLayfieldID;
+					}
+					else
+					{
+						this._PlayfieldId = default(System.Guid);
+					}
+					this.SendPropertyChanged("Playfield");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Playfields")]
 	public partial class Playfield : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3635,9 +4006,11 @@ namespace ChampionshipMvc3.Models.DataContext
 		
 		private EntitySet<Reservation> _Reservations;
 		
-		private EntityRef<Schedule> _Schedule;
+		private EntitySet<Picture> _Pictures;
 		
 		private EntityRef<PlayfieldOwner> _PlayfieldOwner;
+		
+		private EntityRef<Schedule> _Schedule;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3668,8 +4041,9 @@ namespace ChampionshipMvc3.Models.DataContext
 		public Playfield()
 		{
 			this._Reservations = new EntitySet<Reservation>(new Action<Reservation>(this.attach_Reservations), new Action<Reservation>(this.detach_Reservations));
-			this._Schedule = default(EntityRef<Schedule>);
+			this._Pictures = new EntitySet<Picture>(new Action<Picture>(this.attach_Pictures), new Action<Picture>(this.detach_Pictures));
 			this._PlayfieldOwner = default(EntityRef<PlayfieldOwner>);
+			this._Schedule = default(EntityRef<Schedule>);
 			OnCreated();
 		}
 		
@@ -3894,37 +4268,16 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Schedule_Playfield", Storage="_Schedule", ThisKey="ScheduleID", OtherKey="ScheduleID", IsForeignKey=true)]
-		public Schedule Schedule
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Playfield_Picture", Storage="_Pictures", ThisKey="PLayfieldID", OtherKey="PlayfieldId")]
+		public EntitySet<Picture> Pictures
 		{
 			get
 			{
-				return this._Schedule.Entity;
+				return this._Pictures;
 			}
 			set
 			{
-				Schedule previousValue = this._Schedule.Entity;
-				if (((previousValue != value) 
-							|| (this._Schedule.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Schedule.Entity = null;
-						previousValue.Playfields.Remove(this);
-					}
-					this._Schedule.Entity = value;
-					if ((value != null))
-					{
-						value.Playfields.Add(this);
-						this._ScheduleID = value.ScheduleID;
-					}
-					else
-					{
-						this._ScheduleID = default(System.Guid);
-					}
-					this.SendPropertyChanged("Schedule");
-				}
+				this._Pictures.Assign(value);
 			}
 		}
 		
@@ -3962,6 +4315,40 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Schedule_Playfield", Storage="_Schedule", ThisKey="ScheduleID", OtherKey="ScheduleID", IsForeignKey=true)]
+		public Schedule Schedule
+		{
+			get
+			{
+				return this._Schedule.Entity;
+			}
+			set
+			{
+				Schedule previousValue = this._Schedule.Entity;
+				if (((previousValue != value) 
+							|| (this._Schedule.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Schedule.Entity = null;
+						previousValue.Playfields.Remove(this);
+					}
+					this._Schedule.Entity = value;
+					if ((value != null))
+					{
+						value.Playfields.Add(this);
+						this._ScheduleID = value.ScheduleID;
+					}
+					else
+					{
+						this._ScheduleID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Schedule");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3993,404 +4380,17 @@ namespace ChampionshipMvc3.Models.DataContext
 			this.SendPropertyChanging();
 			entity.Playfield = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PlayfieldOwner")]
-	public partial class PlayfieldOwner : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _OwnerPlayfieldID;
-		
-		private string _Name;
-		
-		private string _Address;
-		
-		private int _StartHour;
-		
-		private int _EndHour;
-		
-		private string _Long;
-		
-		private string _Lat;
-		
-		private string _Neighbourhood;
-		
-		private string _PhoneNumber;
-		
-		private System.Nullable<System.Guid> _UserId;
-		
-		private string _City;
-		
-		private EntitySet<Picture> _Pictures;
-		
-		private EntitySet<Playfield> _Playfields;
-		
-		private EntityRef<aspnet_User> _aspnet_User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnOwnerPlayfieldIDChanging(System.Guid value);
-    partial void OnOwnerPlayfieldIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnStartHourChanging(int value);
-    partial void OnStartHourChanged();
-    partial void OnEndHourChanging(int value);
-    partial void OnEndHourChanged();
-    partial void OnLongChanging(string value);
-    partial void OnLongChanged();
-    partial void OnLatChanging(string value);
-    partial void OnLatChanged();
-    partial void OnNeighbourhoodChanging(string value);
-    partial void OnNeighbourhoodChanged();
-    partial void OnPhoneNumberChanging(string value);
-    partial void OnPhoneNumberChanged();
-    partial void OnUserIdChanging(System.Nullable<System.Guid> value);
-    partial void OnUserIdChanged();
-    partial void OnCityChanging(string value);
-    partial void OnCityChanged();
-    #endregion
-		
-		public PlayfieldOwner()
-		{
-			this._Pictures = new EntitySet<Picture>(new Action<Picture>(this.attach_Pictures), new Action<Picture>(this.detach_Pictures));
-			this._Playfields = new EntitySet<Playfield>(new Action<Playfield>(this.attach_Playfields), new Action<Playfield>(this.detach_Playfields));
-			this._aspnet_User = default(EntityRef<aspnet_User>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerPlayfieldID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid OwnerPlayfieldID
-		{
-			get
-			{
-				return this._OwnerPlayfieldID;
-			}
-			set
-			{
-				if ((this._OwnerPlayfieldID != value))
-				{
-					this.OnOwnerPlayfieldIDChanging(value);
-					this.SendPropertyChanging();
-					this._OwnerPlayfieldID = value;
-					this.SendPropertyChanged("OwnerPlayfieldID");
-					this.OnOwnerPlayfieldIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this.OnAddressChanging(value);
-					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartHour", DbType="Int NOT NULL")]
-		public int StartHour
-		{
-			get
-			{
-				return this._StartHour;
-			}
-			set
-			{
-				if ((this._StartHour != value))
-				{
-					this.OnStartHourChanging(value);
-					this.SendPropertyChanging();
-					this._StartHour = value;
-					this.SendPropertyChanged("StartHour");
-					this.OnStartHourChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndHour", DbType="Int NOT NULL")]
-		public int EndHour
-		{
-			get
-			{
-				return this._EndHour;
-			}
-			set
-			{
-				if ((this._EndHour != value))
-				{
-					this.OnEndHourChanging(value);
-					this.SendPropertyChanging();
-					this._EndHour = value;
-					this.SendPropertyChanged("EndHour");
-					this.OnEndHourChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Long", DbType="NVarChar(50)")]
-		public string Long
-		{
-			get
-			{
-				return this._Long;
-			}
-			set
-			{
-				if ((this._Long != value))
-				{
-					this.OnLongChanging(value);
-					this.SendPropertyChanging();
-					this._Long = value;
-					this.SendPropertyChanged("Long");
-					this.OnLongChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lat", DbType="NVarChar(50)")]
-		public string Lat
-		{
-			get
-			{
-				return this._Lat;
-			}
-			set
-			{
-				if ((this._Lat != value))
-				{
-					this.OnLatChanging(value);
-					this.SendPropertyChanging();
-					this._Lat = value;
-					this.SendPropertyChanged("Lat");
-					this.OnLatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Neighbourhood", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Neighbourhood
-		{
-			get
-			{
-				return this._Neighbourhood;
-			}
-			set
-			{
-				if ((this._Neighbourhood != value))
-				{
-					this.OnNeighbourhoodChanging(value);
-					this.SendPropertyChanging();
-					this._Neighbourhood = value;
-					this.SendPropertyChanged("Neighbourhood");
-					this.OnNeighbourhoodChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string PhoneNumber
-		{
-			get
-			{
-				return this._PhoneNumber;
-			}
-			set
-			{
-				if ((this._PhoneNumber != value))
-				{
-					this.OnPhoneNumberChanging(value);
-					this.SendPropertyChanging();
-					this._PhoneNumber = value;
-					this.SendPropertyChanged("PhoneNumber");
-					this.OnPhoneNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					if (this._aspnet_User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string City
-		{
-			get
-			{
-				return this._City;
-			}
-			set
-			{
-				if ((this._City != value))
-				{
-					this.OnCityChanging(value);
-					this.SendPropertyChanging();
-					this._City = value;
-					this.SendPropertyChanged("City");
-					this.OnCityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PlayfieldOwner_Picture", Storage="_Pictures", ThisKey="OwnerPlayfieldID", OtherKey="OwnerPlayfieldId")]
-		public EntitySet<Picture> Pictures
-		{
-			get
-			{
-				return this._Pictures;
-			}
-			set
-			{
-				this._Pictures.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PlayfieldOwner_Playfield", Storage="_Playfields", ThisKey="OwnerPlayfieldID", OtherKey="OwnerPlayfieldID")]
-		public EntitySet<Playfield> Playfields
-		{
-			get
-			{
-				return this._Playfields;
-			}
-			set
-			{
-				this._Playfields.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_User_PlayfieldOwner", Storage="_aspnet_User", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
-		public aspnet_User aspnet_User
-		{
-			get
-			{
-				return this._aspnet_User.Entity;
-			}
-			set
-			{
-				aspnet_User previousValue = this._aspnet_User.Entity;
-				if (((previousValue != value) 
-							|| (this._aspnet_User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._aspnet_User.Entity = null;
-						previousValue.PlayfieldOwners.Remove(this);
-					}
-					this._aspnet_User.Entity = value;
-					if ((value != null))
-					{
-						value.PlayfieldOwners.Add(this);
-						this._UserId = value.UserId;
-					}
-					else
-					{
-						this._UserId = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("aspnet_User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
 		
 		private void attach_Pictures(Picture entity)
 		{
 			this.SendPropertyChanging();
-			entity.PlayfieldOwner = this;
+			entity.Playfield = this;
 		}
 		
 		private void detach_Pictures(Picture entity)
 		{
 			this.SendPropertyChanging();
-			entity.PlayfieldOwner = null;
-		}
-		
-		private void attach_Playfields(Playfield entity)
-		{
-			this.SendPropertyChanging();
-			entity.PlayfieldOwner = this;
-		}
-		
-		private void detach_Playfields(Playfield entity)
-		{
-			this.SendPropertyChanging();
-			entity.PlayfieldOwner = null;
+			entity.Playfield = null;
 		}
 	}
 }

@@ -136,6 +136,7 @@
     <Compile Include="Models\ViewModels\FileViewModel.cs" />
     <Compile Include="Models\ViewModels\ListFileViewModel.cs" />
     <Compile Include="Models\ViewModels\PlayfieldViewModel.cs" />
+    <Compile Include="Models\ViewModels\RegisterOwnerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -273,9 +274,10 @@
     <Content Include="Views\Admin\_PendingReservations.cshtml" />
     <Content Include="Views\Playfield\AddNewPlayfieldView.cshtml" />
     <Content Include="Views\Playfield\CreateOwnerPlayfieldView.cshtml" />
-    <Content Include="Views\Admin\_OwnerScheduleView.cshtml" />
+    <Content Include="Views\Playfield\_PlayfieldScheduleView.cshtml" />
     <Content Include="Views\Admin\OwnerAdminPanel.cshtml" />
     <Content Include="Views\Playfield\PlayfieldOwnerResult.cshtml" />
+    <Content Include="Views\Account\RegisterOwnerView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
