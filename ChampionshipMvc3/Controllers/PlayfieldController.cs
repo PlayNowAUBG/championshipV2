@@ -57,35 +57,38 @@ namespace ChampionshipMvc3.Controllers
 
         public ActionResult AddNewPlayfield()
         {
+            PlayfieldViewModel viewModel = new PlayfieldViewModel();
+
             List<OwnerPlayfield> listOfOwners = ownerRepository.GetAllOwners().ToList();
 
-            List<SelectListItem> dropDownOwnerList = new List<SelectListItem>();
-            
+            viewModel.ownersSelectList = new List<SelectListItem>();
             for(int index = 0; index < listOfOwners.Count; index++)
             {
                 SelectListItem currentItem = new SelectListItem();
                 currentItem.Text = listOfOwners[index].Name;
-                currentItem.Value = index.ToString();
+                currentItem.Value = listOfOwners[index].OwnerPlayfieldID.ToString();
 
-                dropDownOwnerList.Add(currentItem);
+                viewModel.ownersSelectList.Add(currentItem);
             }
 
-            ViewData["OwnerList"] = dropDownOwnerList;
-
-            return View("AddNewPlayfieldView", playfieldRepository.GetModel());
+             
+            return View("AddNewPlayfieldView", viewModel);
         }
 
         [HttpPost]
-        public ActionResult AddNewPlayfield(Playfield playfieldModel, HttpPostedFileBase[] files)
+        public ActionResult AddNewPlayfield(PlayfieldViewModel playfieldViewModel, HttpPostedFileBase[] files)
         {
             if (ModelState.IsValid)
             {
+                Playfield playfieldModel = playfieldViewModel.playfieldModel;
+
                 Schedule playfieldSchedule = new Schedule();
                 playfieldSchedule.ScheduleID = Guid.NewGuid();
                 scheduleRepository.AddNewSchedule(playfieldSchedule);
 
                 playfieldModel.Schedule = playfieldSchedule;
                 playfieldModel.PLayfieldID = Guid.NewGuid();
+                playfieldModel.OwnerPlayfieldID = playfieldViewModel.SelectedId;
                 playfieldRepository.AddNewPlayfield(playfieldModel);
                 
             }

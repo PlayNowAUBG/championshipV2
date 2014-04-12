@@ -1,4 +1,4 @@
-﻿@model ChampionshipMvc3.Models.DataContext.Playfield
+﻿@model ChampionshipMvc3.Models.ViewModels.PlayfieldViewModel
 
 @{
     ViewBag.Title = "AddNewPlayfieldView";
@@ -16,53 +16,57 @@
         <legend>Playfield</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.FieldType)
+            @Html.LabelFor(model => model.playfieldModel.FieldType)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.FieldType)
-            @Html.ValidationMessageFor(model => model.FieldType)
+            @Html.EditorFor(model => model.playfieldModel.FieldType)
+            @Html.ValidationMessageFor(model => model.playfieldModel.FieldType)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.SurfaceType)
+            @Html.LabelFor(model => model.playfieldModel.SurfaceType)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.SurfaceType)
-            @Html.ValidationMessageFor(model => model.SurfaceType)
+            @Html.EditorFor(model => model.playfieldModel.SurfaceType)
+            @Html.ValidationMessageFor(model => model.playfieldModel.SurfaceType)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Length)
+            @Html.LabelFor(model => model.playfieldModel.Length)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Length)
-            @Html.ValidationMessageFor(model => model.Length)
+            @Html.EditorFor(model => model.playfieldModel.Length)
+            @Html.ValidationMessageFor(model => model.playfieldModel.Length)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Width)
+            @Html.LabelFor(model => model.playfieldModel.Width)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Width)
-            @Html.ValidationMessageFor(model => model.Width)
+            @Html.EditorFor(model => model.playfieldModel.Width)
+            @Html.ValidationMessageFor(model => model.playfieldModel.Width)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.PriceLights)
+            @Html.LabelFor(model => model.playfieldModel.PriceLights)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.PriceLights)
-            @Html.ValidationMessageFor(model => model.PriceLights)
+            @Html.EditorFor(model => model.playfieldModel.PriceLights)
+            @Html.ValidationMessageFor(model => model.playfieldModel.PriceLights)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.PriceNoLights)
+            @Html.LabelFor(model => model.playfieldModel.PriceNoLights)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.PriceNoLights)
-            @Html.ValidationMessageFor(model => model.PriceNoLights)
+            @Html.EditorFor(model => model.playfieldModel.PriceNoLights)
+            @Html.ValidationMessageFor(model => model.playfieldModel.PriceNoLights)
         </div>
         
+        <div>
+            @Html.DropDownListFor(m => m.SelectedId, Model.ownersSelectList)
+        </div>
+
         <input type="file" name="files" value="" multiple="multiple" />
         <p>
             <input type="submit" value="Create" />

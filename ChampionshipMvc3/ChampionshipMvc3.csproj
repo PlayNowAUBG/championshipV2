@@ -135,6 +135,7 @@
     <Compile Include="Models\RepositoryBase.cs" />
     <Compile Include="Models\ViewModels\FileViewModel.cs" />
     <Compile Include="Models\ViewModels\ListFileViewModel.cs" />
+    <Compile Include="Models\ViewModels\PlayfieldViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -269,8 +270,8 @@
     <Content Include="Views\Playfield\SuccessReservation.cshtml" />
     <Content Include="Views\Admin\PlayfieldAdminPanel.cshtml" />
     <Content Include="Views\Admin\_PendingReservations.cshtml" />
-    <Content Include="Views\Playfield\CreateOwnerPlayfieldView.cshtml" />
     <Content Include="Views\Playfield\AddNewPlayfieldView.cshtml" />
+    <Content Include="Views\Playfield\CreateOwnerPlayfieldView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
