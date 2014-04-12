@@ -19,9 +19,9 @@ namespace ChampionshipMvc3.Controllers
 
         public ActionResult Index()
         {
-            var model = playfieldRepository.GetAllPlayfields();
+            //var model = playfieldRepository.GetAllPlayfields();
 
-            return View(model);
+            return View();
         }
 
         public ActionResult About()
