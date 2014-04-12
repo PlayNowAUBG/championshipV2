@@ -4,25 +4,3 @@
     ViewBag.Title = "Home Page";
 }
 
-@foreach (var item in Model)
-{
-    <div class="playfield">
-        <h4>@item.Name</h4>
-        <div style="float: left">
-            <img src="@item.ImageLink" width="240" height="200"/>
-        </div>
-        <div>
-            <table>
-                <tr><td>Neighbourhood: @item.Neighbourhood</td></tr>
-                <tr><td>Surface Type: @item.SurfaceType</td></tr>
-                <tr><td>Type: @item.FieldType</td></tr>
-                <tr><td>Length: @item.Length</td></tr>
-                <tr><td>Width: @item.Width</td></tr>
-                <tr><td>Price: @item.Price</td></tr>
-            </table>
-        </div>
-    </div>
-    <div>
-       @Html.ActionLink("More Details", "Details", "Playfield", new { id = item.PLayfieldID }, null)
-    </div>
-}

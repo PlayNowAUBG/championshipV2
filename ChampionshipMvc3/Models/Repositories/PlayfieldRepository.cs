@@ -11,8 +11,6 @@ namespace ChampionshipMvc3.Models.Repositories
     {
         public void AddNewPlayfield(Playfield playfield)
         {
-            Guid newID = Guid.NewGuid();
-            playfield.PLayfieldID = newID;
             RepositoryBase.DataContext.Playfields.InsertOnSubmit(playfield);
             SaveChanges();
         }

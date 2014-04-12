@@ -84,6 +84,7 @@ namespace ChampionshipMvc3.Models.Repositories
         {
             Hour hour = new Hour();
             hour.Day = currentDay;
+            hour.HourID = Guid.NewGuid();
             
             RepositoryBase.DataContext.Hours.InsertOnSubmit(hour);
         }

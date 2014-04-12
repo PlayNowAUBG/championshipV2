@@ -15,9 +15,9 @@ namespace ChampionshipMvc3.Controllers
 
     public class PlayfieldController : Controller
     {
-
         private const string locationString = "~/Images/";
         private IPlayfieldRepository playfieldRepository;
+        private IOwnerPlayfieldRepository ownerRepository;
         private IScheduleRepository scheduleRepository;
         private IReservationRepository reservationRepository;
 
@@ -26,12 +26,10 @@ namespace ChampionshipMvc3.Controllers
             playfieldRepository = new PlayfieldRepository();
             scheduleRepository = new ScheduleRepository();
             reservationRepository = new ReservationRepository();
+            ownerRepository = new OwnerPlayfieldRepository();
         }
 
-
-        //
-        // GET: /Playfield/Details/5
-
+        
         public ActionResult Details(Guid id)
         {
             var playfield = playfieldRepository.GetPlayfieldById(id);
@@ -39,37 +37,62 @@ namespace ChampionshipMvc3.Controllers
         }
 
         
-        //
-        // GET: /Playfield/Create
-
-        public ActionResult Create()
+        public ActionResult CreateOwnerPlayfield()
         {
-            return View("CreatePlayfield", playfieldRepository.GetModel());
+            return View("CreateOwnerPlayfieldView", ownerRepository.GetModel());
         }
 
-        //
-        // POST: /Playfield/Create
+       
+        [HttpPost]
+        public ActionResult CreateOwnerPlayfield(OwnerPlayfield ownerModel)
+        {
+            if (ModelState.IsValid)
+            {
+                ownerModel.OwnerPlayfieldID = Guid.NewGuid();
+                ownerRepository.AddNewOwner(ownerModel);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult AddNewPlayfield()
+        {
+            List<OwnerPlayfield> listOfOwners = ownerRepository.GetAllOwners().ToList();
+
+            List<SelectListItem> dropDownOwnerList = new List<SelectListItem>();
+            
+            for(int index = 0; index < listOfOwners.Count; index++)
+            {
+                SelectListItem currentItem = new SelectListItem();
+                currentItem.Text = listOfOwners[index].Name;
+                currentItem.Value = index.ToString();
+
+                dropDownOwnerList.Add(currentItem);
+            }
+
+            ViewData["OwnerList"] = dropDownOwnerList;
+
+            return View("AddNewPlayfieldView", playfieldRepository.GetModel());
+        }
 
         [HttpPost]
-        public ActionResult Create(Playfield playfieldModel, FileViewModel fileViewModel)
+        public ActionResult AddNewPlayfield(Playfield playfieldModel, HttpPostedFileBase[] files)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    Schedule teamSchedule = new Schedule();
-                    scheduleRepository.AddNewSchedule(teamSchedule);
-                    playfieldModel.Schedule = teamSchedule;
-                    playfieldModel.ImageLink = SaveToServer(fileViewModel).Replace("~/", string.Empty);
-                    playfieldRepository.AddNewPlayfield(playfieldModel);
-                }
+                Schedule playfieldSchedule = new Schedule();
+                playfieldSchedule.ScheduleID = Guid.NewGuid();
+                scheduleRepository.AddNewSchedule(playfieldSchedule);
 
-                return RedirectToAction("Index", "Home");
+                playfieldModel.Schedule = playfieldSchedule;
+                playfieldModel.PLayfieldID = Guid.NewGuid();
+                playfieldRepository.AddNewPlayfield(playfieldModel);
+                
             }
-            catch
-            {
-                return View();
-            }
+
+            SaveToServer(files);
+
+            return RedirectToAction("Index", "Home");
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -103,12 +126,16 @@ namespace ChampionshipMvc3.Controllers
         //
         // POST: /Playfield/Delete/5
 
-        private string SaveToServer(FileViewModel fileViewModel)
+        private void SaveToServer(HttpPostedFileBase[] files)
         {
-            string location = locationString + fileViewModel.File.FileName;
-            fileViewModel.File.SaveAs(Server.MapPath(location));
+            foreach (var singleFile in files)
+            {
+                var fileName = Path.GetFileName(singleFile.FileName);
+                singleFile.SaveAs(Server.MapPath(locationString + singleFile.FileName));
+            }
 
-            return location;
+            //string location = locationString + fileViewModel.File.FileName;
+            //fileViewModel.File.SaveAs(Server.MapPath(location));
         }
     }
 }
