@@ -4,12 +4,15 @@ to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
 body {
-    background-color: #5c87b2;
+    background-image:url('MainBackground.png');
+    background-color:#00566d;
+    background-repeat:no-repeat;
+    background-position:top,center;
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
-    margin: 0;
-    padding: 0;
     color: #696969;
+    margin:0px;
+
 }
 
 a:link {
@@ -22,7 +25,7 @@ a:visited {
 }
 
 a:hover {
-    color: #1d60ff;
+
     text-decoration: none;
 }
 
@@ -71,22 +74,21 @@ h5, h6 {
     font-size: 1em;
 }
 
-/* PRIMARY LAYOUT ELEMENTS   
-----------------------------------------------------------*/
+/*----------------------------------------------------------
+                PRIMARY LAYOUT ELEMENTS   
+------------------------------------------------------------*/
 
-/* you can specify a greater or lesser percentage for the 
+/* you can specify a greater or lesser percentage for the   
 page width. Or, you can specify an exact pixel width. */
+
 .page {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 1000px;
+    margin: 0 auto;
 }
 
 header, #header {
-    position: relative;
-    margin-bottom: 0px;
     color: #000;
-    padding: 0;
+    height:230px;
 }
 
 header h1, #header h1 {
@@ -100,35 +102,28 @@ header h1, #header h1 {
     text-shadow: 1px 1px 2px #111;
 }
 
-#main {
-    padding: 30px 30px 15px 30px;
-    background-color: #fff;
-    -webkit-border-radius: 4px 0 0 0;
-    -moz-border-radius: 4px 0 0 0;
-    border-radius: 4px 0 0 0;
-}
 
-footer, 
-#footer {
-    background-color: #fff;
-    color: #999;
-    padding: 10px 0;
-    text-align: center;
-    line-height: normal;
-    margin: 0 0 30px 0;
-    font-size: .9em;
-    -webkit-border-radius: 0 0 4px 4px;
-    -moz-border-radius: 0 0 4px 4px;
-    border-radius: 0 0 4px 4px;
-}
+ /*footer, 
+    #footer {
+        background-color: #fff;
+        color: #999;
+        padding: 10px 0;
+        text-align: center;
+        line-height: normal;
+        margin: 0 0 30px 0;
+        font-size: .9em;
+        -webkit-border-radius: 0 0 4px 4px;
+        -moz-border-radius: 0 0 4px 4px;
+        border-radius: 0 0 4px 4px;
+    }*/
 
 /* TAB MENU   
 ----------------------------------------------------------*/
+
 ul#menu {
-    border-bottom: 1px #5C87B2 solid;
     padding: 0 0 2px;
-    position: relative;
-    margin: 0;
+    margin: 0 auto;
+    bottom:0;
     text-align: right;
 }
 
@@ -150,25 +145,24 @@ ul#menu li a {
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
-    background-color: #e8eef4;
-    color: #034af3;
+    color: #fff;
+    font-size:17px;
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
     border-radius: 4px 4px 0 0;
 }
 
 ul#menu li a:hover {
-    background-color: #fff;
+    color: #65a138;
     text-decoration: none;
 }
 
 ul#menu li a:active {
-    background-color: #a6e2a6;
     text-decoration: none;
 }
 
 ul#menu li.selected a {
-    background-color: #fff;
+    color: #65a138;
     color: #000;
 }
 
@@ -224,13 +218,19 @@ input[type="submit"] {
 
 nav, 
 #menucontainer {
-    margin-top: 40px;
+    position:relative;
+    margin-top: 0px;
+    top:184px;
 }
 
 div#title {
-    display: block;
-    float: left;
-    text-align: left;
+    position:relative;
+    display:block;
+    float:left;
+    height:initial;
+    margin:0px;
+    left:50px;
+    top:70px;
 }
 
 #logindisplay {

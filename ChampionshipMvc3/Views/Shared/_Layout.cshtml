@@ -15,9 +15,7 @@
             <div id="title">
                 <h1>Play Now</h1>
             </div>
-            <div id="logindisplay">
-                @Html.Partial("_LogOnPartial")
-            </div>
+            
             <div id="menucontainer">
                 <ul id="menu">
                     <li>@Html.ActionLink("Fields", "Index", "Home")</li>
@@ -30,13 +28,7 @@
         </div>
         <div id="main">
             @RenderBody()
-            <button id="regPlayer" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#regPlayerModal">
-                Register Player
-            </button>
-
-            <button id="regTeam" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#regTeamModal">
-                 Register Team
-            </button>
+            
         </div>
         <div id="footer">
         </div>
