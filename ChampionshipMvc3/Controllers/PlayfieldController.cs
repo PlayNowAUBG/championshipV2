@@ -44,7 +44,7 @@ namespace ChampionshipMvc3.Controllers
 
        
         [HttpPost]
-        public ActionResult CreateOwnerPlayfield(OwnerPlayfield ownerModel)
+        public ActionResult CreateOwnerPlayfield(PlayfieldOwner ownerModel)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace ChampionshipMvc3.Controllers
         {
             PlayfieldViewModel viewModel = new PlayfieldViewModel();
 
-            List<OwnerPlayfield> listOfOwners = ownerRepository.GetAllOwners().ToList();
+            List<PlayfieldOwner> listOfOwners = ownerRepository.GetAllOwners().ToList();
 
             viewModel.ownersSelectList = new List<SelectListItem>();
             for(int index = 0; index < listOfOwners.Count; index++)
@@ -82,13 +82,14 @@ namespace ChampionshipMvc3.Controllers
             {
                 Playfield playfieldModel = playfieldViewModel.playfieldModel;
 
-                Schedule playfieldSchedule = new Schedule();
-                playfieldSchedule.ScheduleID = Guid.NewGuid();
-                scheduleRepository.AddNewSchedule(playfieldSchedule);
-
-                playfieldModel.Schedule = playfieldSchedule;
                 playfieldModel.PLayfieldID = Guid.NewGuid();
-                playfieldModel.OwnerPlayfieldID = playfieldViewModel.SelectedId;
+
+                PlayfieldOwner playfieldOwner = ownerRepository.GetOwnerById(playfieldViewModel.SelectedId);
+
+                Schedule playfieldSchedule = new Schedule();
+                scheduleRepository.AddNewSchedule(playfieldSchedule, playfieldModel.PlayfieldOwner.StartHour, playfieldModel.PlayfieldOwner.EndHour);
+                playfieldModel.Schedule = playfieldSchedule;
+
                 playfieldRepository.AddNewPlayfield(playfieldModel);
                 
             }
@@ -96,6 +97,21 @@ namespace ChampionshipMvc3.Controllers
             SaveToServer(files);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult SearchPlayfieldsByCity(string city)
+        {
+            IList<PlayfieldOwner> playfieldsResult = playfieldRepository.GetAllPlayfieldsByCity(city);
+
+            return View("PlayfieldOwnerResult", playfieldsResult);
+        }
+
+        [HttpPost]
+        public ActionResult SearchPlayfieldsByName(string name)
+        {
+            IList<PlayfieldOwner> playfieldResult = playfieldRepository.GetAllPlayfieldsByName(name);
+            return View("PlayfieldOwnerResult", playfieldResult);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

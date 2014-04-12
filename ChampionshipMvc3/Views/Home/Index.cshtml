@@ -4,3 +4,17 @@
     ViewBag.Title = "Home Page";
 }
 
+<div>
+    @using(Html.BeginForm("SearchPlayfieldsByCity","Playfield"))
+    {
+        <input name="city" type="text" />
+        <input type="submit" value="Search by City" />
+    }
+</div>
+<div>
+    @using(Html.BeginForm("SearchPlayfieldsByName", "Playfield"))
+    {
+        <input type="text" />
+        <input type="submit" value="Search by Name" />
+    }
+</div>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ChampionshipMvc3.Models.DataContext.Playfield>
+
+@{
+    ViewBag.Title = "OwnerAdminPanel";
+}
+
+<table>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FieldType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SurfaceType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Length)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Width)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceLights)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerPlayfieldID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceNoLights)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.PLayfieldID }) |
+        </td>
+    </tr>
+}
+
+</table>

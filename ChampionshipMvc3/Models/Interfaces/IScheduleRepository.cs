@@ -9,7 +9,7 @@ namespace ChampionshipMvc3.Models.Interfaces
     public interface IScheduleRepository
     {
         Schedule GetModel();
-        void AddNewSchedule(Schedule schedule);
+        void AddNewSchedule(Schedule schedule, int StartHour, int EndHour);
         Schedule GetTeamSchedule(Guid teamId);
         Schedule GetPlayerSchedule(Guid playerId);
         Schedule GetPlayFieldSchedule(Guid playFieldId);

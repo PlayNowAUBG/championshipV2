@@ -13,25 +13,40 @@ namespace ChampionshipMvc3.Controllers
     {
         //TODO: Approve refreshes page;
         private const string adminViewName = "AdminView";
-        private const string playfieldAdminViewName = "PlayfieldAdminPanel";
+        private const string playfieldAdminViewName = "OwnerAdminPanel";
         private const string pendingRequests = "_PendingRequests";
         private const string pendingReservations = "_PendingReservations";
 
         private IPlayerRepository playerRepository;
         private IReservationRepository reservationRepository;
+        private IPlayfieldRepository playfieldRepository;
+        private IOwnerPlayfieldRepository ownerPlayfieldRepository;
 
-
-        //
-        // GET: /AdminPlayfield/
+        public AdminController()
+        {
+            playfieldRepository = new PlayfieldRepository();
+            ownerPlayfieldRepository = new OwnerPlayfieldRepository();
+        }
 
         public ActionResult Index()
         {
             return View(adminViewName);
         }
 
-        public ActionResult PlayfieldAdminPanel()
+        public ActionResult OwnerPanel()
         {
-            return View(playfieldAdminViewName);
+            PlayfieldOwner owner = ownerPlayfieldRepository.GetAllOwners().FirstOrDefault();
+            IList<Playfield> allPlayfields = playfieldRepository.GetPlayfieldsByOwner(owner.OwnerPlayfieldID); 
+
+            return View(playfieldAdminViewName, allPlayfields);
+        }
+
+        public ActionResult OwnerSchedule()
+        {
+            PlayfieldOwner owner = ownerPlayfieldRepository.GetCurrentOwnerByUserId(Guid.NewGuid());
+            
+
+            return PartialView("_OwnerScheduleView"); 
         }
 
         public ActionResult ApprovePlayer(Guid playerID)

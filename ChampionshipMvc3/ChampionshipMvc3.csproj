@@ -111,7 +111,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\DataContext\PlayNow1.designer.cs">
+    <Compile Include="Models\DataContext\PlayNow.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PlayNow.dbml</DependentUpon>
@@ -207,7 +207,7 @@
     <Content Include="Models\DataContext\PlayNow.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>PlayNow1.designer.cs</LastGenOutput>
+      <LastGenOutput>PlayNow.designer.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\CustomScripts\autoComplete.js" />
@@ -270,10 +270,12 @@
     <Content Include="Views\Admin\_PendingRequests.cshtml" />
     <Content Include="Views\Account\_RegisterPlayer.cshtml" />
     <Content Include="Views\Playfield\SuccessReservation.cshtml" />
-    <Content Include="Views\Admin\PlayfieldAdminPanel.cshtml" />
     <Content Include="Views\Admin\_PendingReservations.cshtml" />
     <Content Include="Views\Playfield\AddNewPlayfieldView.cshtml" />
     <Content Include="Views\Playfield\CreateOwnerPlayfieldView.cshtml" />
+    <Content Include="Views\Admin\_OwnerScheduleView.cshtml" />
+    <Content Include="Views\Admin\OwnerAdminPanel.cshtml" />
+    <Content Include="Views\Playfield\PlayfieldOwnerResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

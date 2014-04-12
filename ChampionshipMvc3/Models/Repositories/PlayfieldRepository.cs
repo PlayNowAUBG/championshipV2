@@ -34,16 +34,49 @@ namespace ChampionshipMvc3.Models.Repositories
 
         public Playfield GetPlayfieldByScheduleId(Guid scheduleId)
         {
-            Playfield playfield = RepositoryBase.DataContext.Playfields
-                                        .Where(p => p.ScheduleID == scheduleId)
-                                        .FirstOrDefault();
+            //Playfield playfield = RepositoryBase.DataContext.Playfields
+            //                            .Where(p => p.ScheduleID == scheduleId)
+            //                            .FirstOrDefault();
 
-            return playfield;
+            return null;
         }
 
         public void SaveChanges()
         {
             RepositoryBase.DataContext.SubmitChanges();
+        }
+
+
+
+
+        public Schedule GetPlayfieldSchedule(Guid userId)
+        {
+            return null;
+        }
+
+
+        public IList<Playfield> GetPlayfieldsByOwner(Guid ownerId)
+        {
+            return RepositoryBase.DataContext.Playfields
+                .Where(p => p.OwnerPlayfieldID == ownerId)
+                .ToList();
+        }
+
+
+
+        public IList<PlayfieldOwner> GetAllPlayfieldsByCity(string city)
+        {
+            return RepositoryBase.DataContext.PlayfieldOwners
+                .Where(p => p.City.ToLower() == city.ToLower())
+                .ToList();
+        }
+
+
+        public IList<PlayfieldOwner> GetAllPlayfieldsByName(string name)
+        {
+            return RepositoryBase.DataContext.PlayfieldOwners
+                .Where(p => p.Name.ToLower() == name.ToLower())
+                .ToList();
         }
     }
 }

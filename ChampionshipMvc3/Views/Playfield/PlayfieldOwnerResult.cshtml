@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ChampionshipMvc3.Models.DataContext.PlayfieldOwner>
+
+@{
+    ViewBag.Title = "PlayfieldOwnerResult";
+}
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            StartHour
+        </th>
+        <th>
+            EndHour
+        </th>
+        <th>
+            Long
+        </th>
+        <th>
+            Lat
+        </th>
+        <th>
+            Neighbourhood
+        </th>
+        <th>
+            PhoneNumber
+        </th>
+        <th>
+            UserId
+        </th>
+        <th>
+            City
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartHour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndHour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Long)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Neighbourhood)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OwnerPlayfieldID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OwnerPlayfieldID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OwnerPlayfieldID })
+        </td>
+    </tr>
+}
+
+</table>

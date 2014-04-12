@@ -4,6 +4,7 @@ using ChampionshipMvc3.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace ChampionshipMvc3.Models.Repositories
@@ -16,10 +17,10 @@ namespace ChampionshipMvc3.Models.Repositories
             return new Schedule();
         }
 
-        public void AddNewSchedule(Schedule schedule)
+        public void AddNewSchedule(Schedule schedule, int StartHour, int EndHour)
         {
             Guid scheduleGuid = Guid.NewGuid();
-            AddDaysToSchedule(schedule);
+            AddDaysToSchedule(schedule, StartHour, EndHour);
             schedule.ScheduleID = scheduleGuid;
 
             RepositoryBase.DataContext.Schedules.InsertOnSubmit(schedule);
@@ -64,7 +65,7 @@ namespace ChampionshipMvc3.Models.Repositories
             return day;
         }
 
-        private void AddDaysToSchedule(Schedule schedule)
+        private void AddDaysToSchedule(Schedule schedule, int StartHour, int EndHour)
         {
             for (int dayIndex = 0; dayIndex < 7; dayIndex++)
             {
@@ -74,19 +75,28 @@ namespace ChampionshipMvc3.Models.Repositories
                 newDay.DayOrderID = dayIndex+1;
                 newDay.Schedule = schedule;
 
-                AddHoursToDay(newDay);
+                AddHoursToDay(newDay, StartHour, EndHour);
 
                 RepositoryBase.DataContext.Days.InsertOnSubmit(newDay);
             }
         }
 
-        private void AddHoursToDay(Day currentDay)
+        private void AddHoursToDay(Day currentDay, int StartHour, int EndHour)
         {
-            Hour hour = new Hour();
-            hour.Day = currentDay;
-            hour.HourID = Guid.NewGuid();
-            
-            RepositoryBase.DataContext.Hours.InsertOnSubmit(hour);
+
+            for (int hourIndex = StartHour; hourIndex < EndHour - 1; hourIndex++)
+            {
+                StringBuilder hourLabel = new StringBuilder();
+                hourLabel.AppendFormat("{0} - {1}", hourIndex, hourIndex + 1);
+                
+                Hour hour = new Hour();
+                hour.Day = currentDay;
+                hour.HourID = Guid.NewGuid();
+                hour.HourLabel = hourLabel.ToString();
+                hour.HourIndex = hourIndex; 
+
+                RepositoryBase.DataContext.Hours.InsertOnSubmit(hour);
+            }
         }
 
         public void SaveChanges()
