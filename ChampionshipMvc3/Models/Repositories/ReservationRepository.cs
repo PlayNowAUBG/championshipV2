@@ -33,8 +33,7 @@ namespace ChampionshipMvc3.Models.Repositories
 
         public ICollection<Reservation> GetAllUnapprovedReservations()
         {
-            return RepositoryBase.DataContext.Reservations
-                                .Where(r => r.isApproved == false).ToList();
+            throw new NotImplementedException();
         }
 
 
@@ -47,8 +46,7 @@ namespace ChampionshipMvc3.Models.Repositories
 
         public void ApproveReservation(Guid reservationId)
         {
-            Reservation currentReservation = this.GetReservationById(reservationId);
-            currentReservation.isApproved = true;
+            throw new NotImplementedException();
             this.SaveChanges();
         }
     }

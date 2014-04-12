@@ -44,7 +44,9 @@ namespace ChampionshipMvc3.Models.Repositories
 
         public PlayfieldOwner GetOwnerById(Guid id)
         {
-            throw new NotImplementedException();
+            return RepositoryBase.DataContext.PlayfieldOwners
+                .Where(o => o.OwnerPlayfieldID == id)
+                .FirstOrDefault();
         }
 
 

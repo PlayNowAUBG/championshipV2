@@ -20,6 +20,7 @@ namespace ChampionshipMvc3.Controllers
         private IOwnerPlayfieldRepository ownerRepository;
         private IScheduleRepository scheduleRepository;
         private IReservationRepository reservationRepository;
+        private IPictureRepository pictureRepository;
 
         public PlayfieldController()
         {
@@ -27,6 +28,7 @@ namespace ChampionshipMvc3.Controllers
             scheduleRepository = new ScheduleRepository();
             reservationRepository = new ReservationRepository();
             ownerRepository = new OwnerPlayfieldRepository();
+            pictureRepository = new PictureRepository();
         }
 
         
@@ -79,26 +81,33 @@ namespace ChampionshipMvc3.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 Playfield playfieldModel = playfieldViewModel.PlayfieldModel;
-
                 playfieldModel.PLayfieldID = Guid.NewGuid();
-
                 PlayfieldOwner playfieldOwner = ownerRepository.GetOwnerById(playfieldViewModel.SelectedId);
+                playfieldModel.PlayfieldOwner = playfieldOwner;
 
                 Schedule playfieldSchedule = new Schedule();
+                playfieldSchedule.ScheduleID = Guid.NewGuid();
                 scheduleRepository.AddNewSchedule(playfieldSchedule, playfieldModel.PlayfieldOwner.StartHour, playfieldModel.PlayfieldOwner.EndHour);
                 playfieldModel.Schedule = playfieldSchedule;
 
-                Picture newPicture = new Picture();
-                newPicture.PictureID = Guid.NewGuid();
-                newPicture.PlayfieldId = playfieldModel.PLayfieldID;
+                foreach (var file in files)
+                {
+                    Picture newPicture = new Picture();
+                    newPicture.PictureID = Guid.NewGuid();
+                    newPicture.PlayfieldId = playfieldModel.PLayfieldID;
+                    newPicture.Path = locationString + file.FileName;
+                    pictureRepository.AddNewPicture(newPicture);
+                }
 
                 playfieldRepository.AddNewPlayfield(playfieldModel);
-                
+
+                SaveToServer(files);
+    
             }
 
-            SaveToServer(files);
-
+            
             return RedirectToAction("Index", "Home");
         }
 
@@ -119,9 +128,9 @@ namespace ChampionshipMvc3.Controllers
 
         public ActionResult PlayfieldSchedule(Guid playfieldId)
         {
-            Playfield currentPlayfield = playfieldRepository.GetPlayfieldById(playfieldId);
+            Schedule schedule = scheduleRepository.GetPlayFieldSchedule(playfieldId);
 
-            return PartialView("_PlayfieldScheduleView", currentPlayfield);
+            return View("PlayfieldScheduleView", schedule);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

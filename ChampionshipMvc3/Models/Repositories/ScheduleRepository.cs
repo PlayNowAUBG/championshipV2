@@ -3,6 +3,7 @@ using ChampionshipMvc3.Models.Enums;
 using ChampionshipMvc3.Models.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -19,12 +20,9 @@ namespace ChampionshipMvc3.Models.Repositories
 
         public void AddNewSchedule(Schedule schedule, int StartHour, int EndHour)
         {
-            Guid scheduleGuid = Guid.NewGuid();
             AddDaysToSchedule(schedule, StartHour, EndHour);
-            schedule.ScheduleID = scheduleGuid;
-
+            
             RepositoryBase.DataContext.Schedules.InsertOnSubmit(schedule);
-            SaveChanges();
         }
 
         public Schedule GetTeamSchedule(Guid teamId)
@@ -39,7 +37,11 @@ namespace ChampionshipMvc3.Models.Repositories
 
         public Schedule GetPlayFieldSchedule(Guid playFieldId)
         {
-            throw new NotImplementedException();
+            Playfield currentPlayfield = RepositoryBase.DataContext.Playfields
+                .Where(p => p.PLayfieldID == playFieldId)
+                .FirstOrDefault();
+
+            return currentPlayfield.Schedule;
         }
 
         public Schedule GetScheduleByDayId(Guid dayId)
@@ -101,6 +103,7 @@ namespace ChampionshipMvc3.Models.Repositories
 
         public void SaveChanges()
         {
+            ChangeSet cs = RepositoryBase.DataContext.GetChangeSet();
             RepositoryBase.DataContext.SubmitChanges();
         }
     }

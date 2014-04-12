@@ -119,6 +119,7 @@
     <Compile Include="Models\Enums\DaysEnum.cs" />
     <Compile Include="Models\Enums\PlayerType.cs" />
     <Compile Include="Models\Interfaces\IOwnerPlayfieldRepository.cs" />
+    <Compile Include="Models\Interfaces\IPictureRepository.cs" />
     <Compile Include="Models\Interfaces\IPlayerRepository.cs" />
     <Compile Include="Models\Interfaces\IPlayfieldRepository.cs" />
     <Compile Include="Models\Interfaces\IReservationRepository.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Models\Interfaces\ITeamRepository.cs" />
     <Compile Include="Models\Interfaces\ITournamentRepository.cs" />
     <Compile Include="Models\Repositories\OwnerPlayfieldRepository.cs" />
+    <Compile Include="Models\Repositories\PictureRepository.cs" />
     <Compile Include="Models\Repositories\PlayerRepository.cs" />
     <Compile Include="Models\Repositories\PlayfieldRepository.cs" />
     <Compile Include="Models\Repositories\ReservationRepository.cs" />
@@ -274,7 +276,7 @@
     <Content Include="Views\Admin\_PendingReservations.cshtml" />
     <Content Include="Views\Playfield\AddNewPlayfieldView.cshtml" />
     <Content Include="Views\Playfield\CreateOwnerPlayfieldView.cshtml" />
-    <Content Include="Views\Playfield\_PlayfieldScheduleView.cshtml" />
+    <Content Include="Views\Playfield\PlayfieldScheduleView.cshtml" />
     <Content Include="Views\Admin\OwnerAdminPanel.cshtml" />
     <Content Include="Views\Playfield\PlayfieldOwnerResult.cshtml" />
     <Content Include="Views\Account\RegisterOwnerView.cshtml" />
