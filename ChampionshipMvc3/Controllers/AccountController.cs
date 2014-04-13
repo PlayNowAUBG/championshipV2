@@ -22,7 +22,7 @@ namespace ChampionshipMvc3.Controllers
 
         private IPlayerRepository playerRepository;
         private ITeamRepository teamRepository;
-        private IOwnerPlayfieldRepository ownerRepository;
+        private IPlayfieldOwnerRepository ownerRepository;
         //
         // GET: /Account/LogOn
 
@@ -30,7 +30,7 @@ namespace ChampionshipMvc3.Controllers
         {
             playerRepository = new PlayerRepository();
             teamRepository = new TeamRepository();
-            ownerRepository = new OwnerPlayfieldRepository();
+            ownerRepository = new PlayfieldOwnerRepository();
         }
 
         public ActionResult LogOn()

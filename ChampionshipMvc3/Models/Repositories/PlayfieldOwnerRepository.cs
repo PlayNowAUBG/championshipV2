@@ -7,7 +7,7 @@ using System.Web;
 
 namespace ChampionshipMvc3.Models.Repositories
 {
-    public class OwnerPlayfieldRepository : IOwnerPlayfieldRepository
+    public class PlayfieldOwnerRepository : IPlayfieldOwnerRepository
     {
         public void AddNewOwner(PlayfieldOwner owner)
         {

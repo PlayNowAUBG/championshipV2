@@ -17,7 +17,7 @@ namespace ChampionshipMvc3.Controllers
     {
         private const string locationString = "~/Images/";
         private IPlayfieldRepository playfieldRepository;
-        private IOwnerPlayfieldRepository ownerRepository;
+        private IPlayfieldOwnerRepository ownerRepository;
         private IScheduleRepository scheduleRepository;
         private IReservationRepository reservationRepository;
         private IPictureRepository pictureRepository;
@@ -27,15 +27,15 @@ namespace ChampionshipMvc3.Controllers
             playfieldRepository = new PlayfieldRepository();
             scheduleRepository = new ScheduleRepository();
             reservationRepository = new ReservationRepository();
-            ownerRepository = new OwnerPlayfieldRepository();
+            ownerRepository = new PlayfieldOwnerRepository();
             pictureRepository = new PictureRepository();
         }
 
         
         public ActionResult Details(Guid id)
         {
-            var playfield = playfieldRepository.GetPlayfieldById(id);
-            return View("PlayfieldDetails", playfield);
+            var owner = ownerRepository.GetOwnerById(id);
+            return View("PlayfieldDetails", owner);
         }
 
         public ActionResult CreateOwnerPlayfield()
@@ -128,30 +128,51 @@ namespace ChampionshipMvc3.Controllers
 
         public ActionResult PlayfieldSchedule(Guid playfieldId)
         {
+            Session["playfieldId"] = playfieldId;
             Schedule schedule = scheduleRepository.GetPlayFieldSchedule(playfieldId);
 
             return View("PlayfieldScheduleView", schedule);
         }
 
+        public ActionResult Reserve()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult Reserve(Reservation reservationModel)
+        {
+            if (ModelState.IsValid)
+            {
+                reservationModel.PlayfieldID = (Guid)Session["playfieldId"];
+                reservationModel.ReservationID = Guid.NewGuid();
+
+                //reservationRepository.AddNewReservation(reservationModel);
+            }
+            Guid playfieldId = (Guid)Session["playfieldId"];
+            return RedirectToAction("PlayfieldSchedule", "Playfield", new { playfieldId = playfieldId });
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         [HttpPost]
-        public ActionResult ReservePlayfield(decimal hourInterval, Guid hourId, Guid dayId)
+        public ActionResult ReservePlayfield(decimal hourInterval, Guid hourId, 
+                                                Guid dayId, string name, string phone)
         {
-            //Schedule schedule = scheduleRepository.GetScheduleByDayId(dayId);
-            //Day day = scheduleRepository.GetDayById(dayId);
-            //Playfield playfield = playfieldRepository.GetPlayfieldByScheduleId(schedule.ScheduleID);
-            //Reservation reservation = new Reservation();
+            Schedule schedule = scheduleRepository.GetScheduleByDayId(dayId);
+            Day day = scheduleRepository.GetDayById(dayId);
+            Playfield playfield = playfieldRepository.GetPlayfieldByScheduleId(schedule.ScheduleID);
+            Reservation reservation = new Reservation();
 
-            //reservation.ReservationID = Guid.NewGuid();
-            //reservation.DayName = day.DayName;
-            //reservation.StartHour = hourInterval;
-            //reservation.EndHour = hourInterval + 1.0m;
-            //reservation.isApproved = false;
-            //reservation.Playfield = playfield;
-            //reservation.ReservationDate = DateTime.Now;
-            
+            reservation.ReservationID = Guid.NewGuid();
+            reservation.DayName = day.DayName;
+            reservation.StartHour = hourInterval;
+            reservation.EndHour = hourInterval + 1.0m;
+            reservation.Playfield = playfield;
+            reservation.ReservationDate = DateTime.Now;
+            reservation.Name = name;
+            reservation.Phone = phone;
 
-            //reservationRepository.AddNewReservation(reservation);
+            reservationRepository.AddNewReservation(reservation);
 
             return RedirectToAction("Index", "Home");
         }

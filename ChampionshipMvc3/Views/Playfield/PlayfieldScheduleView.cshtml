@@ -14,7 +14,7 @@
             <td>
                 <label>@day.DayName</label>
                 <table id="scheduleTableID">
-                    @foreach (var hour in @day.Hours)
+                    @foreach (var hour in @day.Hours.OrderBy(h => h.HourIndex))
                     {
                         <tr>
                             
@@ -170,8 +170,9 @@
            
       </div>
       <div class="modal-footer">
+        @Html.Partial("~/Views/Playfield/_ReservationModel.cshtml", new ChampionshipMvc3.Models.DataContext.Reservation())
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary reservationButton">Reserve</button>
+        <button type="button" value="Reserve" class="btn btn-default reservationButton">Reserve</button>
       </div>
     </div>
   </div>

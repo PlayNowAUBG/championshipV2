@@ -20,12 +20,12 @@ namespace ChampionshipMvc3.Controllers
         private IPlayerRepository playerRepository;
         private IReservationRepository reservationRepository;
         private IPlayfieldRepository playfieldRepository;
-        private IOwnerPlayfieldRepository ownerRepoitory;
+        private IPlayfieldOwnerRepository ownerRepoitory;
 
         public AdminController()
         {
             playfieldRepository = new PlayfieldRepository();
-            ownerRepoitory = new OwnerPlayfieldRepository();
+            ownerRepoitory = new PlayfieldOwnerRepository();
         }
 
         public ActionResult Index()

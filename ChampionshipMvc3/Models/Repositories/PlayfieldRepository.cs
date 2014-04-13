@@ -34,11 +34,10 @@ namespace ChampionshipMvc3.Models.Repositories
 
         public Playfield GetPlayfieldByScheduleId(Guid scheduleId)
         {
-            //Playfield playfield = RepositoryBase.DataContext.Playfields
-            //                            .Where(p => p.ScheduleID == scheduleId)
-            //                            .FirstOrDefault();
-
-            return null;
+            Playfield playfield = RepositoryBase.DataContext.Playfields
+                                        .Where(p => p.ScheduleID == scheduleId)
+                                        .FirstOrDefault();
+            return playfield;
         }
 
         public void SaveChanges()

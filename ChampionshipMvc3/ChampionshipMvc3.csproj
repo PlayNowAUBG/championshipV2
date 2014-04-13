@@ -118,7 +118,7 @@
     </Compile>
     <Compile Include="Models\Enums\DaysEnum.cs" />
     <Compile Include="Models\Enums\PlayerType.cs" />
-    <Compile Include="Models\Interfaces\IOwnerPlayfieldRepository.cs" />
+    <Compile Include="Models\Interfaces\IPlayfieldOwnerRepository.cs" />
     <Compile Include="Models\Interfaces\IPictureRepository.cs" />
     <Compile Include="Models\Interfaces\IPlayerRepository.cs" />
     <Compile Include="Models\Interfaces\IPlayfieldRepository.cs" />
@@ -126,7 +126,7 @@
     <Compile Include="Models\Interfaces\IScheduleRepository.cs" />
     <Compile Include="Models\Interfaces\ITeamRepository.cs" />
     <Compile Include="Models\Interfaces\ITournamentRepository.cs" />
-    <Compile Include="Models\Repositories\OwnerPlayfieldRepository.cs" />
+    <Compile Include="Models\Repositories\PlayfieldOwnerRepository.cs" />
     <Compile Include="Models\Repositories\PictureRepository.cs" />
     <Compile Include="Models\Repositories\PlayerRepository.cs" />
     <Compile Include="Models\Repositories\PlayfieldRepository.cs" />
@@ -280,6 +280,7 @@
     <Content Include="Views\Admin\OwnerAdminPanel.cshtml" />
     <Content Include="Views\Playfield\PlayfieldOwnerResult.cshtml" />
     <Content Include="Views\Account\RegisterOwnerView.cshtml" />
+    <Content Include="Views\Playfield\_ReservationModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

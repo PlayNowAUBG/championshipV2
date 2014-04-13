@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ChampionshipMvc3.Models.Interfaces
 {
-    public interface IOwnerPlayfieldRepository
+    public interface IPlayfieldOwnerRepository
     {
         void AddNewOwner(PlayfieldOwner owner);
         PlayfieldOwner GetModel();

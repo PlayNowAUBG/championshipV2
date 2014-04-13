@@ -1,4 +1,4 @@
-﻿@model ChampionshipMvc3.Models.DataContext.Playfield
+﻿@model ChampionshipMvc3.Models.DataContext.PlayfieldOwner
 
 @{
     ViewBag.Title = "PlayfieldDetails";
@@ -20,34 +20,13 @@
     <div id="mainCustom">
         <div id="map_canvas"></div>
         <label>@Html.DisplayFor(model => model.Name)</label>
-        <img src="../../@Model.ImageLink" width="250" height="230" />
     </div>
 
     <div id="mainCustomFieldInfo">
         <table>
             <tr>
                 <td>
-                    <div class="display-label">FieldType: @Html.DisplayFor(model => model.FieldType)</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="display-label">SurfaceType: @Html.DisplayFor(model => model.SurfaceType)</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <div class="display-label">Address: @Html.DisplayFor(model => model.Address)</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="display-label">Length: @Html.DisplayFor(model => model.Length)</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="display-label">Width: @Html.DisplayFor(model => model.Width)</div>
                 </td>
             </tr>
             <tr>
@@ -57,7 +36,22 @@
             </tr>
             <tr>
                 <td>
-                    <div class="display-label">Price: @Html.DisplayFor(model => model.Price)</div>
+                    <div class="display-label">StartHour: @Html.DisplayFor(model => model.StartHour)</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-label">EndHour: @Html.DisplayFor(model => model.EndHour)</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-label">PhoneNumber: @Html.DisplayFor(model => model.PhoneNumber)</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="display-label">City: @Html.DisplayFor(model => model.City)</div>
                 </td>
             </tr>
         </table>
@@ -67,7 +61,8 @@
 <br />
 <br />
 <div>
-    @Html.Partial("_Schedule", Model.Schedule)
+   @* @Html.Action("PlayfieldAnonymousSchedule", "Playfield", new { playfieldId = Model.PLayfieldID }) ,*@
+   @* @Html.Partial("_Schedule", Model.Schedule)*@
 </div>
 
 

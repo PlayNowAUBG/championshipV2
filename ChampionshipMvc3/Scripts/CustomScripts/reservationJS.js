@@ -16,7 +16,12 @@
     $(".reservationButton").click(function () {
         var url = "/Playfield/ReservePlayfield";
         var retUrl = "/Home/Index"
-        var posting = $.post(url, { hourInterval: selectedHourInterval, hourId: selectedHourId, dayId: selectedDayId })
+        var fieldName = $(".name").val();
+        var fieldPhone = $(".phone").val();
+        var posting = $.post(url, {
+            hourInterval: selectedHourInterval, hourId: selectedHourId, dayId: selectedDayId,
+            name: fieldName, phone: fieldPhone
+        })
         
         posting.done(function () {
             window.location = "/Playfield/SuccessReservation";
