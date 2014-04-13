@@ -35,11 +35,18 @@ namespace ChampionshipMvc3.Controllers
 
         public ActionResult OwnerPanel()
         {
-            Guid userId = ownerRepoitory.GetUserId(HttpContext.User.Identity.Name);
-            PlayfieldOwner currentOwner = ownerRepoitory.GetCurrentOwnerByUserId(userId);
-            
-            IList<Playfield> allPlayfields = playfieldRepository.GetPlayfieldsByOwner(currentOwner.OwnerPlayfieldID); 
+            IList<Playfield> allPlayfields = null;
+            try
+            {
+                Guid userId = ownerRepoitory.GetUserId(HttpContext.User.Identity.Name);
+                PlayfieldOwner currentOwner = ownerRepoitory.GetCurrentOwnerByUserId(userId);
 
+                 allPlayfields = playfieldRepository.GetPlayfieldsByOwner(currentOwner.OwnerPlayfieldID);
+            }
+            catch (NullReferenceException ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View(playfieldAdminViewName, allPlayfields);
         }
 
