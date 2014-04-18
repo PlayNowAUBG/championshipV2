@@ -4,17 +4,20 @@
     ViewBag.Title = "Play Now";
 }
 
-<div>
+<div id="inputForSearch">
     @using(Html.BeginForm("SearchPlayfieldsByCity","Playfield"))
-    {
-        <input name="city" type="text" />
-        <input type="submit" value="Search by City" />
+    {   
+        <div>
+            <input name="city" type="text" class="textBoxInput"/>
+            <input type="submit" value="City"  class="inputSearchButton"/>
+        </div>
     }
-</div>
-<div>
+
     @using(Html.BeginForm("SearchPlayfieldsByName", "Playfield"))
-    {
-        <input name="name" type="text" />
-        <input type="submit" value="Search by Name" />
+    {  
+        <div>
+            <input name="name" type="text" class="textBoxInput"/>
+            <input type="submit" value="Field Name"  class="inputSearchButton"/>
+        </div>
     }
 </div>
