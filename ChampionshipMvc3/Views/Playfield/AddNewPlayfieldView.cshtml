@@ -5,7 +5,6 @@
 }
 
 <h2>Add New Playfield</h2>
-
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
@@ -14,7 +13,6 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Playfield</legend>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.PlayfieldModel.PlayfieldName)
         </div>
@@ -78,7 +76,7 @@
 
         <input type="file" name="files" value="" multiple="multiple" />
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Create"/>
         </p>
     </fieldset>
 }
