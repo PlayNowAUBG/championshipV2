@@ -38,14 +38,14 @@ namespace ChampionshipMvc3.Controllers
             return View("PlayfieldDetails", owner);
         }
 
-        public ActionResult CreateOwnerPlayfield()
+        public ActionResult CreatePlayfieldOwner()
         {
             return View("CreateOwnerPlayfieldView", ownerRepository.GetModel());
         }
 
        
         [HttpPost]
-        public ActionResult CreateOwnerPlayfield(PlayfieldOwner ownerModel)
+        public ActionResult CreatePlayfieldOwner(PlayfieldOwner ownerModel)
         {
             if (ModelState.IsValid)
             {
