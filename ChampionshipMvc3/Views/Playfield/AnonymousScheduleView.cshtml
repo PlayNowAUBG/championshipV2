@@ -1,14 +1,10 @@
 ﻿@model ChampionshipMvc3.Models.DataContext.Schedule
-    
-<link href="../../Content/customBootstrap.css" rel="stylesheet" />
-<script src="../../Scripts/CustomScripts/jQueryLibrary.js"></script>
-<script src="@Url.Content("~/Scripts/CustomScripts/tableFillerScheduleLayout.js")" type="text/javascript"></script>
-<script src="../../Scripts/CustomScripts/bootstrap.minPlayNow.js"></script>
 
+<script src="@Url.Content("~/Scripts/CustomScripts/tableFillerScheduleLayout.js")" type="text/javascript"></script>
+    
 <table id="structureTable">
   
     <tr>
-        
         @foreach (ChampionshipMvc3.Models.DataContext.Day day in Model.Days.OrderBy(d => d.DayOrderID))
         {
             <td>
@@ -17,7 +13,7 @@
                     @foreach (var hour in @day.Hours.OrderBy(h => h.HourIndex))
                     {
                         <tr>
-                             @if (hour.Day.DayName.StartsWith("Mon"))
+                            @if (hour.Day.DayName.StartsWith("Mon"))
                             {
                                 <td>
                                     @hour.HourLabel;
@@ -162,26 +158,3 @@
 
 </table>
 
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-           
-      </div>
-      <div class="modal-footer">
-        @Html.Partial("~/Views/Playfield/_ReservationModel.cshtml", new ChampionshipMvc3.Models.DataContext.Reservation())
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" value="Reserve" class="btn btn-default reservationButton">Reserve</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script src="../../Scripts/CustomScripts/reservationJS.js"></script>

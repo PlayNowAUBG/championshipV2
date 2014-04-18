@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PlayNowDb" Class="PlayNowDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="playnowb_database" Class="PlayNowDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=VPP090-PC\SQLEXPRESS;Initial Catalog=PlayNowDb;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PlayNowDbConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Videos" Member="Videos">
-    <Type Name="Video">
-      <Column Name="VideoID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="TeamID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="TimeStamp" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Association Name="Team_Video" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
+  <Table Name="dbo.Pictures" Member="Pictures">
+    <Type Name="Picture">
+      <Column Name="PictureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PlayfieldId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Playfield_Picture" Member="Playfield" ThisKey="PlayfieldId" OtherKey="PLayfieldID" Type="Playfield" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Players" Member="Players">
@@ -23,9 +22,9 @@
       <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="DateOfBirth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Schedule_Player" Member="Schedule" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Schedule" IsForeignKey="true" />
       <Association Name="Team_Player" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
       <Association Name="aspnet_User_Player" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
-      <Association Name="Schedule_Player" Member="Schedule" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Schedule" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PlayfieldOwner" Member="PlayfieldOwners">
@@ -45,13 +44,35 @@
       <Association Name="aspnet_User_PlayfieldOwner" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Profiles" Member="Profiles">
-    <Type Name="Profile">
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PropertyNames" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="PropertyValueStrings" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="PropertyValueBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="LastUpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.Playfields" Member="Playfields">
+    <Type Name="Playfield">
+      <Column Name="PLayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FieldType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SurfaceType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Width" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PriceLights" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OwnerPlayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PriceNoLights" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PlayfieldName" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Playfield_Picture" Member="Pictures" ThisKey="PLayfieldID" OtherKey="PlayfieldId" Type="Picture" />
+      <Association Name="Playfield_Reservation" Member="Reservations" ThisKey="PLayfieldID" OtherKey="PlayfieldID" Type="Reservation" />
+      <Association Name="PlayfieldOwner_Playfield" Member="PlayfieldOwner" ThisKey="OwnerPlayfieldID" OtherKey="OwnerPlayfieldID" Type="PlayfieldOwner" IsForeignKey="true" />
+      <Association Name="Schedule_Playfield" Member="Schedule" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Schedule" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservations" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="ReservationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StartHour" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="EndHour" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="PlayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ReservationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DayName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Playfield_Reservation" Member="Playfield" ThisKey="PlayfieldID" OtherKey="PLayfieldID" Type="Playfield" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Roles" Member="Roles">
@@ -62,6 +83,15 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Schedule" Member="Schedules">
+    <Type Name="Schedule">
+      <Column Name="ScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Schedule_Player" Member="Players" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Player" />
+      <Association Name="Schedule_Playfield" Member="Playfields" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Playfield" />
+      <Association Name="Schedule_Team" Member="Teams" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Team" />
+      <Association Name="Schedule_Day" Member="Days" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Day" />
+    </Type>
+  </Table>
   <Table Name="dbo.Teams" Member="Teams">
     <Type Name="Team">
       <Column Name="TeamID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -70,11 +100,11 @@
       <Column Name="ScheduleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="ProfileImageLink" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="CoverImageLink" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="Team_Video" Member="Videos" ThisKey="TeamID" OtherKey="TeamID" Type="Video" />
       <Association Name="Team_Player" Member="Players" ThisKey="TeamID" OtherKey="TeamID" Type="Player" />
       <Association Name="Team_TeamsPicture" Member="TeamsPictures" ThisKey="TeamID" OtherKey="TeamID" Type="TeamsPicture" />
       <Association Name="Team_TeamsVideo" Member="TeamsVideos" ThisKey="TeamID" OtherKey="TeamsID" Type="TeamsVideo" />
       <Association Name="Team_TournamentsTeam" Member="TournamentsTeams" ThisKey="TeamID" OtherKey="TeamID" Type="TournamentsTeam" />
+      <Association Name="Team_Video" Member="Videos" ThisKey="TeamID" OtherKey="TeamID" Type="Video" />
       <Association Name="Schedule_Team" Member="Schedule" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Schedule" IsForeignKey="true" />
     </Type>
   </Table>
@@ -112,52 +142,13 @@
       <Association Name="Tournament_TournamentsTeam" Member="Tournament" ThisKey="TournamentID" OtherKey="TournamentID" Type="Tournament" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.aspnet_Users" Member="aspnet_Users">
-    <Type Name="aspnet_User">
-      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="LoweredUserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
-      <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="aspnet_User_Player" Member="Players" ThisKey="UserId" OtherKey="UserId" Type="Player" />
-      <Association Name="aspnet_User_PlayfieldOwner" Member="PlayfieldOwners" ThisKey="UserId" OtherKey="UserId" Type="PlayfieldOwner" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Pictures" Member="Pictures">
-    <Type Name="Picture">
-      <Column Name="PictureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PlayfieldId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Path" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Playfield_Picture" Member="Playfield" ThisKey="PlayfieldId" OtherKey="PLayfieldID" Type="Playfield" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Playfields" Member="Playfields">
-    <Type Name="Playfield">
-      <Column Name="PLayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FieldType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="SurfaceType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Width" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PriceLights" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="OwnerPlayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="PriceNoLights" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="PlayfieldName" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Playfield_Picture" Member="Pictures" ThisKey="PLayfieldID" OtherKey="PlayfieldId" Type="Picture" />
-      <Association Name="Playfield_Reservation" Member="Reservations" ThisKey="PLayfieldID" OtherKey="PlayfieldID" Type="Reservation" />
-      <Association Name="PlayfieldOwner_Playfield" Member="PlayfieldOwner" ThisKey="OwnerPlayfieldID" OtherKey="OwnerPlayfieldID" Type="PlayfieldOwner" IsForeignKey="true" />
-      <Association Name="Schedule_Playfield" Member="Schedule" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Schedule" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Schedule" Member="Schedules">
-    <Type Name="Schedule">
-      <Column Name="ScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Schedule_Player" Member="Players" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Player" />
-      <Association Name="Schedule_Team" Member="Teams" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Team" />
-      <Association Name="Schedule_Playfield" Member="Playfields" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Playfield" />
-      <Association Name="Schedule_Day" Member="Days" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Day" />
+  <Table Name="dbo.Videos" Member="Videos">
+    <Type Name="Video">
+      <Column Name="VideoID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TimeStamp" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Team_Video" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Days" Member="Days">
@@ -180,17 +171,17 @@
       <Association Name="Day_Hour" Member="Day" ThisKey="DaysID" OtherKey="DaysID" Type="Day" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Reservations" Member="Reservations">
-    <Type Name="Reservation">
-      <Column Name="ReservationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="StartHour" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="EndHour" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="PlayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ReservationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="DayName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Phone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Playfield_Reservation" Member="Playfield" ThisKey="PlayfieldID" OtherKey="PLayfieldID" Type="Playfield" IsForeignKey="true" />
+  <Table Name="dbo.aspnet_Users" Member="aspnet_Users">
+    <Type Name="aspnet_User">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="LoweredUserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_User_Player" Member="Players" ThisKey="UserId" OtherKey="UserId" Type="Player" />
+      <Association Name="aspnet_User_PlayfieldOwner" Member="PlayfieldOwners" ThisKey="UserId" OtherKey="UserId" Type="PlayfieldOwner" />
     </Type>
   </Table>
 </Database>

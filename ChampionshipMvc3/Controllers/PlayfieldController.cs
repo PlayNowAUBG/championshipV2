@@ -35,7 +35,7 @@ namespace ChampionshipMvc3.Controllers
         public ActionResult Details(Guid id)
         {
             var owner = ownerRepository.GetOwnerById(id);
-            return View("PlayfieldDetails", owner);
+            return View("OwnerDetails", owner);
         }
 
         public ActionResult CreatePlayfieldOwner()
@@ -180,6 +180,13 @@ namespace ChampionshipMvc3.Controllers
         public ActionResult SuccessReservation()
         {
             return View("SuccessReservation");
+        }
+
+        public ActionResult PlayfieldDetails(Guid playfieldId)
+        {
+            var selectedPlayfield = playfieldRepository.GetPlayfieldById(playfieldId);
+
+            return View(selectedPlayfield);
         }
 
         //

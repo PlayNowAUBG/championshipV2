@@ -267,7 +267,7 @@
     <Content Include="Views\Account\_Register.cshtml" />
     <Content Include="Views\Account\RegisterTeam.cshtml" />
     <Content Include="Views\_FileUpload.cshtml" />
-    <Content Include="Views\Playfield\PlayfieldDetails.cshtml" />
+    <Content Include="Views\Playfield\OwnerDetails.cshtml" />
     <Content Include="Views\Admin\AdminView.cshtml" />
     <Content Include="Views\Shared\_Schedule.cshtml" />
     <Content Include="Views\Admin\_PendingRequests.cshtml" />
@@ -281,6 +281,9 @@
     <Content Include="Views\Playfield\PlayfieldOwnerResult.cshtml" />
     <Content Include="Views\Account\RegisterOwnerView.cshtml" />
     <Content Include="Views\Playfield\_ReservationModel.cshtml" />
+    <Content Include="Views\Playfield\PlayfieldList.cshtml" />
+    <Content Include="Views\Playfield\PlayfieldDetails.cshtml" />
+    <Content Include="Views\Playfield\AnonymousScheduleView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
