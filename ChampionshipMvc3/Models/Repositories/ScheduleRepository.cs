@@ -86,7 +86,7 @@ namespace ChampionshipMvc3.Models.Repositories
         private void AddHoursToDay(Day currentDay, int StartHour, int EndHour)
         {
 
-            for (int hourIndex = StartHour; hourIndex < EndHour - 1; hourIndex++)
+            for (int hourIndex = StartHour; hourIndex < EndHour; hourIndex++)
             {
                 StringBuilder hourLabel = new StringBuilder();
                 hourLabel.AppendFormat("{0} - {1}", hourIndex, hourIndex + 1);
