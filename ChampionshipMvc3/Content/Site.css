@@ -238,7 +238,7 @@ textarea {
 
 .buttonInput {
     position:relative;
-    background:url("search_button.png");
+    background:url("search_button.png");    
     background-repeat:no-repeat;
     background-position:center;
     background-size:37px, 54px;

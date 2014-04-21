@@ -13,4 +13,8 @@
             $("#teamContainer").html(data);
         });
     });
+
+    if (jQuery.browser.msie) {
+        $(".buttonInput").css('top', '0px');
+    }s
 });
