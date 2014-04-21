@@ -81,9 +81,9 @@ h5, h6 {
     font-size: 1em;
 }
 
-/*----------------------------------------------------------
+/*-----------------------------------------------------------
                 PRIMARY LAYOUT ELEMENTS   
-------------------------------------------------------------*/
+-----------------------------------------------------------*/
 
 /* you can specify a greater or lesser percentage for the   
 page width. Or, you can specify an exact pixel width. */
@@ -256,10 +256,8 @@ textarea {
     background-size:37px, 54px;
     height:35px;
     right:51px;
-    top:8.5px;
     display:inline-block;
 }
-
 
 .buttonInput input[type="submit"]{
     line-height:25px;/*results in nice text vertical alignment*/
