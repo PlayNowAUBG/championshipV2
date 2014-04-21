@@ -16,5 +16,7 @@
 
     if (jQuery.browser.msie) {
         $(".buttonInput").css('top', '0px');
-    }s
+    }else if (jQuery.browser.mozilla){
+        $(".buttonInput").css('top', '3px');
+    }
 });
