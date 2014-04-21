@@ -10,17 +10,14 @@
     <script src="../../Scripts/CustomScripts/regPopUp.js"></script>
 </head>
 <body>
+<div id="body_container">
     <div class="page">
         <div id="header">
-            <div id="title">
-                <h1>Play Now</h1>
-            </div>
-            
             <div id="menucontainer">
                 <ul id="menu">
                     <li>@Html.ActionLink("Fields", "Index", "Home")</li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Contact</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -48,7 +45,7 @@
         </div>
     </div>
 
-   <div class="modal fade" id="regTeamModal" tabindex="-1" role="dialog" data-url="@Url.Action("RegisterTeam","Account")" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="regTeamModal" tabindex="-1" role="dialog" data-url="@Url.Action("RegisterTeam","Account")" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -63,6 +60,6 @@
             </div>
         </div>
     </div>
-   
+</div> 
 </body>
 </html>
