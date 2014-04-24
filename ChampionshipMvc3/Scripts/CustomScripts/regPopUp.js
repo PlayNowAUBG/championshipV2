@@ -12,7 +12,7 @@
         $.get(url, function (data) {
             $("#teamContainer").html(data);
         });
-    });
+    });     
 
     if (jQuery.browser.msie) {
         $(".buttonInput").css('top', '0px');

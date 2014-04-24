@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="playnowb_database" Class="PlayNowDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=VPP090-PC\SQLEXPRESS;Initial Catalog=PlayNowDb;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PlayNowDbConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=Zlatin-PC\SQLEXPRESS;Initial Catalog=PlayNowDb;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PlayNowDbConnection" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Pictures" Member="Pictures">
     <Type Name="Picture">
       <Column Name="PictureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

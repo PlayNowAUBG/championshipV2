@@ -111,6 +111,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DataContext\PlayNow.cs">
+      <DependentUpon>PlayNow.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DataContext\PlayNow.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

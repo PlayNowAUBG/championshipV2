@@ -15,6 +15,17 @@ body {
     margin:0px;
 }
 
+#playFieldOwnerTable {
+    margin: 0 auto;
+}
+
+#playFieldOwnerTable td{
+    color:#fff;
+}
+
+#playFieldOwnerTable th{
+    color:#fff;
+}
 
 #body_container {
     background-image:url('body_background.png');
