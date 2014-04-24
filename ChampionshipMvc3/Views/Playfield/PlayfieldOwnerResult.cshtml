@@ -46,6 +46,12 @@
         <td>
             @Html.ActionLink("Details", "Details", new { id=item.OwnerPlayfieldID }) |
         </td>
+        <td>
+            @Html.HiddenFor(modelItem => item.Lat)
+        </td>
+        <td>
+            @Html.HiddenFor(modelItem => item.Long)
+        </td>
     </tr>
 }
 
