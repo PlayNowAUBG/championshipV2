@@ -15,7 +15,7 @@ namespace ChampionshipMvc3.Controllers
 
     public class PlayfieldController : Controller
     {
-        private const string locationString = "~/Images/";
+        private const string locationString = "../../Images/";
         private IPlayfieldRepository playfieldRepository;
         private IPlayfieldOwnerRepository ownerRepository;
         private IScheduleRepository scheduleRepository;
