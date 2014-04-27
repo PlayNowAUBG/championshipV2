@@ -1,4 +1,5 @@
-﻿using ChampionshipMvc3.Models;
+﻿using ChampionshipMvc3.Infrastructure;
+using ChampionshipMvc3.Models;
 using ChampionshipMvc3.Models.DataContext;
 using System;
 using System.Collections.Generic;
@@ -37,12 +38,11 @@ namespace ChampionshipMvc3
         {
             AreaRegistration.RegisterAllAreas();
 
-            // Use LocalDB for Entity Framework by default
-            Database.DefaultConnectionFactory = new SqlConnectionFactory(@"Data Source=(localdb)\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
-
             InitializaDataContext();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }
 
         private void InitializaDataContext()

@@ -1,4 +1,6 @@
-﻿using Ninject;
+﻿using ChampionshipMvc3.Models.Interfaces;
+using ChampionshipMvc3.Models.Repositories;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +26,10 @@ namespace ChampionshipMvc3.Infrastructure
 
         private void AddBindings()
         {
-            
+            ninjectKernel.Bind<IPlayfieldRepository>().To<PlayfieldRepository>();
+            ninjectKernel.Bind<IPlayfieldOwnerRepository>().To<PlayfieldOwnerRepository>();
+            ninjectKernel.Bind<IScheduleRepository>().To<ScheduleRepository>();
+            ninjectKernel.Bind<IReservationRepository>().To<ReservationRepository>();
         }
     }
 }
