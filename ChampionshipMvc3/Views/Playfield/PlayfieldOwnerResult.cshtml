@@ -11,7 +11,7 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)<br />
-            <img src="../../Images/background2.jpg" id="testImage"/>
+            <img src="@item.Playfields[0].Pictures[0].Path" id="playfieldOwnerImage"/>
         </td>
         <td>
             Coordinates
