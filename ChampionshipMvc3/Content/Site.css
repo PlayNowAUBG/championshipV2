@@ -15,6 +15,46 @@ body {
     margin:0px;
 }
 
+#playFieldOwnerTable {
+    margin: 0 auto;
+    border-spacing:0px;
+    width:900px !important;
+
+}
+
+#playFieldOwnerTable tr{
+    color:#fff;
+    background:url("fieldslist_background.png");
+}
+
+#playFieldOwnerTable td {
+    padding-right:80px;
+}
+
+#setLat{
+    display:none;
+}
+
+#setLong{
+    display:none;
+}
+#playFieldOwnerTable td #map_canvas{
+    border:solid;
+    border-width:4px;
+    border-color:#808080;
+    width:150px;
+    height:150px;
+    margin:8px;
+}
+
+#playFieldOwnerTable td #testImage {
+    border:solid;
+    border-width:4px;
+    border-color:#808080;
+    width:150px;
+    height:150px;
+    margin:8px;
+}
 
 #body_container {
     background-image:url('body_background.png');
@@ -242,9 +282,9 @@ textarea {
     background-repeat:no-repeat;
     background-position:center;
     background-size:37px, 54px;
-    height:35px;
+    height:43px;
     right:51px;
-    top:8.5px;
+    top:6px;
     display:inline-block;
 }
 
@@ -254,8 +294,9 @@ textarea {
     background-repeat:no-repeat;
     background-position:center;
     background-size:37px, 54px;
-    height:35px;
+    height:40px;
     right:51px;
+    top:6px;
     display:inline-block;
 }
 

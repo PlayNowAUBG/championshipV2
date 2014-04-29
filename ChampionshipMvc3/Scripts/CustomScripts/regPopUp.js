@@ -14,9 +14,15 @@
         });
     });
 
-    if (jQuery.browser.msie) {
-        $(".buttonInput").css('top', '0px');
+    var isIE11 = !!navigator.userAgent.match(/Trident.*rv\:11\./);
+
+    if (isIE11) {
+        $(".buttonInput").css('top', '-4px');
+        $(".buttonInput").css('right', '52px');
+    }else if(jQuery.browser.msie){
+        $(".buttonInput").css('top', '-4px');
+        $(".buttonInput").css('right', '52px');
     }else if (jQuery.browser.mozilla){
-        $(".buttonInput").css('top', '3px');
+        $(".buttonInput").css('top', '0px');
     }
 });

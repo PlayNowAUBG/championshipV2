@@ -1,44 +1,22 @@
-﻿@model IEnumerable<ChampionshipMvc3.Models.DataContext.PlayfieldOwner>
+﻿    @model IEnumerable<ChampionshipMvc3.Models.DataContext.PlayfieldOwner>
 
 @{
     ViewBag.Title = "PlayfieldOwnerResult";
 }
-
-<table>
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Address
-        </th>
-        <th>
-            StartHour
-        </th>
-        <th>
-            EndHour
-        </th>
-        <th>
-            PhoneNumber
-        </th>
-        <th>
-
-        </th>
-    </tr>
+<table id="playFieldOwnerTable">
 
 @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
+            <img src="../../Images/background2.jpg" id="testImage"/>
+        </td>
+        <td>
+            Coordinates
+           <div id="map_canvas" ></div>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartHour)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndHour)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PhoneNumber)
@@ -46,10 +24,10 @@
         <td>
             @Html.ActionLink("Details", "Details", new { id=item.OwnerPlayfieldID }) |
         </td>
-        <td>
+        <td id="setLat">
             @Html.HiddenFor(modelItem => item.Lat)
         </td>
-        <td>
+        <td id="setLong">
             @Html.HiddenFor(modelItem => item.Long)
         </td>
     </tr>
