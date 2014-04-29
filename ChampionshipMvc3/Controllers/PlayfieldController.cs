@@ -16,6 +16,7 @@ namespace ChampionshipMvc3.Controllers
     public class PlayfieldController : Controller
     {
         private const string locationString = "../../Images/";
+        private const string relativePath = "../Images/";
         private IPlayfieldRepository playfieldRepository;
         private IPlayfieldOwnerRepository ownerRepository;
         private IScheduleRepository scheduleRepository;
@@ -197,7 +198,7 @@ namespace ChampionshipMvc3.Controllers
             foreach (var singleFile in files)
             {
                 var fileName = Path.GetFileName(singleFile.FileName);
-                singleFile.SaveAs(Server.MapPath(locationString + singleFile.FileName));
+                singleFile.SaveAs(Server.MapPath(relativePath + singleFile.FileName));
             }
 
             //string location = locationString + fileViewModel.File.FileName;

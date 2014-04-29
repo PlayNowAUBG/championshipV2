@@ -252,7 +252,6 @@
     <Content Include="Global.asax" />
     <Content Include="Images\background2.jpg" />
     <Content Include="Images\find_your_field.png" />
-    <Content Include="Images\IMAG0086.jpg" />
     <Content Include="Images\Ria Sport.jpg" />
     <Content Include="Images\s_k_lovendom5.jpg" />
     <Content Include="Models\DataContext\PlayNow.dbml">
