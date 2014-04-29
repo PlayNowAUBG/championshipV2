@@ -154,6 +154,7 @@
     <Content Include="Content\colorbox.css" />
     <Content Include="Content\customBootstrap.css" />
     <Content Include="Content\CustomStyles\PlayfieldLayoutDesign.css" />
+    <Content Include="Content\fieldslist_background.png" />
     <Content Include="Content\find_your_field.png" />
     <Content Include="Content\input_background.png" />
     <Content Include="Content\MainBackground.png" />
@@ -216,19 +217,23 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\background2.jpg" />
+    <Content Include="Images\find_your_field.png" />
+    <Content Include="Images\IMAG0086.jpg" />
+    <Content Include="Images\Ria Sport.jpg" />
     <Content Include="Images\s_k_lovendom5.jpg" />
     <Content Include="Models\DataContext\PlayNow.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>PlayNow.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Images\1. Furniture_Task.docx" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\CustomScripts\autoComplete.js" />
     <Content Include="Scripts\CustomScripts\adminJS.js" />
     <Content Include="Scripts\CustomScripts\bootstrap.minPlayNow.js" />
+    <Content Include="Scripts\CustomScripts\googleMapsScript.js" />
     <Content Include="Scripts\CustomScripts\jQueryLibrary.js" />
-    <Content Include="Scripts\CustomScripts\playfieldJS.js" />
-    <Content Include="Scripts\CustomScripts\popup.js" />
     <Content Include="Scripts\CustomScripts\regPopUp.js" />
     <Content Include="Scripts\CustomScripts\reservationJS.js" />
     <Content Include="Scripts\CustomScripts\tableFillerScheduleLayout.js" />
