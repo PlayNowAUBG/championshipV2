@@ -29,6 +29,7 @@ body {
 
 #playFieldOwnerTable td {
     padding-right:80px;
+    text-align:center !important;
 }
 
 #setLat{
@@ -44,7 +45,8 @@ body {
     border-color:#808080;
     width:150px;
     height:150px;
-    margin:8px;
+    margin:0 auto;
+
 }
 
 #playFieldOwnerTable td #testImage {
