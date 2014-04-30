@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PlayNowDb" Class="PlayNowDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=VPP090-PC\SQLEXPRESS;Initial Catalog=PlayNowDb;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PlayNowDbConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(local);Initial Catalog=playnowb_database;User ID=playnowb_superadmin" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="RealConnection" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Pictures" Member="Pictures">
     <Type Name="Picture">
       <Column Name="PictureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -27,23 +27,6 @@
       <Association Name="Schedule_Player" Member="Schedule" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Schedule" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.PlayfieldOwner" Member="PlayfieldOwners">
-    <Type Name="PlayfieldOwner">
-      <Column Name="OwnerPlayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="StartHour" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="EndHour" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Long" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Neighbourhood" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="City" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="PlayfieldOwner_Playfield" Member="Playfields" ThisKey="OwnerPlayfieldID" OtherKey="OwnerPlayfieldID" Type="Playfield" />
-      <Association Name="aspnet_User_PlayfieldOwner" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Playfields" Member="Playfields">
     <Type Name="Playfield">
       <Column Name="PLayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -58,8 +41,8 @@
       <Column Name="PlayfieldName" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Playfield_Picture" Member="Pictures" ThisKey="PLayfieldID" OtherKey="PlayfieldId" Type="Picture" />
       <Association Name="Playfield_Reservation" Member="Reservations" ThisKey="PLayfieldID" OtherKey="PlayfieldID" Type="Reservation" />
-      <Association Name="PlayfieldOwner_Playfield" Member="PlayfieldOwner" ThisKey="OwnerPlayfieldID" OtherKey="OwnerPlayfieldID" Type="PlayfieldOwner" IsForeignKey="true" />
       <Association Name="Schedule_Playfield" Member="Schedule" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Schedule" IsForeignKey="true" />
+      <Association Name="PlayfieldOwner_Playfield" Member="PlayfieldOwner" ThisKey="OwnerPlayfieldID" OtherKey="OwnerPlayfieldID" Type="PlayfieldOwner" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Reservations" Member="Reservations">
@@ -183,6 +166,25 @@
       <Association Name="Schedule_Playfield" Member="Playfields" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Playfield" />
       <Association Name="Schedule_Team" Member="Teams" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Team" />
       <Association Name="Schedule_Day" Member="Days" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Day" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlayfieldOwner" Member="PlayfieldOwners">
+    <Type Name="PlayfieldOwner">
+      <Column Name="OwnerPlayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StartHour" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EndHour" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Long" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Neighbourhood" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PriceLights" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PriceNoLights" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PlayfieldOwner_Playfield" Member="Playfields" ThisKey="OwnerPlayfieldID" OtherKey="OwnerPlayfieldID" Type="Playfield" />
+      <Association Name="aspnet_User_PlayfieldOwner" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
 </Database>

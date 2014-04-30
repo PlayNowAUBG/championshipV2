@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 24.125" name="PlayNow">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 24.375" name="PlayNow">
   <DataContextMoniker Name="/PlayNowDataContext" />
   <nestedChildShapes>
     <classShape Id="6995657f-51b1-4d1f-88f7-4ea39aa8e9cb" absoluteBounds="6.25, 19.375, 2, 1.3862939453125023">
@@ -12,12 +12,6 @@
       <DataClassMoniker Name="/PlayNowDataContext/Player" />
       <nestedChildShapes>
         <elementListCompartment Id="60cd36f9-b01b-4079-900a-974c873d2592" absoluteBounds="9.265, 8.335, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="1c5341bf-f5b4-4567-8ceb-385a21b378ae" absoluteBounds="0.75, 15.125, 2, 2.9247054036458309">
-      <DataClassMoniker Name="/PlayNowDataContext/PlayfieldOwner" />
-      <nestedChildShapes>
-        <elementListCompartment Id="28f3bb3d-3202-4fc0-abc8-6480ed0aaa13" absoluteBounds="0.765, 15.585, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="f9eabc16-1e8d-4564-9b26-518f7e5ca516" absoluteBounds="3.5, 15.25, 2, 2.7324039713541666">
@@ -99,28 +93,21 @@
         <classShapeMoniker Id="6995657f-51b1-4d1f-88f7-4ea39aa8e9cb" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 16.6162019856771); (3.5 : 16.6162019856771)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/PlayNowDataContext/PlayfieldOwner/PlayfieldOwner_Playfield" />
-      <nodes>
-        <classShapeMoniker Id="1c5341bf-f5b4-4567-8ceb-385a21b378ae" />
-        <classShapeMoniker Id="f9eabc16-1e8d-4564-9b26-518f7e5ca516" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.0312525 : 17.9824039713542); (5.0312525 : 22.6739005533854); (6.25 : 22.6739005533854)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.0312525 : 17.9824039713542); (5.0312525 : 22.6739005533854); (6.25 : 22.6739005533854)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/PlayNowDataContext/Playfield/Playfield_Reservation" />
       <nodes>
         <classShapeMoniker Id="f9eabc16-1e8d-4564-9b26-518f7e5ca516" />
         <classShapeMoniker Id="11c301be-4a60-4ae1-b9fa-758aa46500f9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 11.875); (5.875 : 11.5); (5.875 : 9.57294840494792); (8.29166416666667 : 9.57294840494792 : JumpStart); (8.45833083333333 : 9.57294840494792 : JumpEnd); (8.79166666666667 : 9.57294840494792 : JumpStart); (8.95833333333333 : 9.57294840494792 : JumpEnd); (9.25 : 9.57294840494792)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 11.875); (5.875 : 11.5); (5.875 : 9.57294840494792); (8.29166416666667 : 9.57294840494792 : JumpStart); (8.45833083333333 : 9.57294840494792 : JumpEnd); (8.79166666666667 : 9.57294840494792 : JumpStart); (8.95833333333333 : 9.57294840494792 : JumpEnd); (9.25 : 9.57294840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PlayNowDataContext/Team/Team_Player" />
       <nodes>
         <classShapeMoniker Id="7c1cec5e-ac44-422a-b2b3-f1bf31ccf5b6" />
         <classShapeMoniker Id="fbb7c4ae-d9e6-476c-bee2-6c34ba8c7e9a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.4687475 : 11.875); (4.4687475 : 10.6931469726562); (5.79166666666667 : 10.6931469726562 : JumpStart); (5.95833333333333 : 10.6931469726562 : JumpEnd); (6.25 : 10.6931469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.4687475 : 11.875); (4.4687475 : 10.6931469726562); (6.25 : 10.6931469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PlayNowDataContext/Team/Team_TeamsPicture" />
       <nodes>
         <classShapeMoniker Id="7c1cec5e-ac44-422a-b2b3-f1bf31ccf5b6" />
@@ -162,18 +149,11 @@
         <classShapeMoniker Id="0ed07481-ed1f-417b-944b-8e53c6f4cb4c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.40625 : 6.53049967447917); (8.40625 : 9.43350341796875); (8.79166666666667 : 9.43350341796875 : JumpStart); (8.95833333333333 : 9.43350341796875 : JumpEnd); (9.25 : 9.43350341796875)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.40625 : 6.53049967447917); (8.40625 : 9.43350341796875); (9.25 : 9.43350341796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PlayNowDataContext/aspnet_User/aspnet_User_Player" />
       <nodes>
         <classShapeMoniker Id="768a69a5-dfd4-43e4-8c84-9a9ce1e1f811" />
         <classShapeMoniker Id="fbb7c4ae-d9e6-476c-bee2-6c34ba8c7e9a" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.3749975 : 6.53049967447917); (8.3749975 : 15.15625); (5.95833333333333 : 15.15625 : JumpStart); (5.79166666666667 : 15.15625 : JumpEnd); (3.08333333333333 : 15.15625 : JumpStart); (2.91666666666667 : 15.15625 : JumpEnd); (2.75 : 15.15625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/PlayNowDataContext/aspnet_User/aspnet_User_PlayfieldOwner" />
-      <nodes>
-        <classShapeMoniker Id="768a69a5-dfd4-43e4-8c84-9a9ce1e1f811" />
-        <classShapeMoniker Id="1c5341bf-f5b4-4567-8ceb-385a21b378ae" />
       </nodes>
     </associationConnector>
     <classShape Id="8b95b702-d20d-4669-aaad-6e0bae422f4f" absoluteBounds="0.5, 10.125, 2, 1.1939925130208333">
@@ -182,32 +162,52 @@
         <elementListCompartment Id="6b043e65-da2e-4c7f-8953-adc1050b260b" absoluteBounds="0.51500000000000012, 10.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.5 : 10.125); (1.5 : 9.78647670247396); (1.94791916666667 : 9.78647670247396 : JumpStart); (2.11458583333333 : 9.78647670247396 : JumpEnd); (5.79166666666667 : 9.78647670247396 : JumpStart); (5.95833333333333 : 9.78647670247396 : JumpEnd); (8.29166416666667 : 9.78647670247396 : JumpStart); (8.45833083333333 : 9.78647670247396 : JumpEnd); (8.79166666666667 : 9.78647670247396 : JumpStart); (8.95833333333333 : 9.78647670247396 : JumpEnd); (9.25 : 9.78647670247396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.5 : 10.125); (1.5 : 9.78647670247396); (1.94791916666667 : 9.78647670247396 : JumpStart); (2.11458583333333 : 9.78647670247396 : JumpEnd); (5.79166666666667 : 9.78647670247396 : JumpStart); (5.95833333333333 : 9.78647670247396 : JumpEnd); (8.29166416666667 : 9.78647670247396 : JumpStart); (8.45833083333333 : 9.78647670247396 : JumpEnd); (8.79166666666667 : 9.78647670247396 : JumpStart); (8.95833333333333 : 9.78647670247396 : JumpEnd); (9.25 : 9.78647670247396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PlayNowDataContext/Schedule/Schedule_Player" />
       <nodes>
         <classShapeMoniker Id="8b95b702-d20d-4669-aaad-6e0bae422f4f" />
         <classShapeMoniker Id="fbb7c4ae-d9e6-476c-bee2-6c34ba8c7e9a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.11624681282882 : 11.3189925130208); (2.11624681282882 : 14.875); (3 : 14.875); (3 : 16.6162019856771); (3.5 : 16.6162019856771)]" fixedFrom="Caller" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.5 : 11.3189925130208); (1.5 : 16.6162019856771); (3.5 : 16.6162019856771)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/PlayNowDataContext/Schedule/Schedule_Playfield" />
       <nodes>
         <classShapeMoniker Id="8b95b702-d20d-4669-aaad-6e0bae422f4f" />
         <classShapeMoniker Id="f9eabc16-1e8d-4564-9b26-518f7e5ca516" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.5 : 10.4090734863281); (3.95312125 : 10.4090734863281); (3.95312125 : 11.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 10.4090734863281); (3.95312125 : 10.4090734863281); (3.95312125 : 11.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PlayNowDataContext/Schedule/Schedule_Team" />
       <nodes>
         <classShapeMoniker Id="8b95b702-d20d-4669-aaad-6e0bae422f4f" />
         <classShapeMoniker Id="7c1cec5e-ac44-422a-b2b3-f1bf31ccf5b6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.0312525 : 10.125); (2.0312525 : 8.28929768880208); (3.5 : 8.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.0312525 : 10.125); (2.0312525 : 8.28929768880208); (3.5 : 8.28929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PlayNowDataContext/Schedule/Schedule_Day" />
       <nodes>
         <classShapeMoniker Id="8b95b702-d20d-4669-aaad-6e0bae422f4f" />
         <classShapeMoniker Id="fc648326-dcf5-4962-8555-91cdd023d4c2" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="c1179b14-12ca-4fc6-ba7d-522cd15e1e8e" absoluteBounds="1.125, 20.875, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/PlayNowDataContext/PlayfieldOwner" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b5bbeca6-ee9c-4c4e-954a-9f2bbf85d0c8" absoluteBounds="1.1400000000000001, 21.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.3125 : 20.875); (2.3125 : 17.3305554785156); (3.5 : 17.3305554785156)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PlayNowDataContext/PlayfieldOwner/PlayfieldOwner_Playfield" />
+      <nodes>
+        <classShapeMoniker Id="c1179b14-12ca-4fc6-ba7d-522cd15e1e8e" />
+        <classShapeMoniker Id="f9eabc16-1e8d-4564-9b26-518f7e5ca516" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.3749975 : 6.53049967447917); (8.3749975 : 21.15625); (5.11458583333333 : 21.15625 : JumpStart); (4.94791916666667 : 21.15625 : JumpEnd); (3.125 : 21.15625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PlayNowDataContext/aspnet_User/aspnet_User_PlayfieldOwner" />
+      <nodes>
+        <classShapeMoniker Id="768a69a5-dfd4-43e4-8c84-9a9ce1e1f811" />
+        <classShapeMoniker Id="c1179b14-12ca-4fc6-ba7d-522cd15e1e8e" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

@@ -11,18 +11,34 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)<br />
-            <img src="@item.Playfields[0].Pictures[0].Path" id="playfieldOwnerImage"/>
+            <img src="" id="playfieldOwnerImage"/>
         </td>
         <td>
             Coordinates
            <div id="map_canvas" ></div>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address)<br />
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
+            <table>
+                <tr>
+                    <td><label>Address: </label></td>
+                    <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                </tr>
+                <tr>
+                    <td>Phone: </td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                </tr>
+                <tr>
+                    <td>Lights: </td>
+                    <td>@Html.DisplayFor(modelItem => item.PriceNoLights)</td>
+                </tr>
+                <tr>
+                    <td>No Lights: </td>
+                    <td>@Html.DisplayFor(modelItem => item.PriceLights)</td>
+                </tr>
+            </table>
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.OwnerPlayfieldID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OwnerPlayfieldID }, new { @class = "details" }) |
         </td>
         <td id="setLat">
             @Html.HiddenFor(modelItem => item.Lat)
