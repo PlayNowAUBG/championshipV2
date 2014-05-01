@@ -5,16 +5,27 @@
 }
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/CustomScripts/googleMapsScript.js")" type="text/javascript"></script>
+
 <table id="playFieldOwnerTable">
 
 @foreach (var item in Model) {
+   
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)<br />
+             @*@{
+                string imagePath = "";
+                if(@item.Playfields != null && @item.Playfields.Count > 0)
+                 {
+                     if(@item.Playfields[0].Pictures != null && @item.Playfields[0].Pictures.Count > 0)
+                     {
+                       imagePath  = @item.Playfields[0].Pictures[0].Path;   
+                     }
+                 }
+             }*@
             <img src="" id="playfieldOwnerImage"/>
         </td>
         <td>
-            Coordinates
            <div id="map_canvas" ></div>
         </td>
         <td>
