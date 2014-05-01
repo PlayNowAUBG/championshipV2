@@ -1,5 +1,4 @@
 ﻿using ChampionshipMvc3.Models.Interfaces;
-using ChampionshipMvc3.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +12,9 @@ namespace ChampionshipMvc3.Controllers
         private const string reservationViewName = "CreateReservation";
         private IReservationRepository reservationRepository;
 
-        public ReservationController()
+        public ReservationController(IReservationRepository reservationRepoParam)
         {
-            reservationRepository = new ReservationRepository();
+            reservationRepository = reservationRepoParam;
         }
         //
         // GET: /Reservation/

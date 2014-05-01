@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ChampionshipMvc3.Models.Interfaces;
-using ChampionshipMvc3.Models.Repositories;
 using ChampionshipMvc3.Models.DataContext;
 using System.IO;
 using ChampionshipMvc3.Models.ViewModels;
@@ -23,13 +22,15 @@ namespace ChampionshipMvc3.Controllers
         private IReservationRepository reservationRepository;
         private IPictureRepository pictureRepository;
 
-        public PlayfieldController()
+        public PlayfieldController(IPlayfieldRepository playfieldRepoParam, IPlayfieldOwnerRepository ownerRepoParam,
+                IScheduleRepository scheduleRepoParam, IReservationRepository reservationRepoParam, IPictureRepository pictureRepoParam)
+                                    
         {
-            playfieldRepository = new PlayfieldRepository();
-            scheduleRepository = new ScheduleRepository();
-            reservationRepository = new ReservationRepository();
-            ownerRepository = new PlayfieldOwnerRepository();
-            pictureRepository = new PictureRepository();
+            playfieldRepository = playfieldRepoParam;
+            ownerRepository = ownerRepoParam;
+            reservationRepository = reservationRepoParam;
+            scheduleRepository = scheduleRepoParam;
+            pictureRepository = pictureRepoParam;
         }
 
         

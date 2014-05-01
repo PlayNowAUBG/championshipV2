@@ -1,5 +1,4 @@
 ﻿using ChampionshipMvc3.Models.Interfaces;
-using ChampionshipMvc3.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +11,9 @@ namespace ChampionshipMvc3.Controllers
     {
         private IPlayfieldRepository playfieldRepository;
 
-        public HomeController()
+        public HomeController(IPlayfieldRepository playfieldRepoParam)
         {
-            playfieldRepository = new PlayfieldRepository();
+            playfieldRepository = playfieldRepoParam;
         }
 
         public ActionResult Index()

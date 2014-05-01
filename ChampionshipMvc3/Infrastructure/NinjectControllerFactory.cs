@@ -30,6 +30,7 @@ namespace ChampionshipMvc3.Infrastructure
             ninjectKernel.Bind<IPlayfieldOwnerRepository>().To<PlayfieldOwnerRepository>();
             ninjectKernel.Bind<IScheduleRepository>().To<ScheduleRepository>();
             ninjectKernel.Bind<IReservationRepository>().To<ReservationRepository>();
+            ninjectKernel.Bind<IPictureRepository>().To<PictureRepository>();
         }
     }
 }
