@@ -10,11 +10,11 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)<br />
+            <div class="centeringText"> @Html.DisplayFor(modelItem => item.Name)</div>
             <img src="../../Images/background2.jpg" id="testImage"/>
         </td>
         <td>
-            Coordinates
+            <div class="centeringText">Coordinates</div>
            <div id="map_canvas" ></div>
         </td>
         <td>

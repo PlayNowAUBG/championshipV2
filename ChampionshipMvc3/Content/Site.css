@@ -14,6 +14,9 @@ body {
     color: #696969;
     margin:0px;
 }
+.centeringText {
+    margin:2px;
+}
 
 #playFieldOwnerTable {
     margin: 0 auto;
@@ -29,7 +32,6 @@ body {
 
 #playFieldOwnerTable td {
     padding-right:80px;
-    text-align:center !important;
 }
 
 #setLat{
@@ -55,7 +57,6 @@ body {
     border-color:#808080;
     width:150px;
     height:150px;
-    margin:8px;
 }
 
 #body_container {
