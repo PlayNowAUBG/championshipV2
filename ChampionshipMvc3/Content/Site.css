@@ -11,7 +11,11 @@ body {
     font-size: .85em;
     width:100%;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    color: #696969;
     margin:0px;
+}
+.centeringText {
+    margin:2px;
 }
 
 #playFieldOwnerTable {
@@ -27,8 +31,7 @@ body {
 }
 
 #playFieldOwnerTable td {
-    padding-right:50px;
-    text-align:center !important;
+    padding-right:80px;
 }
 
 #setLat{
@@ -42,19 +45,18 @@ body {
     border:solid;
     border-width:4px;
     border-color:#808080;
-    width:250px;
-    height:200px;
+    width:150px;
+    height:150px;
     margin:0 auto;
 
 }
 
-#playFieldOwnerTable td #playfieldOwnerImage {
+#playFieldOwnerTable td #testImage {
     border:solid;
     border-width:4px;
     border-color:#808080;
-    width:200px;
-    height:200px;
-    margin:8px;
+    width:150px;
+    height:150px;
 }
 
 #body_container {
@@ -63,9 +65,9 @@ body {
     background-position:top center;
     height:1600px;
 }
-/*a:link {
-    color: white;
-    text-decoration: none;
+a:link {
+    color: #034af3;
+    text-decoration: underline;
 }
 
 a:visited {
@@ -79,7 +81,7 @@ a:hover {
 
 a:active {
     color: #12eb87;
-}*/
+}
 
 p, ul {
     margin-bottom: 20px;
@@ -282,10 +284,10 @@ textarea {
     background:url("search_button.png");    
     background-repeat:no-repeat;
     background-position:center;
-    background-size:37px, 54px;
-    height:43px;
+    background-size:37px, 55px;
+    height:45px;
     right:51px;
-    top:6px;
+    top:4.3px;
     display:inline-block;
 }
 
@@ -294,10 +296,10 @@ textarea {
     background:url("search_button_pressed.png");
     background-repeat:no-repeat;
     background-position:center;
-    background-size:37px, 54px;
-    height:40px;
+    background-size:37px, 55px;
+    height:45px;
     right:51px;
-    top:6px;
+    top:4.2px;
     display:inline-block;
 }
 
@@ -422,7 +424,6 @@ fieldset {
 .display-label, 
 .editor-label {
     margin: 1em 0 0 0;
-    color:white;
 }
 
 .display-field, 
@@ -440,12 +441,4 @@ fieldset {
 
 .tri-state {
     width: 6em;
-}
-
-.details {
-    text-decoration: none;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: green;
 }

@@ -266,7 +266,7 @@
     <Content Include="Scripts\CustomScripts\bootstrap.minPlayNow.js" />
     <Content Include="Scripts\CustomScripts\googleMapsScript.js" />
     <Content Include="Scripts\CustomScripts\jQueryLibrary.js" />
-    <Content Include="Scripts\CustomScripts\regPopUp.js" />
+    <Content Include="Scripts\CustomScripts\crossBrowserFixes.js" />
     <Content Include="Scripts\CustomScripts\reservationJS.js" />
     <Content Include="Scripts\CustomScripts\tableFillerScheduleLayout.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
