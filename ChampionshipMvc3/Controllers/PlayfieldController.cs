@@ -45,14 +45,20 @@ namespace ChampionshipMvc3.Controllers
             return View("CreateOwnerPlayfieldView", ownerRepository.GetModel());
         }
 
-       
         [HttpPost]
-        public ActionResult CreatePlayfieldOwner(PlayfieldOwner ownerModel)
+        public ActionResult CreatePlayfieldOwner(PlayfieldOwner ownerModel, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                ownerModel.OwnerPlayfieldID = Guid.NewGuid();
+                Picture newPicture = new Picture();
+                newPicture.PictureID = Guid.NewGuid();
+                
+                ownerModel.PlayfieldOwnerID = Guid.NewGuid();
+                newPicture.PlayfieldOwnerID = ownerModel.PlayfieldOwnerID;
+                newPicture.Path = locationString + file.FileName;
+                pictureRepository.AddNewPicture(newPicture);
                 ownerRepository.AddNewOwner(ownerModel);
+                SaveToServer(file);
             }
 
             return RedirectToAction("Index", "Home");
@@ -69,7 +75,7 @@ namespace ChampionshipMvc3.Controllers
             {
                 SelectListItem currentItem = new SelectListItem();
                 currentItem.Text = listOfOwners[index].Name;
-                currentItem.Value = listOfOwners[index].OwnerPlayfieldID.ToString();
+                currentItem.Value = listOfOwners[index].PlayfieldOwnerID.ToString();
 
                 viewModel.OwnersSelectList.Add(currentItem);
             }
@@ -88,7 +94,7 @@ namespace ChampionshipMvc3.Controllers
                 playfieldModel.PLayfieldID = Guid.NewGuid();
                 PlayfieldOwner playfieldOwner = ownerRepository.GetOwnerById(playfieldViewModel.SelectedId);
                 playfieldModel.PlayfieldOwner = playfieldOwner;
-
+                
                 Schedule playfieldSchedule = new Schedule();
                 playfieldSchedule.ScheduleID = Guid.NewGuid();
                 scheduleRepository.AddNewSchedule(playfieldSchedule, playfieldModel.PlayfieldOwner.StartHour, playfieldModel.PlayfieldOwner.EndHour);
@@ -204,6 +210,12 @@ namespace ChampionshipMvc3.Controllers
 
             //string location = locationString + fileViewModel.File.FileName;
             //fileViewModel.File.SaveAs(Server.MapPath(location));
+        }
+
+        private void SaveToServer(HttpPostedFileBase file)
+        {
+            var fileName = Path.GetFileName(file.FileName);
+            file.SaveAs(Server.MapPath(relativePath + file.FileName)); 
         }
     }
 }

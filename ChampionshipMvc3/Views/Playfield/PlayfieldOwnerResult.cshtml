@@ -12,24 +12,23 @@
    
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)<br />
-             @*@{
+             @{
                 string imagePath = "";
-                if(@item.Playfields != null && @item.Playfields.Count > 0)
-                 {
-                     if(@item.Playfields[0].Pictures != null && @item.Playfields[0].Pictures.Count > 0)
-                     {
-                       imagePath  = @item.Playfields[0].Pictures[0].Path;   
-                     }
-                 }
-             }*@
-            <img src="" id="playfieldOwnerImage"/>
+                if (@item.Pictures != null && @item.Pictures.Count > 0)
+                {
+                    imagePath = @item.Pictures[0].Path;
+                }
+             }
+            <img src="@imagePath" id="playfieldOwnerImage"/>
         </td>
         <td>
            <div id="map_canvas" ></div>
         </td>
         <td>
             <table>
+                <tr>
+                    <td colspan="2">@Html.DisplayFor(modelItem => item.Name)</td>
+                </tr>
                 <tr>
                     <td><label>Address: </label></td>
                     <td>@Html.DisplayFor(modelItem => item.Address)</td>
@@ -39,17 +38,33 @@
                     <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
                 </tr>
                 <tr>
+                    <td>40m x 20m (lv/hour):</td>
+                    <td>@Html.DisplayFor(modelItem => item.SmallField)</td>
+                </tr>
+                <tr>
+                    <td>BigField (lv/hour): </td>
+                    <td>@Html.DisplayFor(modelItem => item.BigField)</td>
+                </tr>
+                <tr>
                     <td>Price with lights: </td>
                     <td>@Html.DisplayFor(modelItem => item.PriceLights)</td>
                 </tr>
-                <tr>
-                    <td>Price without lights: </td>
-                    <td>@Html.DisplayFor(modelItem => item.PriceNoLights)</td>
-                </tr>
+                @if(!string.IsNullOrWhiteSpace(@item.Custom))
+                {
+                    <tr>
+                        <td>
+                            Custom:
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Custom)
+                        </td>
+                    </tr>
+                }
+                
             </table>
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.OwnerPlayfieldID }, new { @class = "details" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PlayfieldOwnerID }, new { @class = "details" }) |
         </td>
         <td id="setLat">
             @Html.HiddenFor(modelItem => item.Lat)

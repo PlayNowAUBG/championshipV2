@@ -147,7 +147,7 @@
     <Compile Include="Models\DataContext\PlayNow.cs">
       <DependentUpon>PlayNow.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataContext\PlayNow.designer.cs">
+    <Compile Include="Models\DataContext\PlayNow1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PlayNow.dbml</DependentUpon>
@@ -257,7 +257,7 @@
     <Content Include="Models\DataContext\PlayNow.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>PlayNow.designer.cs</LastGenOutput>
+      <LastGenOutput>PlayNow1.designer.cs</LastGenOutput>
     </Content>
     <Content Include="Images\1. Furniture_Task.docx" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
