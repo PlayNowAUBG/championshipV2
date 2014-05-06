@@ -45,7 +45,7 @@ namespace ChampionshipMvc3.Models.Repositories
         public PlayfieldOwner GetOwnerById(Guid id)
         {
             return RepositoryBase.DataContext.PlayfieldOwners
-                .Where(o => o.OwnerPlayfieldID == id)
+                .Where(o => o.PlayfieldOwnerID == id)
                 .FirstOrDefault();
         }
 
@@ -53,7 +53,7 @@ namespace ChampionshipMvc3.Models.Repositories
         public void UpdatePlayfieldOwner(Guid ownerId, Guid userId)
         {
             PlayfieldOwner currentOwner = RepositoryBase.DataContext.PlayfieldOwners
-                .Where(owner => owner.OwnerPlayfieldID == ownerId)
+                .Where(owner => owner.PlayfieldOwnerID == ownerId)
                 .FirstOrDefault();
 
             currentOwner.UserId = userId;

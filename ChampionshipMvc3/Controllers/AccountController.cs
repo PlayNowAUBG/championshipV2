@@ -93,7 +93,7 @@ namespace ChampionshipMvc3.Controllers
             {
                 SelectListItem item = new SelectListItem();
                 item.Text = owner.Name;
-                item.Value = owner.OwnerPlayfieldID.ToString();
+                item.Value = owner.PlayfieldOwnerID.ToString();
                 regViewModel.OwnersSelectList.Add(item);
             }
 

@@ -57,7 +57,7 @@ namespace ChampionshipMvc3.Models.Repositories
         public IList<Playfield> GetPlayfieldsByOwner(Guid ownerId)
         {
             return RepositoryBase.DataContext.Playfields
-                .Where(p => p.OwnerPlayfieldID == ownerId)
+                .Where(p => p.PlayfieldOwnerID == ownerId)
                 .ToList();
         }
 
@@ -82,7 +82,7 @@ namespace ChampionshipMvc3.Models.Repositories
         public IList<Playfield> GetAllPlayfieldsByOwner(Guid ownerId)
         {
             return RepositoryBase.DataContext.Playfields
-                .Where(p => p.OwnerPlayfieldID == ownerId)
+                .Where(p => p.PlayfieldOwnerID == ownerId)
                 .ToList();
         }
     }

@@ -10,7 +10,8 @@
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("CreatePlayfieldOwner", "Playfield", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.ValidationSummary(true)
     <fieldset >
         <legend class="pageTitle">OwnerPlayfield</legend>
@@ -87,7 +88,23 @@
             @Html.EditorFor(model => model.PhoneNumber)
             @Html.ValidationMessageFor(model => model.PhoneNumber)
         </div>
-        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BigField)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BigField)
+            @Html.ValidationMessageFor(model => model.BigField)
+        </div>
+
+            <div class="editor-label">
+            @Html.LabelFor(model => model.SmallField)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SmallField)
+            @Html.ValidationMessageFor(model => model.SmallField)
+        </div>
+
         <div class="editor-label">
             @Html.LabelFor(model => model.PriceLights)
         </div>
@@ -95,16 +112,19 @@
             @Html.EditorFor(model => model.PriceLights)
             @Html.ValidationMessageFor(model => model.PriceLights)
         </div>
-        
+       
         <div class="editor-label">
-            @Html.LabelFor(model => model.PriceNoLights)
+            @Html.LabelFor(model => model.Custom)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.PriceNoLights)
-            @Html.ValidationMessageFor(model => model.PriceNoLights)
+            @Html.EditorFor(model => model.Custom)
+            @Html.ValidationMessageFor(model => model.Custom)
         </div>
-
-
+        <div>
+            <label>Add playfield owner profile pic</label>
+        </div>
+      
+         <input type="file" name="file" value="" />
         <p>
             <input type="submit" value="Create"  class="inputSearch" />
         </p>
