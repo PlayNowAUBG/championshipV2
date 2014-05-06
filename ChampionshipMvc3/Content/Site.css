@@ -284,10 +284,10 @@ textarea {
     background:url("search_button.png");    
     background-repeat:no-repeat;
     background-position:center;
-    background-size:37px, 54px;
-    height:43px;
+    background-size:37px, 55px;
+    height:45px;
     right:51px;
-    top:6px;
+    top:4.3px;
     display:inline-block;
 }
 
@@ -296,10 +296,10 @@ textarea {
     background:url("search_button_pressed.png");
     background-repeat:no-repeat;
     background-position:center;
-    background-size:37px, 54px;
-    height:40px;
+    background-size:37px, 55px;
+    height:45px;
     right:51px;
-    top:6px;
+    top:4.2px;
     display:inline-block;
 }
 

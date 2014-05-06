@@ -5,24 +5,51 @@
 }
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/CustomScripts/googleMapsScript.js")" type="text/javascript"></script>
+
 <table id="playFieldOwnerTable">
 
 @foreach (var item in Model) {
+   
     <tr>
         <td>
-            <div class="centeringText"> @Html.DisplayFor(modelItem => item.Name)</div>
-            <img src="../../Images/background2.jpg" id="testImage"/>
+            @Html.DisplayFor(modelItem => item.Name)<br />
+             @*@{
+                string imagePath = "";
+                if(@item.Playfields != null && @item.Playfields.Count > 0)
+                 {
+                     if(@item.Playfields[0].Pictures != null && @item.Playfields[0].Pictures.Count > 0)
+                     {
+                       imagePath  = @item.Playfields[0].Pictures[0].Path;   
+                     }
+                 }
+             }*@
+            <img src="" id="playfieldOwnerImage"/>
         </td>
         <td>
-            <div class="centeringText">Coordinates</div>
            <div id="map_canvas" ></div>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address)<br />
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
+            <table>
+                <tr>
+                    <td><label>Address: </label></td>
+                    <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                </tr>
+                <tr>
+                    <td>Phone: </td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                </tr>
+                <tr>
+                    <td>Price with lights: </td>
+                    <td>@Html.DisplayFor(modelItem => item.PriceLights)</td>
+                </tr>
+                <tr>
+                    <td>Price without lights: </td>
+                    <td>@Html.DisplayFor(modelItem => item.PriceNoLights)</td>
+                </tr>
+            </table>
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.OwnerPlayfieldID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OwnerPlayfieldID }, new { @class = "details" }) |
         </td>
         <td id="setLat">
             @Html.HiddenFor(modelItem => item.Lat)

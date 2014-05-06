@@ -18,12 +18,7 @@
         <th>
             Width
         </th>
-        <th>
-            PriceLights
-        </th>
-        <th>
-            PriceNoLights
-        </th>
+      
         <th></th>
     </tr>
 
@@ -44,14 +39,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.Width)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceLights)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceNoLights)
-        </td>
-        
-        <td>
+       
+         <td>
             @Html.ActionLink("Details", "PlayfieldDetails", new { playfieldId=item.PLayfieldID }) |
         </td>
     </tr>
