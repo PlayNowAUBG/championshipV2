@@ -11,7 +11,6 @@ body {
     font-size: .85em;
     width:100%;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
-    color: #696969;
     margin:0px;
 }
 .centeringText {
@@ -32,6 +31,7 @@ body {
 
 #playFieldOwnerTable td {
     padding-right:80px;
+    text-align:center !important;
 }
 
 #setLat{
@@ -45,18 +45,19 @@ body {
     border:solid;
     border-width:4px;
     border-color:#808080;
-    width:150px;
-    height:150px;
+    width:250px;
+    height:200px;
     margin:0 auto;
 
 }
 
-#playFieldOwnerTable td #testImage {
+#playFieldOwnerTable td #playfieldOwnerImage {
     border:solid;
     border-width:4px;
     border-color:#808080;
     width:150px;
     height:150px;
+    margin:8px;
 }
 
 #body_container {
@@ -65,9 +66,9 @@ body {
     background-position:top center;
     height:1600px;
 }
-a:link {
-    color: #034af3;
-    text-decoration: underline;
+/*a:link {
+    color: white;
+    text-decoration: none;
 }
 
 a:visited {
@@ -81,7 +82,7 @@ a:hover {
 
 a:active {
     color: #12eb87;
-}
+}*/
 
 p, ul {
     margin-bottom: 20px;
@@ -284,10 +285,10 @@ textarea {
     background:url("search_button.png");    
     background-repeat:no-repeat;
     background-position:center;
-    background-size:37px, 55px;
-    height:45px;
+    background-size:37px, 54px;
+    height:43px;
     right:51px;
-    top:4.3px;
+    top:6px;
     display:inline-block;
 }
 
@@ -296,10 +297,10 @@ textarea {
     background:url("search_button_pressed.png");
     background-repeat:no-repeat;
     background-position:center;
-    background-size:37px, 55px;
-    height:45px;
+    background-size:37px, 54px;
+    height:40px;
     right:51px;
-    top:4.2px;
+    top:6px;
     display:inline-block;
 }
 
@@ -424,6 +425,7 @@ fieldset {
 .display-label, 
 .editor-label {
     margin: 1em 0 0 0;
+    color:white;
 }
 
 .display-field, 
@@ -441,4 +443,12 @@ fieldset {
 
 .tri-state {
     width: 6em;
+}
+
+.details {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: green;
 }
