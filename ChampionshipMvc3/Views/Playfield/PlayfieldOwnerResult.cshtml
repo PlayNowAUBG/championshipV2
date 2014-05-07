@@ -43,7 +43,16 @@
                 </tr>
                 <tr>
                     <td>BigField (lv/hour): </td>
-                    <td>@Html.DisplayFor(modelItem => item.BigField)</td>
+                    <td>
+                        @if(item.BigField != 0)
+                        {
+                            @Html.DisplayFor(modelItem => item.BigField)
+                        }
+                        else
+                        {
+                            <label>n/a</label>
+                        }
+                    </td>
                 </tr>
                 <tr>
                     <td>Price with lights: </td>
