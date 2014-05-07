@@ -25,7 +25,7 @@
            <div id="map_canvas" ></div>
         </td>
         <td>
-            <table>
+            <table class="ownerInformatinoNT">
                 <tr>
                     <td colspan="2">@Html.DisplayFor(modelItem => item.Name)</td>
                 </tr>
@@ -64,13 +64,17 @@
             </table>
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.PlayfieldOwnerID }, new { @class = "details" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PlayfieldOwnerID }, new { @class = "details" })
         </td>
-        <td id="setLat">
-            @Html.HiddenFor(modelItem => item.Lat)
+        <td>
+            <div id="setLat">
+                @Html.HiddenFor(modelItem => item.Lat)
+            </div>
         </td>
-        <td id="setLong">
-            @Html.HiddenFor(modelItem => item.Long)
+        <td>
+            <div id="setLong">
+                @Html.HiddenFor(modelItem => item.Long)
+            </div>
         </td>
     </tr>
 }
