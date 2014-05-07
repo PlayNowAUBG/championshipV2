@@ -65,17 +65,14 @@
         </td>
         <td>
             @Html.ActionLink("Details", "Details", new { id=item.PlayfieldOwnerID }, new { @class = "details" })
-        </td>
-        <td>
             <div id="setLat">
                 @Html.HiddenFor(modelItem => item.Lat)
             </div>
-        </td>
-        <td>
             <div id="setLong">
                 @Html.HiddenFor(modelItem => item.Long)
             </div>
         </td>
+       
     </tr>
 }
 

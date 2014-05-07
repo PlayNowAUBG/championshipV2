@@ -21,7 +21,7 @@ body {
     margin: 0 auto;
     border-spacing:0px;
     width:900px !important;
-
+    empty-cells:hide;
 }
 
 #playFieldOwnerTable tr{
@@ -62,6 +62,8 @@ body {
 
 .ownerInformatinoNT {
     border-collapse:collapse;
+    width:330px;
+    height:180px;
 }
 
 .ownerInformatinoNT td{
@@ -180,7 +182,7 @@ header h1, #header h1 {
     position:relative;
     margin:0 auto;
     text-align:center;
-    top:200px;
+    top:100px;
 }
 
 /* TAB MENU   
