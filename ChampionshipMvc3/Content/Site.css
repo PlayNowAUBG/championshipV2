@@ -278,11 +278,11 @@ textarea {
     padding-bottom:20px;
     padding-top:9px;
     padding-right:29px;
-    height:30px;
-
 }
+
 .searchInput input[type="text"]{
     position:relative;
+    right:10px;
     bottom:3px;
     line-height:25px;/*results in nice text vertical alignment*/
     background:transparent;
@@ -334,7 +334,7 @@ textarea {
     background:url("search_button_pressed.png");
     background-repeat:no-repeat;
     background-position:center;
-    background-size:36px, 52px;
+    background-size:38px, 54px;
     height:50px;
     display:inline-block;
 }

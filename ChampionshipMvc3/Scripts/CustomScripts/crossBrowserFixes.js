@@ -9,28 +9,15 @@
         rv = parseFloat(RegExp.$1);
 
     //Position fix of the search button in mozilla, msie and msie ver. 11
-    if (jQuery.browser.msie) {
-        $(".buttonInput").css('top', '-4.2px');
-        $(".buttonInput").css('right', '52px');
-    }
-
-    if (rv == 11) {
-        $(".buttonInput").css('top', '-5px');
-        $(".buttonInput").css('right', '51.4px');
-    }
-
     if (jQuery.browser.mozilla) {
         $(".textBoxInput").css('top', '0px');
-        $(".buttonInput").css('top', '-4px');
-        $(".buttonInput").css('right', '45px');
-        $(".buttonInput").css('width', '40px');
-        $(".buttonInput").css('height', '48px');
-        $(".buttonInput:active").css('right', '45px');
-        $(".buttonInput:active").css('width', '40px');
-        $(".buttonInput:active").css('height', '48px');
-        $(".buttonInput:active").css('top', '-1.5px');
-        $(".buttonInput:active").css('right', '49.8px');
+        $(".buttonInput").css('top', '-2px');
+        $(".buttonInput").css('right', '53px');
+        $('.buttonInput input[type="submit"]:active').css('right', '45px');
+        $('.buttonInput input[type="submit"]:active').css('width', '40px');
+        $('.buttonInput input[type="submit"]:active').css('height', '48px');
+        $('.buttonInput input[type="submit"]:active').css('top', '-1.5px');
+        $('.buttonInput input[type="submit"]:active').css('right', '49.8px');
     }
-
     //Depth of button push fix in msie
 });
