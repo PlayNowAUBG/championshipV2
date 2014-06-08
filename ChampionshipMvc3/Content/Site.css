@@ -268,7 +268,6 @@ textarea {
     min-height: 75px;
 }
 
-
 .searchInput {
     position:relative;
     background:url("input_background.png");
@@ -286,13 +285,12 @@ textarea {
     bottom:3px;
     line-height:25px;/*results in nice text vertical alignment*/
     background:transparent;
+    outline:none;
     width:200px;/*full width - grey on the side - 2*10px padding*/
     border:none;
     padding-left:21px;
     margin:0 auto;
-    outline:none;
 }
-
 
 .buttonInput {
     position:relative;

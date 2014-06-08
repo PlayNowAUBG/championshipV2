@@ -19,5 +19,4 @@
         $('.buttonInput input[type="submit"]:active').css('top', '-1.5px');
         $('.buttonInput input[type="submit"]:active').css('right', '49.8px');
     }
-    //Depth of button push fix in msie
 });
