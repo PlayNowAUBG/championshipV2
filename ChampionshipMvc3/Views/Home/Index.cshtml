@@ -6,18 +6,19 @@
 
 <div id="inputForSearch">
     <div id="fyf">&nbsp<br />&nbsp<br />&nbsp</div>
-    @using(Html.BeginForm("SearchPlayfieldsByCity","Playfield"))
+
+    @using (Html.BeginForm("SearchPlayfieldsByCity", "Playfield", new { @class = "inputForm" }))
     {   
         <div class="searchInput">
             <input name="city" type="text" class="textBoxInput"/>
         </div>
-        
+            
         <div class="buttonInput">
             <input type="submit" value=""  class="inputButton" />
         </div>
     }
 
-    @using(Html.BeginForm("SearchPlayfieldsByName", "Playfield"))
+    @using (Html.BeginForm("SearchPlayfieldsByName", "Playfield", new { @class = "inputForm" }))
     {  
         <div>
             <div class="searchInput">
