@@ -4,65 +4,89 @@
     ViewBag.Title = "Owner Details";
 }
 
-<link href="../../Content/CustomStyles/PlayfieldLayoutDesign.css" rel="stylesheet" />
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/CustomScripts/jQueryLibrary.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/CustomScripts/googleMapsLoad.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/CustomScripts/googleMapsScriptForDetailsPage.js")" type="text/javascript"></script>
 
-<h2>PlayfieldDetails</h2>
+<div id="ownerDeatailsBody">
 
-<div>
 
-    <script>
-    </script>
+        <div id="mainCustom">
+            <label>@Html.DisplayFor(model => model.Name)</label>
+        </div>
 
-    <div id="mainCustom">
-        <div id="map_canvas"></div>
-        <label>@Html.DisplayFor(model => model.Name)</label>
-    </div>
+        <div id="mainCustomFieldInfo">
+            <table id="playFieldOwnerTable">
+                <tr>
+                    <td>
+                        @*VASE SLOJI SNIMKATA NA IGRI6TETO TUKA*@
+                        <img src="E:\Projects\PlayNow\ChampionshipMvc3\Images\background2.jpg" id="playfieldOwnerImageDetails" />
+                    </td>
+                    <td>
+                        <div id="map_canvas"></div>
+                    </td>
+                    <td>
+                        <table class="ownerInformatinoNTDetails">
+                            <tr>
+                                <td><label>Address: </label></td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Address)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Neighbourhood: </label></td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Neighbourhood)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>PhoneNumber: </label></td>
+                                <td>
+                                    @Html.DisplayFor(model => model.PhoneNumber)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>City: </label></td>
+                                <td>
+                                    @Html.DisplayFor(model => model.City)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>StartHour: </label></td>
+                                <td>
+                                    @Html.DisplayFor(model => model.StartHour)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>EndHour: </label></td>
+                                <td>
+                                    @Html.DisplayFor(model => model.EndHour)
+                                 
+                                </td>
+                            </tr>
+                            
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="setLat">
+                            @Html.HiddenFor(model => model.Lat)
+                        </div>
+                        <div id="setLong">
+                            @Html.HiddenFor(model => model.Long)
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    <br />
+    <br />
+    <br />
+    <div>
 
-    <div id="mainCustomFieldInfo">
-        <table>
-            <tr>
-                <td>
-                    <div class="display-label">Address: @Html.DisplayFor(model => model.Address)</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="display-label">Neighbourhood: @Html.DisplayFor(model => model.Neighbourhood)</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="display-label">StartHour: @Html.DisplayFor(model => model.StartHour)</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="display-label">EndHour: @Html.DisplayFor(model => model.EndHour)</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="display-label">PhoneNumber: @Html.DisplayFor(model => model.PhoneNumber)</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="display-label">City: @Html.DisplayFor(model => model.City)</div>
-                </td>
-            </tr>
-        </table>
+        @*@Html.Action("ListAllPlayfields", "Playfield", new { ownerId = Model.PlayfieldOwnerID})*@ ,
+        @* @Html.Partial("_Schedule", Model.Schedule)*@
+        @Html.Partial("PlayfieldList", Model.Playfields);
     </div>
 </div>
-<br />
-<br />
-<br />
-<div>
-    @*@Html.Action("ListAllPlayfields", "Playfield", new { ownerId = Model.PlayfieldOwnerID})*@ ,
-   @* @Html.Partial("_Schedule", Model.Schedule)*@
-    @Html.Partial("PlayfieldList", Model.Playfields);
-</div>
-
-

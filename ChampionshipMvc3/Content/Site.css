@@ -11,8 +11,9 @@ body {
     font-size: .85em;
     width:100%;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
-    margin:0px;
+    margin:0px !important;
 }
+
 .centeringText {
     margin:2px;
 }
@@ -41,6 +42,7 @@ body {
 #setLong{
     display:none;
 }
+
 #playFieldOwnerTable td #map_canvas{
     border:solid;
     border-width:4px;
@@ -60,49 +62,54 @@ body {
     margin:8px;
 }
 
+#playFieldOwnerTable td #playfieldOwnerImageDetails {
+    border:solid;
+    border-width:4px;
+    border-color:#808080;
+    width:150px;
+    height:150px;
+    margin:8px;
+}
+
 .ownerInformatinoNT {
     border-collapse:collapse;
     width:330px;
     height:180px;
+    empty-cells: hide;
 }
 
 .ownerInformatinoNT td{
     padding-left:6px;
+    empty-cells: hide;
+}
+
+
+.ownerInformatinoNTDetails {
+    border-collapse:collapse;
+    width:330px;
+    height:180px;
+    empty-cells: hide;
+}
+
+.ownerInformatinoNTDetails td{
+    padding-left:6px;
+    empty-cells: hide;
 }
 
 #body_container {
     background-image:url('body_background.png');
     background-repeat:no-repeat;
     background-position:top center;
+    position:relative;
     height:1600px;
 }
-/*a:link {
-    color: white;
-    text-decoration: none;
-}
-
-a:visited {
-    color: #505abc;
-}
-
-a:hover {
-
-    text-decoration: none;
-}
-
-a:active {
-    color: #12eb87;
-}*/
 
 p, ul {
     margin-bottom: 20px;
     line-height: 1.6em;
 }
 
-header,
-footer,
-nav,
-section {
+header, footer,nav, section {
     display: block;
 }
 
@@ -139,8 +146,8 @@ h5, h6 {
                 PRIMARY LAYOUT ELEMENTS   
 -----------------------------------------------------------*/
 
-/* you can specify a greater or lesser percentage for the   
-page width. Or, you can specify an exact pixel width. */
+/*.page is for the centering of the elements of the entire page.
+     This is important don't remove unless you really need to*/
 
 .page {
     width: 1001px;
@@ -361,6 +368,7 @@ input[type="submit"] {
 
 /* MISC  
 ----------------------------------------------------------*/
+
 .clear {
     clear: both;
 }

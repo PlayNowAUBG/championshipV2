@@ -270,6 +270,7 @@
     <Content Include="Scripts\CustomScripts\adminJS.js" />
     <Content Include="Scripts\CustomScripts\bootstrap.minPlayNow.js" />
     <Content Include="Scripts\CustomScripts\googleMapsScript.js" />
+    <Content Include="Scripts\CustomScripts\googleMapsScriptForDetailsPage.js" />
     <Content Include="Scripts\CustomScripts\jQueryLibrary.js" />
     <Content Include="Scripts\CustomScripts\crossBrowserFixes.js" />
     <Content Include="Scripts\CustomScripts\reservationJS.js" />
