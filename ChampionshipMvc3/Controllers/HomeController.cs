@@ -23,6 +23,16 @@ namespace ChampionshipMvc3.Controllers
             return View();
         }
 
+        public ActionResult FootballSearchPage()
+        {
+            return View("FootballSearchView");
+        }
+
+        public ActionResult TennisSearchPage()
+        {
+            return View("TennisSearchView");
+        }
+
         public ActionResult About()
         {
             return View();
@@ -30,8 +40,6 @@ namespace ChampionshipMvc3.Controllers
 
         public ActionResult PlayfieldDetails()
         {
-
-
             return View();
         }
     }

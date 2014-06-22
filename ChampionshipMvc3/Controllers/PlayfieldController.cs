@@ -40,6 +40,8 @@ namespace ChampionshipMvc3.Controllers
             return View("OwnerDetails", owner);
         }
 
+        #region Football playfields
+
         public ActionResult CreatePlayfieldOwner()
         {
             return View("CreateOwnerPlayfieldView", ownerRepository.GetModel());
@@ -141,6 +143,14 @@ namespace ChampionshipMvc3.Controllers
 
             return View("PlayfieldScheduleView", schedule);
         }
+
+        #endregion
+
+        #region TennisPlayfields
+
+
+
+        #endregion
 
         public ActionResult Reserve()
         {
