@@ -251,6 +251,24 @@ namespace ChampionshipMvc3.Controllers
             return View("Index", "Home");
         }
 
+        [HttpPost]
+        public ActionResult SearchTennisPlayfieldsByCity(string city)
+        {
+
+            IList<TennisPlayfieldOwner> playfieldsResult = 
+                tennisPlayfieldRepository.GetAllPlayfieldsByCity(city);
+
+            return View("TennisPlayfieldOwnerResult", playfieldsResult);
+        }
+
+        [HttpPost]
+        public ActionResult SearchTennisPlayfieldsByName(string name)
+        {
+            IList<TennisPlayfieldOwner> playfieldResult = 
+                tennisPlayfieldRepository.GetAllPlayfieldsByName(name);
+            
+            return View("TennisPlayfieldOwnerResult", playfieldResult);
+        }
 
         #endregion
 

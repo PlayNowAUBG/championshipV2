@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ChampionshipMvc3.Models.DataContext.TennisPlayfieldOwner>
+@{
+    ViewBag.Title = "TennisPlayfieldOwnerResult";
+}
+
+<h2>TennisPlayfieldOwnerResult</h2>
+
+<table id="playFieldOwnerTable">
+
+@foreach (var item in Model) {
+   
+    <tr>
+        <td>
+
+             @{
+                string imagePath = "";
+                if (@item.Pictures != null && @item.Pictures.Count > 0)
+                {
+                    imagePath = @item.Pictures[0].Path;
+                }
+             }
+            <img src="@imagePath" id="playfieldOwnerImage"/>
+        </td>
+        <td>
+           <div id="map_canvas" ></div>
+        </td>
+        <td>
+            <table class="ownerInformatinoNT">
+                <tr>
+                    <td colspan="2">@Html.DisplayFor(modelItem => item.Name)</td>
+                </tr>
+                <tr>
+                    <td><label>Address: </label></td>
+                    <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                </tr>
+                <tr>
+                    <td>Phone: </td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                </tr>
+                @*<tr>
+                    <td>40m x 20m (lv/hour):</td>
+                    <td>@Html.DisplayFor(modelItem => item.SmallField)</td>
+                </tr>
+                <tr>
+                    <td>BigField (lv/hour): </td>
+                    <td>
+                        @if(item.BigField != 0)
+                        {
+                            @Html.DisplayFor(modelItem => item.BigField)
+                        }
+                        else
+                        {
+                            <label>n/a</label>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>Price with lights: </td>
+                    <td>@Html.DisplayFor(modelItem => item.PriceLights)</td>
+                </tr>
+                @if(!string.IsNullOrWhiteSpace(@item.Custom))
+                {
+                    <tr>
+                        <td>
+                            Custom:
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Custom)
+                        </td>
+                    </tr>
+                }*@
+            </table>
+        </td>
+        <td>
+            @*@Html.ActionLink("Details", "Details", new { id=item.PlayfieldOwnerID }, new { @class = "details" })*@
+            <div id="setLat">
+                @Html.HiddenFor(modelItem => item.Lat)
+            </div>
+            <div id="setLong">
+                @Html.HiddenFor(modelItem => item.Long)
+            </div>
+        </td>
+       
+    </tr>
+}
+
+</table>

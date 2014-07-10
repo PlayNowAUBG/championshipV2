@@ -46,12 +46,16 @@ namespace ChampionshipMvc3.Models.Repositories
 
         public IList<TennisPlayfieldOwner> GetAllPlayfieldsByCity(string city)
         {
-            throw new NotImplementedException();
+            return RepositoryBase.DataContext.TennisPlayfieldOwners
+                .Where(owner => owner.City.ToLower() == city.ToLower())
+                .ToList();
         }
 
         public IList<TennisPlayfieldOwner> GetAllPlayfieldsByName(string name)
         {
-            throw new NotImplementedException();
+            return RepositoryBase.DataContext.TennisPlayfieldOwners
+                .Where(owner => owner.Name.ToLower() == name.ToLower())
+                .ToList();
         }
 
         public IList<TennisPlayfield> GetAllPlayfieldsByOwner(Guid ownerId)

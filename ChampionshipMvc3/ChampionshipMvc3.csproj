@@ -347,6 +347,7 @@
     <Content Include="Views\Home\TennisSearchView.cshtml" />
     <Content Include="Views\Playfield\CreateTennisOwnerView.cshtml" />
     <Content Include="Views\Playfield\AddNewTennisPlayfieldView.cshtml" />
+    <Content Include="Views\Playfield\TennisPlayfieldOwnerResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
