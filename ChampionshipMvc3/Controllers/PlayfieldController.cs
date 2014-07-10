@@ -18,19 +18,27 @@ namespace ChampionshipMvc3.Controllers
         private const string relativePath = "../Images/";
         private IPlayfieldRepository playfieldRepository;
         private IPlayfieldOwnerRepository ownerRepository;
+        private ITennisPlayfieldOwnerRepository tennisOwnerRepository;
+        private ITennisPlayfieldRepository tennisPlayfieldRepository;
+
         private IScheduleRepository scheduleRepository;
         private IReservationRepository reservationRepository;
         private IPictureRepository pictureRepository;
 
         public PlayfieldController(IPlayfieldRepository playfieldRepoParam, IPlayfieldOwnerRepository ownerRepoParam,
+                ITennisPlayfieldOwnerRepository tennisOwnerRepoParam, ITennisPlayfieldRepository tennisPlayfieldRepoParam,
                 IScheduleRepository scheduleRepoParam, IReservationRepository reservationRepoParam, IPictureRepository pictureRepoParam)
                                     
         {
             playfieldRepository = playfieldRepoParam;
             ownerRepository = ownerRepoParam;
+            tennisOwnerRepository = tennisOwnerRepoParam;
+            tennisPlayfieldRepository = tennisPlayfieldRepoParam;
+            
             reservationRepository = reservationRepoParam;
             scheduleRepository = scheduleRepoParam;
             pictureRepository = pictureRepoParam;
+
         }
 
         
@@ -52,15 +60,23 @@ namespace ChampionshipMvc3.Controllers
         {
             if (ModelState.IsValid)
             {
-                Picture newPicture = new Picture();
-                newPicture.PictureID = Guid.NewGuid();
-                
-                ownerModel.PlayfieldOwnerID = Guid.NewGuid();
-                newPicture.PlayfieldOwnerID = ownerModel.PlayfieldOwnerID;
-                newPicture.Path = locationString + file.FileName;
-                pictureRepository.AddNewPicture(newPicture);
-                ownerRepository.AddNewOwner(ownerModel);
-                SaveToServer(file);
+                try
+                {
+                    Picture newPicture = new Picture();
+                    newPicture.PictureID = Guid.NewGuid();
+
+                    ownerModel.PlayfieldOwnerID = Guid.NewGuid();
+                    newPicture.PlayfieldOwnerID = ownerModel.PlayfieldOwnerID;
+                    newPicture.Path = locationString + file.FileName;
+                    pictureRepository.AddNewPicture(newPicture);
+                    ownerRepository.AddNewOwner(ownerModel);
+                    SaveToServer(file);
+                }
+                catch (Exception ex)
+                {
+                    //TODO: Log exceptions
+                    return RedirectToAction("Index", "Home");
+                }
             }
 
             return RedirectToAction("Index", "Home");
@@ -91,7 +107,6 @@ namespace ChampionshipMvc3.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 Playfield playfieldModel = playfieldViewModel.PlayfieldModel;
                 playfieldModel.PLayfieldID = Guid.NewGuid();
                 PlayfieldOwner playfieldOwner = ownerRepository.GetOwnerById(playfieldViewModel.SelectedId);
@@ -148,57 +163,96 @@ namespace ChampionshipMvc3.Controllers
 
         #region TennisPlayfields
 
-
-
-        #endregion
-
-        public ActionResult Reserve()
+        public ActionResult CreateTennisPlayfieldOwner()
         {
-            return PartialView();
+            return View("CreateTennisOwnerView", new TennisPlayfieldOwner());
         }
 
         [HttpPost]
-        public ActionResult Reserve(Reservation reservationModel)
+        public ActionResult CreateTennisPlayfieldOwner(TennisPlayfieldOwner tennisOwnerModel, HttpPostedFileBase file)
         {
+
             if (ModelState.IsValid)
             {
-                reservationModel.PlayfieldID = (Guid)Session["playfieldId"];
-                reservationModel.ReservationID = Guid.NewGuid();
+                try
+                {
+                    Picture newPicture = new Picture();
+                    newPicture.PictureID = Guid.NewGuid();
 
-                //reservationRepository.AddNewReservation(reservationModel);
+                    tennisOwnerModel.TennisPlayfieldOwnerID = Guid.NewGuid();
+                    newPicture.TennisOwnerID = tennisOwnerModel.TennisPlayfieldOwnerID;
+                    newPicture.Path = locationString + file.FileName;
+                    pictureRepository.AddNewPicture(newPicture);
+
+                    tennisOwnerRepository.AddNewOwner(tennisOwnerModel);
+                    SaveToServer(file);
+                }
+                catch (Exception ex)
+                {
+                    //TODO: Log exception
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            Guid playfieldId = (Guid)Session["playfieldId"];
-            return RedirectToAction("PlayfieldSchedule", "Playfield", new { playfieldId = playfieldId });
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        [HttpPost]
-        public ActionResult ReservePlayfield(decimal hourInterval, Guid hourId, 
-                                                Guid dayId, string name, string phone)
-        {
-            Schedule schedule = scheduleRepository.GetScheduleByDayId(dayId);
-            Day day = scheduleRepository.GetDayById(dayId);
-            Playfield playfield = playfieldRepository.GetPlayfieldByScheduleId(schedule.ScheduleID);
-            Reservation reservation = new Reservation();
-
-            reservation.ReservationID = Guid.NewGuid();
-            reservation.DayName = day.DayName;
-            reservation.StartHour = hourInterval;
-            reservation.EndHour = hourInterval + 1.0m;
-            reservation.Playfield = playfield;
-            reservation.ReservationDate = DateTime.Now;
-            reservation.Name = name;
-            reservation.Phone = phone;
-
-            reservationRepository.AddNewReservation(reservation);
 
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult SuccessReservation()
+        public ActionResult AddNewTennisPlayfield()
         {
-            return View("SuccessReservation");
+            TennisPlayfieldViewModel viewModel = new TennisPlayfieldViewModel();
+
+            List<TennisPlayfieldOwner> listOfOwners = tennisOwnerRepository
+                                                             .GetAllOwners().ToList();
+
+            viewModel.OwnersSelectList = new List<SelectListItem>();
+            for (int index = 0; index < listOfOwners.Count; index++)
+            {
+                SelectListItem currentItem = new SelectListItem();
+                currentItem.Text = listOfOwners[index].Name;
+                currentItem.Value = listOfOwners[index].TennisPlayfieldOwnerID.ToString();
+
+                viewModel.OwnersSelectList.Add(currentItem);
+            }
+
+            return View("AddNewTennisPlayfieldView", viewModel);
         }
+
+        [HttpPost]
+        public ActionResult AddNewTennisPlayfield(TennisPlayfieldViewModel playfieldViewModel, HttpPostedFileBase[] files)
+        {
+            if (ModelState.IsValid)
+            {
+                TennisPlayfield tennisPlayfieldModel = playfieldViewModel.TennisPlayfieldModel;
+                tennisPlayfieldModel.TenisPlayfieldID = Guid.NewGuid();
+                TennisPlayfieldOwner playfieldOwner = tennisOwnerRepository.GetOwnerById(playfieldViewModel.SelectedId);
+                tennisPlayfieldModel.TennisPlayfieldOwner = playfieldOwner;
+
+                Schedule playfieldSchedule = new Schedule();
+                playfieldSchedule.ScheduleID = Guid.NewGuid();
+                //scheduleRepository.AddNewSchedule(playfieldSchedule, tennisPlayfieldModel.TennisPlayfieldOwner.StartHour, 
+                   // tennisPlayfieldModel.TennisPlayfieldOwner.EndHour);
+                //tennisPlayfieldModel.Schedule = playfieldSchedule;
+
+                foreach (var file in files)
+                {
+                    Picture newPicture = new Picture();
+                    newPicture.PictureID = Guid.NewGuid();
+                    newPicture.PlayfieldId = tennisPlayfieldModel.TenisPlayfieldID;
+                    newPicture.Path = locationString + file.FileName;
+                    pictureRepository.AddNewPicture(newPicture);
+                }
+
+                tennisPlayfieldRepository.AddNewPlayfield(tennisPlayfieldModel);
+
+                SaveToServer(files);
+
+            }
+
+            return View("Index", "Home");
+        }
+
+
+        #endregion
 
         public ActionResult PlayfieldDetails(Guid playfieldId)
         {
@@ -225,7 +279,60 @@ namespace ChampionshipMvc3.Controllers
         private void SaveToServer(HttpPostedFileBase file)
         {
             var fileName = Path.GetFileName(file.FileName);
-            file.SaveAs(Server.MapPath(relativePath + file.FileName)); 
+            file.SaveAs(Server.MapPath(relativePath + file.FileName));
         }
+
+        #region Reservation
+
+        //public ActionResult Reserve()
+        //{
+        //    return PartialView();
+        //}
+
+        //[HttpPost]
+        //public ActionResult Reserve(Reservation reservationModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        reservationModel.PlayfieldID = (Guid)Session["playfieldId"];
+        //        reservationModel.ReservationID = Guid.NewGuid();
+
+        //        //reservationRepository.AddNewReservation(reservationModel);
+        //    }
+        //    Guid playfieldId = (Guid)Session["playfieldId"];
+        //    return RedirectToAction("PlayfieldSchedule", "Playfield", new { playfieldId = playfieldId });
+        //}
+
+        //[AcceptVerbs(HttpVerbs.Post)]
+        //[HttpPost]
+        //public ActionResult ReservePlayfield(decimal hourInterval, Guid hourId, 
+        //                                        Guid dayId, string name, string phone)
+        //{
+        //    Schedule schedule = scheduleRepository.GetScheduleByDayId(dayId);
+        //    Day day = scheduleRepository.GetDayById(dayId);
+        //    Playfield playfield = playfieldRepository.GetPlayfieldByScheduleId(schedule.ScheduleID);
+        //    Reservation reservation = new Reservation();
+
+        //    reservation.ReservationID = Guid.NewGuid();
+        //    reservation.DayName = day.DayName;
+        //    reservation.StartHour = hourInterval;
+        //    reservation.EndHour = hourInterval + 1.0m;
+        //    reservation.Playfield = playfield;
+        //    reservation.ReservationDate = DateTime.Now;
+        //    reservation.Name = name;
+        //    reservation.Phone = phone;
+
+        //    reservationRepository.AddNewReservation(reservation);
+
+        //    return RedirectToAction("Index", "Home");
+        //}
+
+        //public ActionResult SuccessReservation()
+        //{
+        //    return View("SuccessReservation");
+        //}
+
+        #endregion
     }
 }
+

@@ -13,6 +13,7 @@ namespace ChampionshipMvc3.Models.Interfaces
         IList<PlayfieldOwner> GetAllOwners();
         PlayfieldOwner GetCurrentOwnerByUserId(Guid userId);
         PlayfieldOwner GetOwnerById(Guid id);
+
         void UpdatePlayfieldOwner(Guid ownerId, Guid userId);
         Guid GetUserId(string userName);
         void SaveChanges();

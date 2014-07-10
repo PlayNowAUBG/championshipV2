@@ -191,16 +191,6 @@
       <Association Name="Day_Hour1" Member="Day" ThisKey="DaysID" OtherKey="DaysID" Type="Day" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Pictures" Member="Pictures">
-    <Type Name="Picture">
-      <Column Name="PictureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PlayfieldId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Path" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="PlayfieldOwnerID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Association Name="PlayfieldOwner_Picture" Member="PlayfieldOwner" ThisKey="PlayfieldOwnerID" OtherKey="PlayfieldOwnerID" Type="PlayfieldOwner" IsForeignKey="true" />
-      <Association Name="Playfield_Picture" Member="Playfield" ThisKey="PlayfieldId" OtherKey="PLayfieldID" Type="Playfield" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
   <Table Name="dbo.Players" Member="Players">
     <Type Name="Player">
       <Column Name="PlayerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -237,8 +227,8 @@
       <Column Name="BigField" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Custom" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="PriceLights" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="PlayfieldOwner_Picture" Member="Pictures" ThisKey="PlayfieldOwnerID" OtherKey="PlayfieldOwnerID" Type="Picture" />
       <Association Name="PlayfieldOwner_Playfield" Member="Playfields" ThisKey="PlayfieldOwnerID" OtherKey="PlayfieldOwnerID" Type="Playfield" />
+      <Association Name="PlayfieldOwner_Picture" Member="Pictures" ThisKey="PlayfieldOwnerID" OtherKey="PlayfieldOwnerID" Type="Picture" />
       <Association Name="aspnet_User_PlayfieldOwner" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
@@ -252,8 +242,8 @@
       <Column Name="PlayfieldOwnerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="PlayfieldName" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Playfield_Picture" Member="Pictures" ThisKey="PLayfieldID" OtherKey="PlayfieldId" Type="Picture" />
       <Association Name="Playfield_Reservation" Member="Reservations" ThisKey="PLayfieldID" OtherKey="PlayfieldID" Type="Reservation" />
+      <Association Name="Playfield_Picture" Member="Pictures" ThisKey="PLayfieldID" OtherKey="PlayfieldId" Type="Picture" />
       <Association Name="PlayfieldOwner_Playfield" Member="PlayfieldOwner" ThisKey="PlayfieldOwnerID" OtherKey="PlayfieldOwnerID" Type="PlayfieldOwner" IsForeignKey="true" />
       <Association Name="Schedule_Playfield" Member="Schedule" ThisKey="ScheduleID" OtherKey="ScheduleID" Type="Schedule" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
@@ -348,6 +338,18 @@
       <Association Name="Tournament_TournamentsTeam" Member="Tournament" ThisKey="TournamentID" OtherKey="TournamentID" Type="Tournament" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Pictures" Member="Pictures">
+    <Type Name="Picture">
+      <Column Name="PictureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PlayfieldId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PlayfieldOwnerID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="TennisOwnerID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="PlayfieldOwner_Picture" Member="PlayfieldOwner" ThisKey="PlayfieldOwnerID" OtherKey="PlayfieldOwnerID" Type="PlayfieldOwner" IsForeignKey="true" />
+      <Association Name="Playfield_Picture" Member="Playfield" ThisKey="PlayfieldId" OtherKey="PLayfieldID" Type="Playfield" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="TennisPlayfieldOwner_Picture" Member="TennisPlayfieldOwner" ThisKey="TennisOwnerID" OtherKey="TennisPlayfieldOwnerID" Type="TennisPlayfieldOwner" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="playnowb_testuser.TennisPlayfieldOwner" Member="TennisPlayfieldOwners">
     <Type Name="TennisPlayfieldOwner">
       <Column Name="TennisPlayfieldOwnerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -361,16 +363,20 @@
       <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="City" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="TennisPlayfieldOwner_Picture" Member="Pictures" ThisKey="TennisPlayfieldOwnerID" OtherKey="TennisOwnerID" Type="Picture" />
+      <Association Name="TennisPlayfieldOwner_TennisPlayfield" Member="TennisPlayfields" ThisKey="TennisPlayfieldOwnerID" OtherKey="TennisPlayfieldOwnerID" Type="TennisPlayfield" />
       <Association Name="aspnet_User_TennisPlayfieldOwner" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="playnowb_testuser.TennisPlayfields" Member="TennisPlayfields">
     <Type Name="TennisPlayfield">
       <Column Name="TenisPlayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PlayfieldName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Width" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Surface" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="TennisPlayfieldOwnerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="TennisPlayfieldOwner_TennisPlayfield" Member="TennisPlayfieldOwner" ThisKey="TennisPlayfieldOwnerID" OtherKey="TennisPlayfieldOwnerID" Type="TennisPlayfieldOwner" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

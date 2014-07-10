@@ -1,0 +1,96 @@
+﻿@model ChampionshipMvc3.Models.DataContext.TennisPlayfieldOwner
+
+@{
+    ViewBag.Title = "CreateTennisOwnerView";
+}
+
+<h2>CreateTennisOwnerView</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm("CreateTennisPlayfieldOwner", "Playfield", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>TennisPlayfieldOwner</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartHour)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartHour)
+            @Html.ValidationMessageFor(model => model.StartHour)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndHour)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EndHour)
+            @Html.ValidationMessageFor(model => model.EndHour)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Lat)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Lat)
+            @Html.ValidationMessageFor(model => model.Lat)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Long)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Long)
+            @Html.ValidationMessageFor(model => model.Long)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Neighbourhood)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Neighbourhood)
+            @Html.ValidationMessageFor(model => model.Neighbourhood)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+
+        <input type="file" name="file" value="" />
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}

@@ -166,8 +166,8 @@
     <Compile Include="Models\Interfaces\IReservationRepository.cs" />
     <Compile Include="Models\Interfaces\IScheduleRepository.cs" />
     <Compile Include="Models\Interfaces\ITeamRepository.cs" />
-    <Compile Include="Models\Interfaces\ITennisPlayfieldRepository.cs" />
     <Compile Include="Models\Interfaces\ITennisPlayfieldOwnerRepository.cs" />
+    <Compile Include="Models\Interfaces\ITennisPlayfieldRepository.cs" />
     <Compile Include="Models\Interfaces\ITournamentRepository.cs" />
     <Compile Include="Models\Repositories\PlayfieldOwnerRepository.cs" />
     <Compile Include="Models\Repositories\PictureRepository.cs" />
@@ -176,6 +176,7 @@
     <Compile Include="Models\Repositories\ReservationRepository.cs" />
     <Compile Include="Models\Repositories\ScheduleRepository.cs" />
     <Compile Include="Models\Repositories\TeamRepository.cs" />
+    <Compile Include="Models\Repositories\TennisPlayfieldOwnerRepository.cs" />
     <Compile Include="Models\Repositories\TennisPlayfieldRepository.cs" />
     <Compile Include="Models\Repositories\TournamentRepository.cs" />
     <Compile Include="Models\RepositoryBase.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Models\ViewModels\ListFileViewModel.cs" />
     <Compile Include="Models\ViewModels\PlayfieldViewModel.cs" />
     <Compile Include="Models\ViewModels\RegisterOwnerViewModel.cs" />
+    <Compile Include="Models\ViewModels\TennisPlayfieldViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -269,7 +271,6 @@
     </Content>
     <Content Include="Images\1. Furniture_Task.docx" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Compile Include="Models\Repositories\TennisPlayfieldOwnerRepository.cs" />
     <Content Include="Scripts\CustomScripts\autoComplete.js" />
     <Content Include="Scripts\CustomScripts\adminJS.js" />
     <Content Include="Scripts\CustomScripts\bootstrap.minPlayNow.js" />
@@ -344,6 +345,8 @@
     <Content Include="Views\Playfield\AnonymousScheduleView.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\TennisSearchView.cshtml" />
+    <Content Include="Views\Playfield\CreateTennisOwnerView.cshtml" />
+    <Content Include="Views\Playfield\AddNewTennisPlayfieldView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
