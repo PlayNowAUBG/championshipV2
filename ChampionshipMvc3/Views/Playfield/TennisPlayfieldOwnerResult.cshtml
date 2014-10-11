@@ -72,7 +72,7 @@
             </table>
         </td>
         <td>
-            @*@Html.ActionLink("Details", "Details", new { id=item.PlayfieldOwnerID }, new { @class = "details" })*@
+            @Html.ActionLink("Details", "Details", new { id=item.PlayfieldOwnerID }, new { @class = "details" })
             <div id="setLat">
                 @Html.HiddenFor(modelItem => item.Lat)
             </div>

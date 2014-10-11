@@ -20,14 +20,13 @@ namespace ChampionshipMvc3.Controllers
         private IPlayfieldOwnerRepository ownerRepository;
         private ITennisPlayfieldOwnerRepository tennisOwnerRepository;
         private ITennisPlayfieldRepository tennisPlayfieldRepository;
-
-        private IScheduleRepository scheduleRepository;
+    
         private IReservationRepository reservationRepository;
         private IPictureRepository pictureRepository;
 
         public PlayfieldController(IPlayfieldRepository playfieldRepoParam, IPlayfieldOwnerRepository ownerRepoParam,
                 ITennisPlayfieldOwnerRepository tennisOwnerRepoParam, ITennisPlayfieldRepository tennisPlayfieldRepoParam,
-                IScheduleRepository scheduleRepoParam, IReservationRepository reservationRepoParam, IPictureRepository pictureRepoParam)
+                IReservationRepository reservationRepoParam, IPictureRepository pictureRepoParam)
                                     
         {
             playfieldRepository = playfieldRepoParam;
@@ -36,7 +35,6 @@ namespace ChampionshipMvc3.Controllers
             tennisPlayfieldRepository = tennisPlayfieldRepoParam;
             
             reservationRepository = reservationRepoParam;
-            scheduleRepository = scheduleRepoParam;
             pictureRepository = pictureRepoParam;
 
         }
@@ -45,6 +43,7 @@ namespace ChampionshipMvc3.Controllers
         public ActionResult Details(Guid id)
         {
             var owner = ownerRepository.GetOwnerById(id);
+            
             return View("OwnerDetails", owner);
         }
 
@@ -112,11 +111,6 @@ namespace ChampionshipMvc3.Controllers
                 PlayfieldOwner playfieldOwner = ownerRepository.GetOwnerById(playfieldViewModel.SelectedId);
                 playfieldModel.PlayfieldOwner = playfieldOwner;
                 
-                Schedule playfieldSchedule = new Schedule();
-                playfieldSchedule.ScheduleID = Guid.NewGuid();
-                scheduleRepository.AddNewSchedule(playfieldSchedule, playfieldModel.PlayfieldOwner.StartHour, playfieldModel.PlayfieldOwner.EndHour);
-                playfieldModel.Schedule = playfieldSchedule;
-
                 foreach (var file in files)
                 {
                     Picture newPicture = new Picture();
@@ -149,14 +143,6 @@ namespace ChampionshipMvc3.Controllers
         {
             IList<PlayfieldOwner> playfieldResult = playfieldRepository.GetAllPlayfieldsByName(name);
             return View("PlayfieldOwnerResult", playfieldResult);
-        }
-
-        public ActionResult PlayfieldSchedule(Guid playfieldId)
-        {
-            Session["playfieldId"] = playfieldId;
-            Schedule schedule = scheduleRepository.GetPlayFieldSchedule(playfieldId);
-
-            return View("PlayfieldScheduleView", schedule);
         }
 
         #endregion
@@ -223,21 +209,15 @@ namespace ChampionshipMvc3.Controllers
             if (ModelState.IsValid)
             {
                 TennisPlayfield tennisPlayfieldModel = playfieldViewModel.TennisPlayfieldModel;
-                tennisPlayfieldModel.TenisPlayfieldID = Guid.NewGuid();
+                tennisPlayfieldModel.TennisPlayfieldID = Guid.NewGuid();
                 TennisPlayfieldOwner playfieldOwner = tennisOwnerRepository.GetOwnerById(playfieldViewModel.SelectedId);
                 tennisPlayfieldModel.TennisPlayfieldOwner = playfieldOwner;
-
-                Schedule playfieldSchedule = new Schedule();
-                playfieldSchedule.ScheduleID = Guid.NewGuid();
-                //scheduleRepository.AddNewSchedule(playfieldSchedule, tennisPlayfieldModel.TennisPlayfieldOwner.StartHour, 
-                   // tennisPlayfieldModel.TennisPlayfieldOwner.EndHour);
-                //tennisPlayfieldModel.Schedule = playfieldSchedule;
 
                 foreach (var file in files)
                 {
                     Picture newPicture = new Picture();
                     newPicture.PictureID = Guid.NewGuid();
-                    newPicture.PlayfieldId = tennisPlayfieldModel.TenisPlayfieldID;
+                    newPicture.TennisOwnerID = tennisPlayfieldModel.TennisPlayfieldOwnerID;
                     newPicture.Path = locationString + file.FileName;
                     pictureRepository.AddNewPicture(newPicture);
                 }
@@ -248,7 +228,7 @@ namespace ChampionshipMvc3.Controllers
 
             }
 
-            return View("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -301,6 +281,13 @@ namespace ChampionshipMvc3.Controllers
         }
 
         #region Reservation
+
+        public PartialViewResult GetSchedule(Guid PlayfieldsList)
+        {
+            var playfield = playfieldRepository.GetPlayfieldById(PlayfieldsList);
+            
+            return PartialView("AnonymousScheduleView", playfield);
+        }
 
         //public ActionResult Reserve()
         //{

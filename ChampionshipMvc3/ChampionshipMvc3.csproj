@@ -164,7 +164,6 @@
     <Compile Include="Models\Interfaces\IPlayerRepository.cs" />
     <Compile Include="Models\Interfaces\IPlayfieldRepository.cs" />
     <Compile Include="Models\Interfaces\IReservationRepository.cs" />
-    <Compile Include="Models\Interfaces\IScheduleRepository.cs" />
     <Compile Include="Models\Interfaces\ITeamRepository.cs" />
     <Compile Include="Models\Interfaces\ITennisPlayfieldOwnerRepository.cs" />
     <Compile Include="Models\Interfaces\ITennisPlayfieldRepository.cs" />
@@ -174,7 +173,6 @@
     <Compile Include="Models\Repositories\PlayerRepository.cs" />
     <Compile Include="Models\Repositories\PlayfieldRepository.cs" />
     <Compile Include="Models\Repositories\ReservationRepository.cs" />
-    <Compile Include="Models\Repositories\ScheduleRepository.cs" />
     <Compile Include="Models\Repositories\TeamRepository.cs" />
     <Compile Include="Models\Repositories\TennisPlayfieldOwnerRepository.cs" />
     <Compile Include="Models\Repositories\TennisPlayfieldRepository.cs" />

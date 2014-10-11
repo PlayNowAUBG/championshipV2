@@ -49,5 +49,13 @@ namespace ChampionshipMvc3.Models.Repositories
             throw new NotImplementedException();
             this.SaveChanges();
         }
+
+
+        public ICollection<Reservation> GetPlayfieldReservations(Guid playfieldId)
+        {
+            return RepositoryBase.DataContext.Reservations
+                .Where(r => r.PlayfieldID == playfieldId)
+                .ToList();
+        }
     }
 }

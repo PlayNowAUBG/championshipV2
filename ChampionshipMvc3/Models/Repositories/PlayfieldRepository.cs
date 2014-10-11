@@ -45,23 +45,12 @@ namespace ChampionshipMvc3.Models.Repositories
             RepositoryBase.DataContext.SubmitChanges();
         }
 
-
-
-
-        public Schedule GetPlayfieldSchedule(Guid userId)
-        {
-            return null;
-        }
-
-
         public IList<Playfield> GetPlayfieldsByOwner(Guid ownerId)
         {
             return RepositoryBase.DataContext.Playfields
                 .Where(p => p.PlayfieldOwnerID == ownerId)
                 .ToList();
         }
-
-
 
         public IList<PlayfieldOwner> GetAllPlayfieldsByCity(string city)
         {

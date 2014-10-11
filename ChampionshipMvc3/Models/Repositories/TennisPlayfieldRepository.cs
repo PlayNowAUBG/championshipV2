@@ -11,7 +11,8 @@ namespace ChampionshipMvc3.Models.Repositories
     {
         public void AddNewPlayfield(TennisPlayfield playfield)
         {
-            throw new NotImplementedException();
+            RepositoryBase.DataContext.TennisPlayfields.InsertOnSubmit(playfield);
+            this.SaveChanges();
         }
 
         public ICollection<TennisPlayfield> GetAllPlayfields()
@@ -24,11 +25,7 @@ namespace ChampionshipMvc3.Models.Repositories
             throw new NotImplementedException();
         }
 
-        public Schedule GetPlayfieldSchedule(Guid userId)
-        {
-            throw new NotImplementedException();
-        }
-
+       
         public IList<TennisPlayfield> GetPlayfieldsByOwner(Guid ownerId)
         {
             throw new NotImplementedException();
@@ -65,7 +62,7 @@ namespace ChampionshipMvc3.Models.Repositories
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            RepositoryBase.DataContext.SubmitChanges();
         }
     }
 }

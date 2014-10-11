@@ -16,13 +16,7 @@ namespace ChampionshipMvc3.Common
 {
     public static class ExtensionMethods
     {
-        public static void InitializeScheduleDays(this Schedule schedule)
-        {
-            //TODO: INSERT DAYS, INSERT HOURS
-            //DAYS REPOSITORY, HOURS REPOSITORY
-
-            //TODO: RESERVATION
-        }
+        
 
     }
 }

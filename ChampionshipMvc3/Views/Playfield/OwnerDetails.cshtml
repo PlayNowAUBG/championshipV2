@@ -5,7 +5,6 @@
 }
 
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/CustomScripts/jQueryLibrary.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/CustomScripts/googleMapsScriptForDetailsPage.js")" type="text/javascript"></script>
 
 <div id="ownerDeatailsBody">
@@ -19,8 +18,14 @@
             <table id="playFieldOwnerTable">
                 <tr>
                     <td>
-                        @*VASE SLOJI SNIMKATA NA IGRI6TETO TUKA*@
-                        <img src="E:\Projects\PlayNow\ChampionshipMvc3\Images\background2.jpg" id="playfieldOwnerImageDetails" />
+                        @{
+                            string image = "";
+                            if(Model.Pictures != null && Model.Pictures.Count != 0)
+                            {
+                                image = Model.Pictures[0].Path;
+                            }
+                        }
+                        <img src="@image" id="playfieldOwnerImageDetails" />
                     </td>
                     <td>
                         <div id="map_canvas"></div>
@@ -84,5 +89,19 @@
     <br />
     <br />
     <div>
+       @using (Ajax.BeginForm("GetSchedule", new AjaxOptions
+       {
+           HttpMethod = "Get",
+           InsertionMode = InsertionMode.Replace,
+           UpdateTargetId = "ScheduleDiv",
+       }))
+       {
+           @Html.DropDownList("PlayfieldsList", new SelectList(Model.Playfields,"PlayfieldId","FieldType","PlayfieldId"), "Select a playfield",
+           new { onchange = "$(this.form).submit();"})
+       }
+   
+        <div id="ScheduleDiv">
+
+        </div>
     </div>
 </div>

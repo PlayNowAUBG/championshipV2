@@ -13,6 +13,7 @@ namespace ChampionshipMvc3.Models.Interfaces
         ICollection<Reservation> GetAllReservations();
         ICollection<Reservation> GetAllUnapprovedReservations();
         Reservation GetReservationById(Guid reservationId);
+        ICollection<Reservation> GetPlayfieldReservations(Guid playfieldId);
         void ApproveReservation(Guid reservationId);
         void SaveChanges();
     }

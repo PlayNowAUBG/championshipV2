@@ -11,7 +11,7 @@ namespace ChampionshipMvc3.Models.Interfaces
         void AddNewPlayfield(TennisPlayfield playfield);
         ICollection<TennisPlayfield> GetAllPlayfields();
         TennisPlayfield GetModel();
-        Schedule GetPlayfieldSchedule(Guid userId);
+        
         IList<TennisPlayfield> GetPlayfieldsByOwner(Guid ownerId);
         TennisPlayfield GetPlayfieldById(Guid id);
         TennisPlayfield GetPlayfieldByScheduleId(Guid scheduleId);
