@@ -58,8 +58,8 @@
       <Column Name="PlayfieldOwnerID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="TennisOwnerID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Association Name="PlayfieldOwner_Picture" Member="PlayfieldOwner" ThisKey="PlayfieldOwnerID" OtherKey="PlayfieldOwnerID" Type="PlayfieldOwner" IsForeignKey="true" />
-      <Association Name="Playfield_Picture" Member="Playfield" ThisKey="PlayfieldId" OtherKey="PLayfieldID" Type="Playfield" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="TennisPlayfieldOwner_Picture" Member="TennisPlayfieldOwner" ThisKey="TennisOwnerID" OtherKey="TennisPlayfieldOwnerID" Type="TennisPlayfieldOwner" IsForeignKey="true" />
+      <Association Name="Playfield_Picture" Member="Playfield" ThisKey="PlayfieldId" OtherKey="PLayfieldID" Type="Playfield" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Players" Member="Players">
@@ -102,21 +102,6 @@
       <Association Name="aspnet_User_PlayfieldOwner" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
-  <Table Name="dbo.Playfields" Member="Playfields">
-    <Type Name="Playfield">
-      <Column Name="PLayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FieldType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="SurfaceType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Width" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PlayfieldOwnerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="PlayfieldName" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Playfield_Picture" Member="Pictures" ThisKey="PLayfieldID" OtherKey="PlayfieldId" Type="Picture" />
-      <Association Name="Playfield_Reservation" Member="Reservations" ThisKey="PLayfieldID" OtherKey="PlayfieldID" Type="Reservation" />
-      <Association Name="PlayfieldOwner_Playfield" Member="PlayfieldOwner" ThisKey="PlayfieldOwnerID" OtherKey="PlayfieldOwnerID" Type="PlayfieldOwner" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Profiles" Member="Profiles">
     <Type Name="Profile">
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -124,16 +109,6 @@
       <Column Name="PropertyValueStrings" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="PropertyValueBinary" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="LastUpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Reservations" Member="Reservations">
-    <Type Name="Reservation">
-      <Column Name="ReservationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PlayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ReservationDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Phone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="Playfield_Reservation" Member="Playfield" ThisKey="PlayfieldID" OtherKey="PLayfieldID" Type="Playfield" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Roles" Member="Roles">
@@ -243,6 +218,32 @@
       <Column Name="FailedPasswordAnswerAttemptCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="FailedPasswordAnswerAttemptWindowStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Comment" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservations" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="ReservationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PlayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SubmissionDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ReservedDateHour" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Playfield_Reservation" Member="Playfield" ThisKey="PlayfieldID" OtherKey="PLayfieldID" Type="Playfield" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Playfields" Member="Playfields">
+    <Type Name="Playfield">
+      <Column Name="PLayfieldID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FieldType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SurfaceType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Width" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PlayfieldOwnerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PlayfieldName" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Playfield_Picture" Member="Pictures" ThisKey="PLayfieldID" OtherKey="PlayfieldId" Type="Picture" />
+      <Association Name="Playfield_Reservation" Member="Reservations" ThisKey="PLayfieldID" OtherKey="PlayfieldID" Type="Reservation" />
+      <Association Name="PlayfieldOwner_Playfield" Member="PlayfieldOwner" ThisKey="PlayfieldOwnerID" OtherKey="PlayfieldOwnerID" Type="PlayfieldOwner" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

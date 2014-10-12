@@ -5,8 +5,8 @@
 <link href="../../Content/customBootstrap.css" rel="stylesheet" />
 <link href="../../Content/Site.css" rel="stylesheet" />
 <script src="@Url.Content("~/Scripts/CustomScripts/tableFillerScheduleLayout.js")" type="text/javascript"></script>
-<script src="../../Scripts/CustomScripts/bootstrap.minPlayNow.js"></script>
-<script src="../../Scripts/CustomScripts/ownerPanel.js"></script>
+<script src="../../Scripts/CustomScripts/bootstrap.minPlayNow.js" type="text/javascript"></script>
+<script src="../../Scripts/CustomScripts/ownerPanel.js" type="text/javascript"></script>
 
 <table id="structureTable">
     <tr>
@@ -29,15 +29,17 @@
                     {
                         bool isReserved = false;
                         <tr>
-                            <td onclick="showReservationModal()">
+                            <td class="dateHourCell">
                                 @{
                                     var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
-                                    if(allReservations.Any(r => r.ReservationDate.Equals(compareDate)))
+                                    if(allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
                                     {
                                         isReserved = true; 
                                     }
                                 }
                                 <label>@isReserved</label>
+                                @Html.Hidden("date", displayDate.ToShortDateString(), new { @class = "hiddenDateClass" })
+                                @Html.Hidden("hour", hourIndex, new { @class = "hiddenHourClass" })
                             </td>
                         </tr>
                     }
@@ -63,7 +65,7 @@
       <div class="modal-footer">
         @Html.Partial("~/Views/Playfield/_ReservationModel.cshtml", new ChampionshipMvc3.Models.DataContext.Reservation())
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" value="Reserve" class="btn btn-default reservationButton">Reserve</button>
+        <button type="button" id="reservationButton" value="Reserve" class="btn btn-default reservationBtn">Reserve</button>
       </div>
     </div>
   </div>

@@ -293,51 +293,31 @@ namespace ChampionshipMvc3.Controllers
         {
             var playfield = playfieldRepository.GetPlayfieldById(PlayfieldsList);
 
+            Session["Playfield"] = playfield;
+
             return PartialView("PlayfieldScheduleView", playfield);
         }
 
-        //public ActionResult Reserve()
-        //{
-        //    return PartialView();
-        //}
+        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
+        public ActionResult ReservePlayfield(string hour, string date, string name, string phone)
+        {
+            Playfield playfield = Session["Playfield"] as Playfield;
+            Session.Remove("Playfield");
+            
+            Reservation reservation = new Reservation();
+            
+            reservation.ReservationID = Guid.NewGuid();
+            reservation.ReservedDateHour = DateTime.Parse(date + " " + hour + ":00");
+            reservation.SubmissionDate = DateTime.Now;
+            reservation.Name = name;
+            reservation.Phone = phone;
+            reservation.Playfield = playfield;
 
-        //[HttpPost]
-        //public ActionResult Reserve(Reservation reservationModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        reservationModel.PlayfieldID = (Guid)Session["playfieldId"];
-        //        reservationModel.ReservationID = Guid.NewGuid();
+            reservationRepository.AddNewReservation(reservation);
 
-        //        //reservationRepository.AddNewReservation(reservationModel);
-        //    }
-        //    Guid playfieldId = (Guid)Session["playfieldId"];
-        //    return RedirectToAction("PlayfieldSchedule", "Playfield", new { playfieldId = playfieldId });
-        //}
-
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //[HttpPost]
-        //public ActionResult ReservePlayfield(decimal hourInterval, Guid hourId, 
-        //                                        Guid dayId, string name, string phone)
-        //{
-        //    Schedule schedule = scheduleRepository.GetScheduleByDayId(dayId);
-        //    Day day = scheduleRepository.GetDayById(dayId);
-        //    Playfield playfield = playfieldRepository.GetPlayfieldByScheduleId(schedule.ScheduleID);
-        //    Reservation reservation = new Reservation();
-
-        //    reservation.ReservationID = Guid.NewGuid();
-        //    reservation.DayName = day.DayName;
-        //    reservation.StartHour = hourInterval;
-        //    reservation.EndHour = hourInterval + 1.0m;
-        //    reservation.Playfield = playfield;
-        //    reservation.ReservationDate = DateTime.Now;
-        //    reservation.Name = name;
-        //    reservation.Phone = phone;
-
-        //    reservationRepository.AddNewReservation(reservation);
-
-        //    return RedirectToAction("Index", "Home");
-        //}
+            return RedirectToAction("Index", "Home");
+        }
 
         //public ActionResult SuccessReservation()
         //{
