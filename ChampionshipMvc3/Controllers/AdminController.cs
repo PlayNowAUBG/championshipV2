@@ -41,13 +41,13 @@ namespace ChampionshipMvc3.Controllers
                 Guid userId = ownerRepoitory.GetUserId(HttpContext.User.Identity.Name);
                 PlayfieldOwner currentOwner = ownerRepoitory.GetCurrentOwnerByUserId(userId);
 
-                 allPlayfields = playfieldRepository.GetPlayfieldsByOwner(currentOwner.PlayfieldOwnerID);
+                return View(playfieldAdminViewName, currentOwner);
+                 //allPlayfields = playfieldRepository.GetPlayfieldsByOwner(currentOwner.PlayfieldOwnerID);
             }
             catch (NullReferenceException ex)
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View(playfieldAdminViewName, allPlayfields);
         }
 
         public ActionResult OwnerSchedule()

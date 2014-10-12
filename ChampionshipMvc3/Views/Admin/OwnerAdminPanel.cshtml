@@ -1,29 +1,17 @@
-﻿@model IEnumerable<ChampionshipMvc3.Models.DataContext.Playfield>
+﻿@model ChampionshipMvc3.Models.DataContext.PlayfieldOwner
 
-@{
-    ViewBag.Title = "OwnerAdminPanel";
-}
+ @using (Ajax.BeginForm("GetOwnerSchedule", "Playfield", new AjaxOptions
+    {
+        HttpMethod = "Get",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "ScheduleDiv",
+    }))
+    {
+        @Html.DropDownList("PlayfieldsList", new SelectList(Model.Playfields,"PlayfieldId","FieldType","PlayfieldId"), "Select a playfield",
+        new { onchange = "$(this.form).submit();"})
+    }
+   
+    <div id="ScheduleDiv">
 
-<table>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PlayfieldName);
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FieldType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SurfaceType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Length)
-        </td>
-        <td>
-            @Html.ActionLink("Go to schedule", "PlayfieldSchedule", "Playfield", new { playfieldId=item.PLayfieldID }, null ) |
-        </td>
-    </tr>
-}
-
-</table>

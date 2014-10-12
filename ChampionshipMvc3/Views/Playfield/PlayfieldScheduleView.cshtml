@@ -1,13 +1,49 @@
-﻿@model ChampionshipMvc3.Models.DataContext.Schedule
+﻿@model ChampionshipMvc3.Models.DataContext.Playfield
+@using ChampionshipMvc3.Models.Repositories
+
     
 <link href="../../Content/customBootstrap.css" rel="stylesheet" />
 <link href="../../Content/Site.css" rel="stylesheet" />
-<script src="../../Scripts/CustomScripts/jQueryLibrary.js"></script>
 <script src="@Url.Content("~/Scripts/CustomScripts/tableFillerScheduleLayout.js")" type="text/javascript"></script>
 <script src="../../Scripts/CustomScripts/bootstrap.minPlayNow.js"></script>
 
 <table id="structureTable">
-  
+    <tr>
+        @{
+            ReservationRepository reservationRepo = new ReservationRepository();
+            var allReservations = reservationRepo.GetPlayfieldReservations(Model.PLayfieldID);
+          
+        }
+
+        @for (int dayIndex = 0; dayIndex < 7; dayIndex++)
+        {
+           
+            DateTime displayDate = DateTime.Now.AddDays(dayIndex);
+            <td>
+                <label>@displayDate.ToShortDateString()</label>
+                <label>@displayDate.DayOfWeek</label>
+                <table>
+                    
+                    @for (int hourIndex = Model.PlayfieldOwner.StartHour; hourIndex < Model.PlayfieldOwner.EndHour; hourIndex++)
+                    {
+                        bool isReserved = false;
+                        <tr>
+                            <td>
+                                @{
+                                    var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
+                                    if(allReservations.Any(r => r.ReservationDate.Equals(compareDate)))
+                                    {
+                                        isReserved = true; 
+                                    }
+                                }
+                                <label>@isReserved</label>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+        }
+    </tr>
 </table>
 
 

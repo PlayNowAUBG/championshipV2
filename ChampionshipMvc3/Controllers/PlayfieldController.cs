@@ -289,6 +289,13 @@ namespace ChampionshipMvc3.Controllers
             return PartialView("AnonymousScheduleView", playfield);
         }
 
+        public PartialViewResult GetOwnerSchedule(Guid PlayfieldsList)
+        {
+            var playfield = playfieldRepository.GetPlayfieldById(PlayfieldsList);
+
+            return PartialView("PlayfieldScheduleView", playfield);
+        }
+
         //public ActionResult Reserve()
         //{
         //    return PartialView();
