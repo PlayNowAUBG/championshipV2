@@ -6,6 +6,7 @@
 <link href="../../Content/Site.css" rel="stylesheet" />
 <script src="@Url.Content("~/Scripts/CustomScripts/tableFillerScheduleLayout.js")" type="text/javascript"></script>
 <script src="../../Scripts/CustomScripts/bootstrap.minPlayNow.js"></script>
+<script src="../../Scripts/CustomScripts/ownerPanel.js"></script>
 
 <table id="structureTable">
     <tr>
@@ -28,7 +29,7 @@
                     {
                         bool isReserved = false;
                         <tr>
-                            <td>
+                            <td onclick="showReservationModal()">
                                 @{
                                     var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
                                     if(allReservations.Any(r => r.ReservationDate.Equals(compareDate)))
@@ -46,6 +47,7 @@
     </tr>
 </table>
 
+<button id="showModal">Click Me</button>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

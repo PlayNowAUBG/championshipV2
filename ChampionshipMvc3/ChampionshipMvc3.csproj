@@ -276,6 +276,7 @@
     <Content Include="Scripts\CustomScripts\googleMapsScriptForDetailsPage.js" />
     <Content Include="Scripts\CustomScripts\jQueryLibrary.js" />
     <Content Include="Scripts\CustomScripts\crossBrowserFixes.js" />
+    <Content Include="Scripts\CustomScripts\ownerPanel.js" />
     <Content Include="Scripts\CustomScripts\reservationJS.js" />
     <Content Include="Scripts\CustomScripts\homePageJS.js" />
     <Content Include="Scripts\CustomScripts\tableFillerScheduleLayout.js" />
