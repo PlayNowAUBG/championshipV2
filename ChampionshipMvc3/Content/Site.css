@@ -18,16 +18,72 @@ body {
     margin:2px;
 }
 
-#playFieldOwnerTable {
+#structureTable{
     margin: 0 auto;
-    border-spacing:0px;
-    width:900px !important;
-    empty-cells:hide;
+    padding: 0;
+    border:solid;
+    border-color:white;
+    border-width:2px;
+    border-spacing:0;
+    border-right: none;
+    border-bottom: none;
+}
+#structureTable a{
+    text-decoration:none;
+    color:inherit;
+}
+#structureTable td{
+    padding:0;
+}
+
+.inner-table-holder{
+    border-right: solid;
+    border-right-color:white;
+    border-right-width:2px;
+    background-color:#95b554;
+}
+
+.inner-table{
+    margin: 0 auto;
+    padding:0px;
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+.first{
+    background-color: #d3ddc7;
+    border-top:solid;
+    border-top-color:white;
+    border-top-width:2px;
+    border-bottom: solid;
+    border-bottom-color:white;
+    border-bottom-width:2px;
+}
+
+.not-even{
+    background-color: #d3ddc7;
+    border-bottom: solid;
+    border-bottom-color:white;
+    border-bottom-width:2px;
+}
+
+.even{
+    background-color: #e5e9de;
+    border-bottom: solid;
+    border-bottom-color:white;
+    border-bottom-width:2px;
 }
 
 #playFieldOwnerTable tr{
     color:#fff;
     background:url("fieldslist_background.png");
+}
+
+#playFieldOwnerTable {
+    margin: 0 auto;
+    border-spacing:0px;
+    width:900px !important;
+    empty-cells:hide;
 }
 
 #playFieldOwnerTable td {

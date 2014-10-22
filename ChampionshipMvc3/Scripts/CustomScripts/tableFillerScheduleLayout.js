@@ -1,9 +1,16 @@
 ﻿$(document).ready(function () {
     var stringToBeReplaced;
+    var stuctureTableWidth;
 
     $('#structureTable tr').each(function () {
         $(this).css('text-align', 'center');
+        $(this).css('color', 'white');
         $(this).css('vertical-align', 'middle');
+
+        var td = $(this).find(".inner-table-holder")
+
+        $(".inner-table").css('width', td.width());
+        console.log(stuctureTableWidth);
     });
 
     $('#scheduleTableID tr').each(function () {

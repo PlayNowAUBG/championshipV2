@@ -190,6 +190,7 @@
     <Content Include="Content\colorbox.css" />
     <Content Include="Content\customBootstrap.css" />
     <Content Include="Content\CustomStyles\PlayfieldLayoutDesign.css" />
+    <Content Include="Content\CustomStyles\reservation-model-stylesheet.css" />
     <Content Include="Content\fieldslist_background.png" />
     <Content Include="Content\find_your_field.png" />
     <Content Include="Content\input_background.png" />
