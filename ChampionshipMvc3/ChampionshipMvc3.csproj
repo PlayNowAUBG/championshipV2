@@ -152,6 +152,7 @@
     <Compile Include="Models\DataContext\PlayNow.cs">
       <DependentUpon>PlayNow.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataContext\PlayNow1.designer.cs" />
     <Compile Include="Models\Enums\DaysEnum.cs" />
     <Compile Include="Models\Enums\PlayerType.cs" />
     <Compile Include="Models\Interfaces\IPlayfieldOwnerRepository.cs" />
