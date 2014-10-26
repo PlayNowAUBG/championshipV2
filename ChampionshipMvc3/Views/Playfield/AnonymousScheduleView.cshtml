@@ -27,7 +27,7 @@
                             <td>
                                 @{
                                     var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
-                                    if(allReservations.Any(r => r.ReservationDate.Equals(compareDate)))
+                                    if(allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
                                     {
                                         isReserved = true; 
                                     }
