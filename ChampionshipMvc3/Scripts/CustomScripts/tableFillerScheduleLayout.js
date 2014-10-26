@@ -15,11 +15,11 @@
 
     $('.inner-table td').each(function () {
 
-        var free = $(this).html().match(/False/g);
+        var free = $(this).html().match(/True/g);
 
-       if (free == "False") {
+        if (free == "True") {
 
-           $(this).css("background-color", "green");
+           $(this).css("background-color", "red");
 
        }
 
