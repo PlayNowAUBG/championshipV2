@@ -16,9 +16,13 @@
     $('.inner-table td').each(function () {
 
         var free = $(this).html().match(/False/g);
-       if(free == "False"){
-           $(this).css("background-color", "red");
+
+       if (free == "False") {
+
+           $(this).css("background-color", "green");
+
        }
+
     });
 
     $('#scheduleTableID tr').each(function () {

@@ -1,12 +1,21 @@
 ﻿var clickedCell;
 
-$(".dateHourCell").click(function () {
+$(".first").click(function () {
+    clickedCell = $(this);
+    $("#myModal").modal('show');
+});
+
+$(".even").click(function () {
+    clickedCell = $(this);
+    $("#myModal").modal('show');
+});
+
+$(".not-even").click(function () {
     clickedCell = $(this);
     $("#myModal").modal('show');
 });
 
 $("#reservationButton").click(function () {
-    debugger;
     var hour = clickedCell.find(".hiddenHourClass").val();
     var date = clickedCell.find(".hiddenDateClass").val();
     var name = $("#reservationName").val();
