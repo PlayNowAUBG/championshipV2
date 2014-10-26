@@ -10,7 +10,15 @@
         var td = $(this).find(".inner-table-holder")
 
         $(".inner-table").css('width', td.width());
-        console.log(stuctureTableWidth);
+    });
+
+
+    $('.inner-table td').each(function () {
+
+        var free = $(this).html().match(/False/g);
+       if(free == "False"){
+           $(this).css("background-color", "red");
+       }
     });
 
     $('#scheduleTableID tr').each(function () {
