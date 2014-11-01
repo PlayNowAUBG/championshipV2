@@ -8,6 +8,7 @@ using ChampionshipMvc3.Models.DataContext;
 using System.IO;
 using ChampionshipMvc3.Models.ViewModels;
 using ChampionshipMvc3.Common;
+using ChampionshipMvc3.Models.Repositories;
 
 namespace ChampionshipMvc3.Controllers
 {
@@ -23,6 +24,8 @@ namespace ChampionshipMvc3.Controllers
     
         private IReservationRepository reservationRepository;
         private IPictureRepository pictureRepository;
+
+        private DateTime StartScheduleDay;
 
         public PlayfieldController(IPlayfieldRepository playfieldRepoParam, IPlayfieldOwnerRepository ownerRepoParam,
                 ITennisPlayfieldOwnerRepository tennisOwnerRepoParam, ITennisPlayfieldRepository tennisPlayfieldRepoParam,
@@ -291,11 +294,46 @@ namespace ChampionshipMvc3.Controllers
 
         public PartialViewResult GetOwnerSchedule(Guid PlayfieldsList)
         {
-            var playfield = playfieldRepository.GetPlayfieldById(PlayfieldsList);
+            Playfield playfield = null;
 
-            Session["Playfield"] = playfield;
+            if (PlayfieldsList == Guid.Empty)
+            {
+                playfield = Session["Playfield"] as Playfield;
+            }
+            else
+            {
+                playfield = playfieldRepository.GetPlayfieldById(PlayfieldsList);
+
+                StartScheduleDay = DateTime.Now;
+
+                Session["Playfield"] = playfield;
+                ViewBag.StartScheduleDay = StartScheduleDay;
+                Session["StartScheduleDay"] = StartScheduleDay;
+            }
 
             return PartialView("PlayfieldScheduleView", playfield);
+        }
+
+        public PartialViewResult RefreshScheduleNext()
+        {
+            StartScheduleDay = ((DateTime)Session["StartScheduleDay"]).AddDays(7);
+
+            ViewBag.StartScheduleDay = StartScheduleDay;
+
+            Session["StartScheduleDay"] = StartScheduleDay;
+
+            return GetOwnerSchedule(Guid.Empty);
+        }
+
+        public PartialViewResult RefreshSchedulePrevious()
+        {
+            StartScheduleDay = ((DateTime)Session["StartScheduleDay"]).AddDays(-7);
+
+            ViewBag.StartScheduleDay = StartScheduleDay;
+
+            Session["StartScheduleDay"] = StartScheduleDay;
+
+            return GetOwnerSchedule(Guid.Empty);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

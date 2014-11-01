@@ -14,4 +14,25 @@
     <div id="ScheduleDiv">
 
     </div>
-
+    <div style="float: left">
+        @using (Ajax.BeginForm("RefreshSchedulePrevious", "Playfield", new AjaxOptions
+        {
+            HttpMethod = "Get",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "ScheduleDiv"
+        }))
+        {
+            <input type="submit" value="Previous week" />
+        }
+    </div>
+    <div style="float: right">
+        @using (Ajax.BeginForm("RefreshScheduleNext", "Playfield", new AjaxOptions
+        {
+            HttpMethod = "Get",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "ScheduleDiv"
+        }))
+        {
+            <input type="submit" value="Next week" />
+        }
+    </div>

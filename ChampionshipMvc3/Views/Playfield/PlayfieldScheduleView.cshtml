@@ -14,26 +14,24 @@
         @{
             ReservationRepository reservationRepo = new ReservationRepository();
             var allReservations = reservationRepo.GetPlayfieldReservations(Model.PLayfieldID);
-
+            DateTime displayDate = ViewBag.StartScheduleDay;
         }
         @for (int dayIndex = 0; dayIndex < 7; dayIndex++)
-{
-    DateTime displayDate = DateTime.Now.AddDays(dayIndex);
-    string typeOfCell = "";
+        {
+            string typeOfCell = "";
 
 
             <td class="inner-table-holder">
                 <label>
-                       @displayDate.DayOfWeek
-                    <br /> @displayDate.ToShortDateString()
+                    @displayDate.DayOfWeek
+                    <br />
+                    @displayDate.ToShortDateString()
                 </label>
 
                 <table class="inner-table">
 
                     @for (int hourIndex = Model.PlayfieldOwner.StartHour; hourIndex < Model.PlayfieldOwner.EndHour; hourIndex++)
                     {
-
-                        //VASE VKARAI TOVA NQKUDE DR DA PRAVI PROVERKATA DA NE VISI VUV VIEW-to
 
                         if (hourIndex == Model.PlayfieldOwner.StartHour)
                         {
@@ -47,17 +45,17 @@
                         {
                             typeOfCell = "even";
                         }
-                        
+
                         bool isReserved = false;
                         <tr>
                             <td class="@typeOfCell" style="color: #6c6f67">
                                 <a data-toggle="modal" href="#myModal">
                                     @{
-                                        var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
-                                        if (allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
-                                        {
-                                            isReserved = true;
-                                        }
+                        var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
+                        if (allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
+                        {
+                            isReserved = true;
+                        }
                                     }
                                     @isReserved
 
@@ -70,13 +68,10 @@
                     }
                 </table>
             </td>
-
+            displayDate = displayDate.AddDays(1);
 }
     </tr>
 </table>
-
-
-<button id="showModal">Click Me</button>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
