@@ -2,27 +2,18 @@
     var stringToBeReplaced;
     var stuctureTableWidth;
 
-    $('#structureTable tr').each(function () {
-        $(this).css('text-align', 'center');
-        $(this).css('color', 'white');
-        $(this).css('vertical-align', 'middle');
-
-        var td = $(this).find(".inner-table-holder")
-
-        $(".inner-table").css('width', td.width());
-    });
-
-
     $('.inner-table td').each(function () {
+        var taken = $(this).html().match(/True/g);
+        var free = $(this).html().match(/False/g);
 
-        var free = $(this).html().match(/True/g);
+        if (taken == "True") {
+            $(this).css("background-color", "red");
+            $(this).text("Taken")
+        }
 
-        if (free == "True") {
-
-           $(this).css("background-color", "red");
-
-       }
-
+        if (free == "False") {
+            $(this).text("Free")
+        }
     });
 
     $('#scheduleTableID tr').each(function () {
