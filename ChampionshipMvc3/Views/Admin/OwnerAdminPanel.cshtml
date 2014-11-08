@@ -1,4 +1,5 @@
 ﻿@model ChampionshipMvc3.Models.DataContext.PlayfieldOwner
+@using ChampionshipMvc3.Resources
 
  @using (Ajax.BeginForm("GetOwnerSchedule", "Playfield", new AjaxOptions
     {
@@ -7,7 +8,7 @@
         UpdateTargetId = "ScheduleDiv",
     }))
     {
-        @Html.DropDownList("PlayfieldsList", new SelectList(Model.Playfields,"PlayfieldId","FieldType","PlayfieldId"), "Select a playfield",
+        @Html.DropDownList("PlayfieldsList", new SelectList(Model.Playfields,"PlayfieldId","FieldType","PlayfieldId"), Strings.bgSelectPlayfield,
         new { onchange = "$(this.form).submit();"})
     }
    
@@ -22,7 +23,7 @@
             UpdateTargetId = "ScheduleDiv"
         }))
         {
-            <input type="submit" value="Previous week" id="previous_week"/>
+            <input type="submit" value=@Strings.bgPreviousWeek id="previous_week"/>
         }
     </div>
     <div style="float: right">
@@ -33,6 +34,6 @@
             UpdateTargetId = "ScheduleDiv"
         }))
         {
-            <input type="submit" value="Next week" id="next_week"/>
+            <input type="submit" value=@Strings.bgNextWeek id="next_week"/>
         }
     </div>

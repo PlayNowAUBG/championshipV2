@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<ChampionshipMvc3.Models.DataContext.PlayfieldOwner>
 
+@using ChampionshipMvc3.Resources
+
 @{
-    ViewBag.Title = "PlayfieldOwnerResult";
+    ViewBag.Title = Strings.bgOwners;
 }
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/CustomScripts/googleMapsScript.js")" type="text/javascript"></script>
@@ -30,19 +32,19 @@
                     <td colspan="2">@Html.DisplayFor(modelItem => item.Name)</td>
                 </tr>
                 <tr>
-                    <td><label>Address: </label></td>
+                    <td><label>@Strings.bgAddress: </label></td>
                     <td>@Html.DisplayFor(modelItem => item.Address)</td>
                 </tr>
                 <tr>
-                    <td>Phone: </td>
+                    <td>@Strings.bgPhone: </td>
                     <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
                 </tr>
                 <tr>
-                    <td>40m x 20m (lv/hour):</td>
+                    <td>@Strings.bgSmallField</td>
                     <td>@Html.DisplayFor(modelItem => item.SmallField)</td>
                 </tr>
                 <tr>
-                    <td>BigField (lv/hour): </td>
+                    <td>@Strings.bgBigField: </td>
                     <td>
                         @if(item.BigField != 0)
                         {
@@ -55,14 +57,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Price with lights: </td>
+                    <td>@Strings.bgPriceLights: </td>
                     <td>@Html.DisplayFor(modelItem => item.PriceLights)</td>
                 </tr>
                 @if(!string.IsNullOrWhiteSpace(@item.Custom))
                 {
                     <tr>
                         <td>
-                            Custom:
+                            @Strings.bgCustom:
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Custom)
@@ -72,7 +74,7 @@
             </table>
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.PlayfieldOwnerID }, new { @class = "details" })
+            @Html.ActionLink(Strings.bgDetails, "Details", new { id=item.PlayfieldOwnerID }, new { @class = "details" })
             <div id="setLat">
                 @Html.HiddenFor(modelItem => item.Lat)
             </div>

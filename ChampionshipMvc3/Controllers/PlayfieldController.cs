@@ -287,7 +287,23 @@ namespace ChampionshipMvc3.Controllers
 
         public PartialViewResult GetSchedule(Guid PlayfieldsList)
         {
-            var playfield = playfieldRepository.GetPlayfieldById(PlayfieldsList);
+            Playfield playfield = null;
+
+            if (PlayfieldsList == Guid.Empty)
+            {
+                playfield = Session["Playfield"] as Playfield;
+            }
+            else
+            {
+                playfield = playfieldRepository.GetPlayfieldById(PlayfieldsList);
+
+                StartScheduleDay = DateTime.Now;
+
+                Session["Playfield"] = playfield;
+                ViewBag.StartScheduleDay = StartScheduleDay;
+                Session["BeginScheduleDay"] = StartScheduleDay;
+            }
+
             
             return PartialView("AnonymousScheduleView", playfield);
         }
@@ -334,6 +350,28 @@ namespace ChampionshipMvc3.Controllers
             Session["StartScheduleDay"] = StartScheduleDay;
 
             return GetOwnerSchedule(Guid.Empty);
+        }
+
+        public PartialViewResult RefreshAnonScheduleNext()
+        {
+            StartScheduleDay = ((DateTime)Session["BeginScheduleDay"]).AddDays(7);
+
+            ViewBag.StartScheduleDay = StartScheduleDay;
+
+            Session["BeginScheduleDay"] = StartScheduleDay;
+
+            return GetSchedule(Guid.Empty);
+        }
+
+        public PartialViewResult RefreshAnonSchedulePrevious()
+        {
+            StartScheduleDay = ((DateTime)Session["BeginScheduleDay"]).AddDays(-7);
+
+            ViewBag.StartScheduleDay = StartScheduleDay;
+
+            Session["BeginScheduleDay"] = StartScheduleDay;
+
+            return GetSchedule(Guid.Empty);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

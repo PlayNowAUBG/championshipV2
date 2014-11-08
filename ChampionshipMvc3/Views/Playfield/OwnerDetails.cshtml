@@ -1,7 +1,8 @@
-﻿@model ChampionshipMvc3.Models.DataContext.PlayfieldOwner
+﻿@using  ChampionshipMvc3.Resources
+@model ChampionshipMvc3.Models.DataContext.PlayfieldOwner
 
 @{
-    ViewBag.Title = "Owner Details";
+    ViewBag.Title = Model.Name;
 }
 
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
@@ -33,37 +34,37 @@
                     <td>
                         <table class="ownerInformatinoNTDetails">
                             <tr>
-                                <td><label>Address: </label></td>
+                                <td><label>@Strings.bgAddress: </label></td>
                                 <td>
                                     @Html.DisplayFor(model => model.Address)
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>Neighbourhood: </label></td>
+                                <td><label>@Strings.bgNeighbourhood: </label></td>
                                 <td>
                                     @Html.DisplayFor(model => model.Neighbourhood)
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>PhoneNumber: </label></td>
+                                <td><label>@Strings.bgPhone: </label></td>
                                 <td>
                                     @Html.DisplayFor(model => model.PhoneNumber)
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>City: </label></td>
+                                <td><label>@Strings.bgCity: </label></td>
                                 <td>
                                     @Html.DisplayFor(model => model.City)
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>StartHour: </label></td>
+                                <td><label>@Strings.bgStartHour: </label></td>
                                 <td>
                                     @Html.DisplayFor(model => model.StartHour)
                                 </td>
                             </tr>
                             <tr>
-                                <td><label>EndHour: </label></td>
+                                <td><label>@Strings.bgEndHour: </label></td>
                                 <td>
                                     @Html.DisplayFor(model => model.EndHour)
                                  
@@ -96,12 +97,35 @@
            UpdateTargetId = "ScheduleDiv",
        }))
        {
-           @Html.DropDownList("PlayfieldsList", new SelectList(Model.Playfields,"PlayfieldId","FieldType","PlayfieldId"), "Select a playfield",
+           @Html.DropDownList("PlayfieldsList", new SelectList(Model.Playfields,"PlayfieldId","FieldType","PlayfieldId"), Strings.bgSelectPlayfield,
            new { onchange = "$(this.form).submit();"})
        }
    
         <div id="ScheduleDiv">
 
         </div>
+
+        <div style="float: left">
+        @using (Ajax.BeginForm("RefreshAnonSchedulePrevious", "Playfield", new AjaxOptions
+        {
+            HttpMethod = "Get",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "ScheduleDiv"
+        }))
+        {
+            <input type="submit" value=@Strings.bgPreviousWeek id="previous_week"/>
+        }
+    </div>
+    <div style="float: right">
+        @using (Ajax.BeginForm("RefreshAnonScheduleNext", "Playfield", new AjaxOptions
+        {
+            HttpMethod = "Get",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "ScheduleDiv"
+        }))
+        {
+            <input type="submit" value=@Strings.bgNextWeek id="next_week"/>
+        }
+    </div>
     </div>
 </div>
