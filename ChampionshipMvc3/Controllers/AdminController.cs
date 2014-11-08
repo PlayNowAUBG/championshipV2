@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ChampionshipMvc3.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         //TODO: Approve refreshes page;

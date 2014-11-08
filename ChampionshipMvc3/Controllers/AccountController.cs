@@ -76,7 +76,7 @@ namespace ChampionshipMvc3.Controllers
         {
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("FootballSearchPage", "Home");
         }
 
         //

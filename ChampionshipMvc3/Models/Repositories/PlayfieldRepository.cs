@@ -63,7 +63,7 @@ namespace ChampionshipMvc3.Models.Repositories
         public IList<PlayfieldOwner> GetAllPlayfieldsByName(string name)
         {
             return RepositoryBase.DataContext.PlayfieldOwners
-                .Where(p => p.Name.ToLower() == name.ToLower())
+                .Where(p => p.Name.ToLower().Contains(name.ToLower()))
                 .ToList();
         }
 
