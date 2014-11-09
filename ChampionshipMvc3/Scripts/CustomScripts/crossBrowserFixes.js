@@ -7,7 +7,6 @@
     var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
     if (re.exec(ua) != null)
         rv = parseFloat(RegExp.$1);
-
     //Position fix of the search button in mozilla, msie and msie ver. 11
     if (jQuery.browser.mozilla) {
         $(".textBoxInput").css('top', '0px');

@@ -11,7 +11,7 @@
     @using (Html.BeginForm("SearchPlayfieldsByCity", "Playfield", new { @class = "inputForm" }))
     {   
         <div class="searchInput">
-            <input name="city" type="text" class="textBoxInput" autocomplete="off" />
+            <input name="city" type="text" class="textBoxInput" id="search_city" placeholder="Въведете град" autocomplete="off" />
         </div>
             
         <div class="buttonInput">
@@ -23,7 +23,7 @@
     {  
         <div>
             <div class="searchInput">
-                <input name="name" type="text" class="textBoxInput" autocomplete="off" />
+                <input name="name" type="text" class="textBoxInput" id="search_owner" placeholder="Въведете комплекс" autocomplete="off" />
             </div>
             <div class="buttonInput">
                 <input type="submit" value=""  class="inputButton"/>
