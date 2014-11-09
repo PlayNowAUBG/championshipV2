@@ -11,8 +11,9 @@
                 <label style="color: white">@hourIndex :00</label>
             </td>
         </tr>
-                }
+     }
 </table>
+
 <table id="structureTable">
     <tr>
         @{
@@ -55,17 +56,17 @@
                             <td class="@typeOfCell" style="color: #6c6f67">
                                 <a data-toggle="modal" href="#myModal">
                                     @{
-                        var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
-                        if (allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
-                        {
-                            isReserved = true;
-                        }
+                                        var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
+                                        if (allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
+                                        {
+                                            isReserved = true;
+                                        }
                                     }
-                                    @isReserved
-
+                                   
                                     @Html.Hidden("date", displayDate.ToShortDateString(), new { @class = "hiddenDateClass" })
                                     @Html.Hidden("hour", hourIndex, new { @class = "hiddenHourClass" })
                                 </a>
+                                @isReserved
                             </td>
 
                         </tr>
