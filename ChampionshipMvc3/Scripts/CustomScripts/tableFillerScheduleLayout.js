@@ -3,7 +3,7 @@
     var stuctureTableWidth;
 
     $('.inner-table td').each(function () {
-        var taken = $(this).html().match(/True/g);
+        var taken = $(".to-be-changed").html().match(/True/g);
         var free = $(this).html().match(/False/g);
 
         if (taken == "True") {
