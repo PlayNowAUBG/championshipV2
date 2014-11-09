@@ -3,16 +3,16 @@
     var stuctureTableWidth;
 
     $('.inner-table td').each(function () {
-        var taken = $(".to-be-changed").html().match(/True/g);
+        var taken = $(this).find(".to-be-changed").html().match(/True/g);
         var free = $(this).html().match(/False/g);
 
         if (taken == "True") {
             $(this).css("background-color", "red");
-            $(".to-be-changed").text("Заето")
+            $(this).find(".to-be-changed").text("Заето")
         }
 
         if (free == "False") {
-            $(".to-be-changed").text("Свободно")
+            $(this).find(".to-be-changed").text("Свободно")
         }
     });
 
