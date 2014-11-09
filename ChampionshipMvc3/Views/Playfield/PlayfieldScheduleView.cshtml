@@ -1,6 +1,6 @@
 ﻿@model ChampionshipMvc3.Models.DataContext.Playfield
 @using ChampionshipMvc3.Models.Repositories
-
+@using ChampionshipMvc3.Resources
     
 <link href="../../Content/customBootstrap.css" rel="stylesheet" />
 <link href="../../Content/Site.css" rel="stylesheet" />
@@ -8,14 +8,26 @@
 <script src="../../Scripts/CustomScripts/ownerPanel.js"></script>
 <script src="../../Scripts/CustomScripts/tableFillerScheduleLayout.js"></script>
 
-
-<table id="structureTable">
-    <tr>
-        @{
+@{
             ReservationRepository reservationRepo = new ReservationRepository();
             var allReservations = reservationRepo.GetPlayfieldReservations(Model.PLayfieldID);
             DateTime displayDate = ViewBag.StartScheduleDay;
-        }
+}
+
+
+<table id="hoursTable">
+    @for (int hourIndex = Model.PlayfieldOwner.StartHour; hourIndex < Model.PlayfieldOwner.EndHour; hourIndex++)
+    {
+        <tr>
+            <td>
+                <label style="color: white">@hourIndex :00</label>
+            </td>
+        </tr>
+                }
+</table>
+<table id="structureTable">
+    <tr>
+
         @for (int dayIndex = 0; dayIndex < 7; dayIndex++)
         {
             string typeOfCell = "";
@@ -51,11 +63,11 @@
                             <td class="@typeOfCell" style="color: #6c6f67">
                                 <a data-toggle="modal" href="#myModal">
                                     @{
-                        var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
-                        if (allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
-                        {
-                            isReserved = true;
-                        }
+                                    var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
+                                    if (allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
+                                    {
+                                        isReserved = true;
+                                    }
                                     }
                                     @isReserved
 
@@ -65,11 +77,11 @@
                             </td>
 
                         </tr>
-                    }
+                                }
                 </table>
             </td>
-            displayDate = displayDate.AddDays(1);
-}
+                    displayDate = displayDate.AddDays(1);
+                    }
     </tr>
 </table>
 
@@ -79,14 +91,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Reservation Information</h4>
+        <h4 class="modal-title" id="myModalLabel">@Strings.bgReservationInformation</h4>
       </div>
       <div class="modal-body">
           @Html.Partial("~/Views/Playfield/_ReservationModel.cshtml", new ChampionshipMvc3.Models.DataContext.Reservation())
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" id="reservationButton" value="Reserve" class="btn btn-default reservationBtn">Reserve</button>
+        <button type="button" id="reservationButton" value="Reserve" class="btn btn-default reservationBtn">@Strings.bgReserve</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">@Strings.bgClose</button>
       </div>
     </div>
   </div>

@@ -213,4 +213,13 @@
   <data name="bgTaken" xml:space="preserve">
     <value>Заето</value>
   </data>
+  <data name="bgClose" xml:space="preserve">
+    <value>Затвори</value>
+  </data>
+  <data name="bgReservationInformation" xml:space="preserve">
+    <value>Информация за резервацията</value>
+  </data>
+  <data name="bgReserve" xml:space="preserve">
+    <value>Резервирай</value>
+  </data>
 </root>

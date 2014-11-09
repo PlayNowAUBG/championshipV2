@@ -3,6 +3,16 @@
 
 <script src="@Url.Content("~/Scripts/CustomScripts/tableFillerScheduleLayout.js")" type="text/javascript"></script>
     
+<table id="hoursTable">
+    @for (int hourIndex = Model.PlayfieldOwner.StartHour; hourIndex < Model.PlayfieldOwner.EndHour; hourIndex++)
+    {
+        <tr>
+            <td>
+                <label style="color: white">@hourIndex :00</label>
+            </td>
+        </tr>
+                }
+</table>
 <table id="structureTable">
     <tr>
         @{
