@@ -8,11 +8,11 @@
 
         if (taken == "True") {
             $(this).css("background-color", "red");
-            $(this).text("Заето")
+            $(".to-be-changed").text("Заето")
         }
 
         if (free == "False") {
-            $(this).text("Свободно")
+            $(".to-be-changed").text("Свободно")
         }
     });
 

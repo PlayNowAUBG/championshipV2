@@ -73,9 +73,9 @@
                                         @Html.Hidden("date", displayDate.ToShortDateString(), new { @class = "hiddenDateClass" })
                                         @Html.Hidden("hour", hourIndex, new { @class = "hiddenHourClass" })
                                     </a>
-                                    @isReserved
-                                </td>
-
+                                    <div class="to-be-changed">
+                                        @isReserved
+                                    </div></td>
                             </tr>
                         }
                     </table>
