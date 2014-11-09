@@ -204,4 +204,13 @@
   <data name="bgWidth" xml:space="preserve">
     <value>Ширина</value>
   </data>
+  <data name="bgFree" xml:space="preserve">
+    <value>Свободно</value>
+  </data>
+  <data name="bgName" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="bgTaken" xml:space="preserve">
+    <value>Заето</value>
+  </data>
 </root>

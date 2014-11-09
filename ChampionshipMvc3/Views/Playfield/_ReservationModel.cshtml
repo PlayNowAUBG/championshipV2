@@ -1,12 +1,13 @@
 ﻿@model ChampionshipMvc3.Models.DataContext.Reservation
+@using ChampionshipMvc3.Resources
 
 <link href="../../Content/reservation-model-stylesheet.css" rel="stylesheet" />
 
 <form>    
-    <label>Name</label>
+    <label>@Strings.bgName</label>
     <input type="text" id="reservationName" style="background-color: #d3ddc7; border-radius:5px; border:solid 1px; margin: 15px 15px 15px 15px" />
     <br />
-    <label>Phone</label>
+    <label>@Strings.bgPhone</label>
     <input type="text" id="reservationPhone" style="background-color: #d3ddc7; border-radius:5px; border:solid 1px; margin: 15px 15px 15px 11px" />
  </form>  
     
