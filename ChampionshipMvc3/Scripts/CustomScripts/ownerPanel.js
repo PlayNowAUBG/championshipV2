@@ -44,6 +44,7 @@ $("#reservationButton").click(function () {
             },
             success: function(){
                 alert("Success");
+                $("#reservationModal").modal('hide');
             }
         });
 });
@@ -62,8 +63,7 @@ $("#confirmButton").click(function () {
             },
             success: function () {
                 alert("Success");
+                $("#cancelReservationModal").modal('hide');
             }
         });
-
-
 });
