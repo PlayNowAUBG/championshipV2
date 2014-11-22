@@ -15,31 +15,42 @@
 }
 
 <div class="tables-holder" style="margin:0 auto">
-    <table id="hoursTable">
-        @for (int hourIndex = Model.PlayfieldOwner.StartHour; hourIndex < Model.PlayfieldOwner.EndHour; hourIndex++)
+  <table id="structureTable">
+    <tr>
+        @for (int dayIndex = 0; dayIndex < 8; dayIndex++)
         {
-            <tr>
-                <td>
-                    <label style="color: white">@hourIndex :00</label>
-                </td>
-            </tr>
-        }
-    </table>
-    <table id="structureTable">
-        <tr>
+            string typeOfCell = "";
 
-            @for (int dayIndex = 0; dayIndex < 7; dayIndex++)
-            {
-                string typeOfCell = "";
-
-
-                <td class="inner-table-holder">
+            
+            <td class="inner-table-holder">
+                @if (dayIndex == 0)
+                {
                     <label>
-                        @displayDate.DayOfWeek
+                        <br />
+                        <br />
+                    </label>
+                    <table id="hoursTable">
+                        @for (int hourIndex = Model.PlayfieldOwner.StartHour; hourIndex < Model.PlayfieldOwner.EndHour; hourIndex++)
+                        {
+                            <tr>
+                                <td>
+                                    <label style="color: white">@hourIndex :00</label>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    <label>
+                        @{
+                        var culture = new System.Globalization.CultureInfo("bg-BG");
+                        }
+                        @culture.DateTimeFormat.GetDayName(displayDate.DayOfWeek).ToUpperInvariant()
                         <br />
                         @displayDate.ToShortDateString()
                     </label>
-
+                    
                     <table class="inner-table">
 
                         @for (int hourIndex = Model.PlayfieldOwner.StartHour; hourIndex < Model.PlayfieldOwner.EndHour; hourIndex++)
@@ -63,13 +74,13 @@
                                 <td class="@typeOfCell" style="color: #6c6f67">
                                     <a data-toggle="modal" href="#myModal">
                                         @{
-                            var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
-                            if (allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
-                            {
-                                isReserved = true;
-                            }
+                        var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
+                        if (allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
+                        {
+                            isReserved = true;
+                        }
                                         }
-                                       
+
                                         @Html.Hidden("date", displayDate.ToShortDateString(), new { @class = "hiddenDateClass" })
                                         @Html.Hidden("hour", hourIndex, new { @class = "hiddenHourClass" })
                                     </a>
@@ -77,14 +88,20 @@
                                         @isReserved
                                     </div>
                                 </td>
+
                             </tr>
-                        }
-                    </table>
-                </td>
-                        displayDate = displayDate.AddDays(1);
-            }
-        </tr>
-    </table>
+                    }
+                </table>
+                }
+                
+                
+
+             
+            </td>
+            displayDate = displayDate.AddDays(1);
+}
+    </tr>
+</table>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
