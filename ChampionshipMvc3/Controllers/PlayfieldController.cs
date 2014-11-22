@@ -395,6 +395,16 @@ namespace ChampionshipMvc3.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpPost]
+        public ActionResult CancelReservation(string hour, string date)
+        {
+            var reservedDateHour = DateTime.Parse(date + " " + hour + ":00");
+
+            reservationRepository.RemoveReservation(reservedDateHour);
+
+            return RedirectToAction("Index", "Home");
+        }
+
         //public ActionResult SuccessReservation()
         //{
         //    return View("SuccessReservation");

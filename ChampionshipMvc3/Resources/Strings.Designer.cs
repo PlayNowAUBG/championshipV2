@@ -88,6 +88,15 @@ namespace ChampionshipMvc3.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отмяна на резервация.
+        /// </summary>
+        public static string bgCancelReservation {
+            get {
+                return ResourceManager.GetString("bgCancelReservation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Град.
         /// </summary>
         public static string bgCity {
@@ -102,6 +111,15 @@ namespace ChampionshipMvc3.Resources {
         public static string bgClose {
             get {
                 return ResourceManager.GetString("bgClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сигурни ли сте, че искате да отмените резервацията?.
+        /// </summary>
+        public static string bgConfirmCancelation {
+            get {
+                return ResourceManager.GetString("bgConfirmCancelation", resourceCulture);
             }
         }
         
@@ -228,6 +246,15 @@ namespace ChampionshipMvc3.Resources {
         public static string bgNextWeek {
             get {
                 return ResourceManager.GetString("bgNextWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не.
+        /// </summary>
+        public static string bgNo {
+            get {
+                return ResourceManager.GetString("bgNo", resourceCulture);
             }
         }
         
@@ -372,6 +399,15 @@ namespace ChampionshipMvc3.Resources {
         public static string bgWidth {
             get {
                 return ResourceManager.GetString("bgWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Да.
+        /// </summary>
+        public static string bgYes {
+            get {
+                return ResourceManager.GetString("bgYes", resourceCulture);
             }
         }
     }

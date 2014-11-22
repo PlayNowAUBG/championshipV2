@@ -2,18 +2,29 @@
 
 $(".first").click(function () {
     clickedCell = $(this);
-    $("#myModal").modal('show');
+    showModal();
 });
 
 $(".even").click(function () {
     clickedCell = $(this);
-    $("#myModal").modal('show');
+    showModal();
 });
 
 $(".not-even").click(function () {
     clickedCell = $(this);
-    $("#myModal").modal('show');
+    showModal();
 });
+
+function showModal() {
+    var cellText = clickedCell.text();
+
+    if (cellText.match("Свободно")) {
+        $("#reservationModal").modal('show');
+    }
+    else if (cellText.match("Заето")) {
+        $("#cancelReservationModal").modal('show');
+    }
+}
 
 $("#reservationButton").click(function () {
     var hour = clickedCell.find(".hiddenHourClass").val();
@@ -35,4 +46,24 @@ $("#reservationButton").click(function () {
                 alert("Success");
             }
         });
+});
+
+$("#confirmButton").click(function () {
+    var hour = clickedCell.find(".hiddenHourClass").val();
+    var date = clickedCell.find(".hiddenDateClass").val();
+
+    $.ajax(
+        {
+            type: 'POST',
+            url: "/playfield/cancelreservation",
+            data: {
+                hour: hour,
+                date: date,
+            },
+            success: function () {
+                alert("Success");
+            }
+        });
+
+
 });

@@ -72,13 +72,13 @@
                             bool isReserved = false;
                             <tr>
                                 <td class="@typeOfCell" style="color: #6c6f67">
-                                    <a data-toggle="modal" href="#myModal">
+                                    <a>
                                         @{
-                        var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
-                        if (allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
-                        {
-                            isReserved = true;
-                        }
+                                            var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
+                                            if (allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
+                                            {
+                                                isReserved = true;
+                                            }
                                         }
 
                                         @Html.Hidden("date", displayDate.ToShortDateString(), new { @class = "hiddenDateClass" })
@@ -104,7 +104,7 @@
 </table>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -117,6 +117,24 @@
       <div class="modal-footer">
         <button type="button" id="reservationButton" value="Reserve" class="btn btn-default reservationBtn">@Strings.bgReserve</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">@Strings.bgClose</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="cancelReservationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">@Strings.bgReservationInformation</h4>
+      </div>
+      <div class="modal-body">
+          @Html.Partial("~/Views/Playfield/_CancelReservation.cshtml")
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="confirmButton" value="@Strings.bgYes" class="btn btn-default reservationBtn">@Strings.bgYes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">@Strings.bgNo</button>
       </div>
     </div>
   </div>

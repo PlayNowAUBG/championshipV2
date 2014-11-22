@@ -222,4 +222,16 @@
   <data name="bgReserve" xml:space="preserve">
     <value>Резервирай</value>
   </data>
+  <data name="bgCancelReservation" xml:space="preserve">
+    <value>Отмяна на резервация</value>
+  </data>
+  <data name="bgConfirmCancelation" xml:space="preserve">
+    <value>Сигурни ли сте, че искате да отмените резервацията?</value>
+  </data>
+  <data name="bgNo" xml:space="preserve">
+    <value>Не</value>
+  </data>
+  <data name="bgYes" xml:space="preserve">
+    <value>Да</value>
+  </data>
 </root>

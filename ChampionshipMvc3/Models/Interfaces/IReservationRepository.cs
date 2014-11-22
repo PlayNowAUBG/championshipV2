@@ -16,5 +16,7 @@ namespace ChampionshipMvc3.Models.Interfaces
         ICollection<Reservation> GetPlayfieldReservations(Guid playfieldId);
         void ApproveReservation(Guid reservationId);
         void SaveChanges();
+
+        void RemoveReservation(DateTime reservedDateHour);
     }
 }

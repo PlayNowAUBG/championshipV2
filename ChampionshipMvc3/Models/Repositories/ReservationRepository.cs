@@ -57,5 +57,16 @@ namespace ChampionshipMvc3.Models.Repositories
                 .Where(r => r.PlayfieldID == playfieldId)
                 .ToList();
         }
+
+
+        public void RemoveReservation(DateTime reservedDateHour)
+        {
+           Reservation selectedReservation = RepositoryBase.DataContext.Reservations
+                .Where(r => r.ReservedDateHour.Equals(reservedDateHour))
+                .SingleOrDefault();
+
+           RepositoryBase.DataContext.Reservations.DeleteOnSubmit(selectedReservation);
+           SaveChanges();
+        }
     }
 }
