@@ -312,7 +312,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\FootballSearchView.cshtml" />
@@ -348,7 +348,6 @@
     <Content Include="Views\Playfield\CreateTennisOwnerView.cshtml" />
     <Content Include="Views\Playfield\AddNewTennisPlayfieldView.cshtml" />
     <Content Include="Views\Playfield\TennisPlayfieldOwnerResult.cshtml" />
-    <Content Include="Views\Playfield\_CancelReservation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

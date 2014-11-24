@@ -33,7 +33,7 @@ namespace ChampionshipMvc3.Controllers
             ownerRepository = new PlayfieldOwnerRepository();
         }
 
-        public ActionResult LogOn()
+        public ActionResult LogIn()
         {
             return View();
         }
@@ -42,7 +42,7 @@ namespace ChampionshipMvc3.Controllers
         // POST: /Account/LogOn
 
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        public ActionResult LogIn(LogOnModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
