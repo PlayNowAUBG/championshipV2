@@ -2,6 +2,7 @@
     var stringToBeReplaced;
     var stuctureTableWidth;
 
+
     $('.inner-table td').each(function () {
         var taken = $(this).find(".to-be-changed").html().match(/True/g);
         var free = $(this).html().match(/False/g);

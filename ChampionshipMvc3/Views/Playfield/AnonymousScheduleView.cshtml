@@ -9,45 +9,45 @@
             DateTime displayDate = ViewBag.StartScheduleDay;
 }
 
-<table id="structureTable">
-    <tr>
-        @for (int dayIndex = 0; dayIndex < 8; dayIndex++)
+    <table id="structureTable">
+        <tr>
+            @for (int dayIndex = 0; dayIndex < 8; dayIndex++)
         {
             string typeOfCell = "";
 
-            
-            <td class="inner-table-holder">
-                @if (dayIndex == 0)
+
+                <td class="inner-table-holder">
+                    @if (dayIndex == 0)
                 {
-                    <label>
-                        <br />
-                        <br />
-                    </label>
-                    <table id="hoursTable">
-                        @for (int hourIndex = Model.PlayfieldOwner.StartHour; hourIndex < Model.PlayfieldOwner.EndHour; hourIndex++)
+                        <label>
+                            <br />
+                            <br />
+                        </label>
+                        <table id="hoursTable">
+                            @for (int hourIndex = Model.PlayfieldOwner.StartHour; hourIndex < Model.PlayfieldOwner.EndHour; hourIndex++)
                         {
-                            <tr>
-                                <td>
-                                    <label style="color: white">@hourIndex :00</label>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <label style="color: white">@hourIndex :00</label>
+                                    </td>
+                                </tr>
                         }
-                    </table>
+                        </table>
                 }
                 else
                 {
-                    <label>
-                        @{
+                        <label>
+                            @{
                         var culture = new System.Globalization.CultureInfo("bg-BG");
-                        }
-                        @culture.DateTimeFormat.GetDayName(displayDate.DayOfWeek).ToUpperInvariant()
-                        <br />
-                        @displayDate.ToShortDateString()
-                    </label>
-                    
-                    <table class="inner-table">
+                            }
+                            @culture.DateTimeFormat.GetDayName(displayDate.DayOfWeek).ToUpperInvariant()
+                            <br />
+                            @displayDate.ToShortDateString()
+                        </label>
 
-                        @for (int hourIndex = Model.PlayfieldOwner.StartHour; hourIndex < Model.PlayfieldOwner.EndHour; hourIndex++)
+                        <table class="inner-table">
+
+                            @for (int hourIndex = Model.PlayfieldOwner.StartHour; hourIndex < Model.PlayfieldOwner.EndHour; hourIndex++)
                         {
 
                             if (hourIndex == Model.PlayfieldOwner.StartHour)
@@ -64,37 +64,36 @@
                             }
 
                             bool isReserved = false;
-                            <tr>
-                                <td class="@typeOfCell" style="color: #6c6f67">
-                                    <a data-toggle="modal" href="#myModal">
-                                        @{
+                                <tr>
+                                    <td class="@typeOfCell" style="color: #6c6f67">
+                                        <a data-toggle="modal" href="#myModal">
+                                            @{
                         var compareDate = DateTime.Parse(displayDate.ToShortDateString() + " " + hourIndex.ToString() + ":00");
                         if (allReservations.Any(r => r.ReservedDateHour.Equals(compareDate)))
                         {
                             isReserved = true;
                         }
-                                        }
+                                            }
 
-                                        @Html.Hidden("date", displayDate.ToShortDateString(), new { @class = "hiddenDateClass" })
-                                        @Html.Hidden("hour", hourIndex, new { @class = "hiddenHourClass" })
-                                    </a>
-                                    <div class="to-be-changed">
-                                        @isReserved
-                                    </div>
-                                </td>
+                                            @Html.Hidden("date", displayDate.ToShortDateString(), new { @class = "hiddenDateClass" })
+                                            @Html.Hidden("hour", hourIndex, new { @class = "hiddenHourClass" })
+                                        </a>
+                                        <div class="to-be-changed">
+                                            @isReserved
+                                        </div>
+                                    </td>
 
-                            </tr>
+                                </tr>
                     }
-                </table>
+                        </table>
                 }
-                
-                
 
-             
-            </td>
+
+
+
+                </td>
             displayDate = displayDate.AddDays(1);
 }
-    </tr>
-</table>
-
+        </tr>
+    </table>
 
