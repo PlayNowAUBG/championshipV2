@@ -93,12 +93,13 @@
                     }
                 </table>
                 }
-                
-                
-
-             
+            
             </td>
-            displayDate = displayDate.AddDays(1);
+            
+            @if (dayIndex != 0)
+            {
+                displayDate = displayDate.AddDays(1);
+            }
 }
     </tr>
 </table>
@@ -130,7 +131,7 @@
         <h4 class="modal-title" id="myModalLabel">@Strings.bgCancelReservation</h4>
       </div>
       <div class="modal-body">
-          @Strings.bgConfirmCancelation
+          @Html.Partial("~/Views/Playfield/ReservationDetails")
       </div>
       <div class="modal-footer">
         <button type="button" id="confirmButton" value="@Strings.bgYes" class="btn btn-default reservationBtn">@Strings.bgYes</button>

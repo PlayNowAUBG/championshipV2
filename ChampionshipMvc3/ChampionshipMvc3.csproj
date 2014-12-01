@@ -348,6 +348,7 @@
     <Content Include="Views\Playfield\CreateTennisOwnerView.cshtml" />
     <Content Include="Views\Playfield\AddNewTennisPlayfieldView.cshtml" />
     <Content Include="Views\Playfield\TennisPlayfieldOwnerResult.cshtml" />
+    <Content Include="Views\Playfield\ReservationDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
