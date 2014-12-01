@@ -96,7 +96,7 @@
             
             </td>
             
-            @if (dayIndex != 0)
+            if (dayIndex != 0)
             {
                 displayDate = displayDate.AddDays(1);
             }
@@ -128,14 +128,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">@Strings.bgCancelReservation</h4>
+        <h4 class="modal-title" id="myModalLabel">@Strings.bgReservation</h4>
       </div>
       <div class="modal-body">
-          @Html.Partial("~/Views/Playfield/ReservationDetails")
+          @Html.Partial("~/Views/Playfield/_ReservationDetails.cshtml")
       </div>
       <div class="modal-footer">
-        <button type="button" id="confirmButton" value="@Strings.bgYes" class="btn btn-default reservationBtn">@Strings.bgYes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">@Strings.bgNo</button>
+        <button type="button" id="confirmButton" class="btn btn-default reservationBtn">@Strings.bgCancelReservation</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">@Strings.bgClose</button>
       </div>
     </div>
   </div>

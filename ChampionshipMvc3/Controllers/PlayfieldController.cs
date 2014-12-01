@@ -396,6 +396,18 @@ namespace ChampionshipMvc3.Controllers
         }
 
         [HttpPost]
+        public string ReservationDetails(string hour, string date)
+        {
+            var reservedDate = DateTime.Parse(date + " " + hour + ":00");
+
+            var reservation = reservationRepository.GetReservationByDateHour(reservedDate);
+
+            string namePhone = reservation.Name + " " + reservation.Phone;
+
+            return namePhone;
+        }
+
+        [HttpPost]
         public ActionResult CancelReservation(string hour, string date)
         {
             var reservedDateHour = DateTime.Parse(date + " " + hour + ":00");

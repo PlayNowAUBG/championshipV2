@@ -22,13 +22,36 @@ function showModal() {
         $("#reservationModal").modal('show');
     }
     else if (cellText.match("Заето")) {
-        $("#cancelReservationModal").modal('show');
+
+        var hour = clickedCell.find(".hiddenHourClass").val();
+        var date = clickedCell.find(".hiddenDateClass").val();
+
+        $.ajax(
+            {
+                type: 'POST',
+                url: "/playfield/reservationDetails",
+                data: {
+                    hour: hour,
+                    date: date,
+                },
+                success: function (data) {
+                    var namePhone = data.split(' ');
+                    var name = namePhone[0];
+                    var phone = namePhone[1];
+                    
+                    $("#reservationNameId").text(name);
+                    $("#reservationPhoneId").text(phone);
+
+                    $("#cancelReservationModal").modal('show');
+                }
+            });
     }
 }
 
 $("#reservationButton").click(function () {
     var hour = clickedCell.find(".hiddenHourClass").val();
     var date = clickedCell.find(".hiddenDateClass").val();
+
     var name = $("#reservationName").val();
     var phone = $("#reservationPhone").val();
 

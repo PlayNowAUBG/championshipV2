@@ -88,7 +88,7 @@ namespace ChampionshipMvc3.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Отмяна на резервация.
+        ///   Looks up a localized string similar to Отмени резервацията.
         /// </summary>
         public static string bgCancelReservation {
             get {
@@ -318,6 +318,15 @@ namespace ChampionshipMvc3.Resources {
         public static string bgPriceNoLights {
             get {
                 return ResourceManager.GetString("bgPriceNoLights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Резервация.
+        /// </summary>
+        public static string bgReservation {
+            get {
+                return ResourceManager.GetString("bgReservation", resourceCulture);
             }
         }
         

@@ -11,6 +11,7 @@ namespace ChampionshipMvc3.Models.Interfaces
         void AddNewReservation(Reservation reservation);
         Reservation GetModel();
         ICollection<Reservation> GetAllReservations();
+        Reservation GetReservationByDateHour(DateTime dateHour);
         ICollection<Reservation> GetAllUnapprovedReservations();
         Reservation GetReservationById(Guid reservationId);
         ICollection<Reservation> GetPlayfieldReservations(Guid playfieldId);

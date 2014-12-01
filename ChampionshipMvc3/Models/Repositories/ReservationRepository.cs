@@ -68,5 +68,15 @@ namespace ChampionshipMvc3.Models.Repositories
            RepositoryBase.DataContext.Reservations.DeleteOnSubmit(selectedReservation);
            SaveChanges();
         }
+
+
+        public Reservation GetReservationByDateHour(DateTime reservedDateHour)
+        {
+            Reservation selectedReservation = RepositoryBase.DataContext.Reservations
+                .Where(r => r.ReservedDateHour.Equals(reservedDateHour))
+                .SingleOrDefault();
+
+            return selectedReservation;
+        }
     }
 }
