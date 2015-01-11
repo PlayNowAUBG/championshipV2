@@ -1,6 +1,15 @@
 ﻿@using  ChampionshipMvc3.Resources
 @model ChampionshipMvc3.Models.DataContext.PlayfieldOwner
 
+<link rel="stylesheet" href="../../Content/Bootstrap-Fixes.css">
+<link rel="stylesheet" href="../../Content/owner-details.css">
+<link rel="stylesheet" href="../../Content/Bootstrap-Fixes.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
 @{
     ViewBag.Title = Model.Name;
 }
@@ -105,27 +114,31 @@
 
         </div>
 
-        <div style="float: left">
-        @using (Ajax.BeginForm("RefreshAnonSchedulePrevious", "Playfield", new AjaxOptions
-        {
-            HttpMethod = "Get",
-            InsertionMode = InsertionMode.Replace,
-            UpdateTargetId = "ScheduleDiv"
-        }))
-        {
-            <input type="submit" value=@Strings.bgPreviousWeek id="previous_week"/>
-        }
-    </div>
-    <div style="float: right">
-        @using (Ajax.BeginForm("RefreshAnonScheduleNext", "Playfield", new AjaxOptions
-        {
-            HttpMethod = "Get",
-            InsertionMode = InsertionMode.Replace,
-            UpdateTargetId = "ScheduleDiv"
-        }))
-        {
-            <input type="submit" value=@Strings.bgNextWeek id="next_week"/>
-        }
-    </div>
+        <div class="text-center">
+            <div class="button-container row text-center">
+                <div class="col-xs-6">
+                    @using (Ajax.BeginForm("RefreshAnonSchedulePrevious", "Playfield", new AjaxOptions
+                {
+                    HttpMethod = "Get",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "ScheduleDiv"
+                }))
+                    {
+                        <input type="submit" value=@Strings.bgPreviousWeek id="previous_week" />
+                    }
+                </div>
+                <div class="col-xs-6">
+                    @using (Ajax.BeginForm("RefreshAnonScheduleNext", "Playfield", new AjaxOptions
+                {
+                    HttpMethod = "Get",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "ScheduleDiv"
+                }))
+                    {
+                        <input type="submit" value=@Strings.bgNextWeek id="next_week" />
+                    }
+                </div>
+            </div>
+        </div>
     </div>
 </div>
