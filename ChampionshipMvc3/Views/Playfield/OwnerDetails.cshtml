@@ -116,7 +116,7 @@
 
         <div class="text-center">
             <div class="button-container row text-center">
-                <div class="col-xs-6">
+                <div class="col-xs-6" >
                     @using (Ajax.BeginForm("RefreshAnonSchedulePrevious", "Playfield", new AjaxOptions
                 {
                     HttpMethod = "Get",
@@ -124,10 +124,10 @@
                     UpdateTargetId = "ScheduleDiv"
                 }))
                     {
-                        <input type="submit" value=@Strings.bgPreviousWeek id="previous_week" />
+                        <input type="submit" value=@Strings.bgPreviousWeek id="previous_week" class="control-button" />
                     }
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-6" >
                     @using (Ajax.BeginForm("RefreshAnonScheduleNext", "Playfield", new AjaxOptions
                 {
                     HttpMethod = "Get",
@@ -135,7 +135,7 @@
                     UpdateTargetId = "ScheduleDiv"
                 }))
                     {
-                        <input type="submit" value=@Strings.bgNextWeek id="next_week" />
+                        <input type="submit" value=@Strings.bgNextWeek id="next_week" class="control-button" />
                     }
                 </div>
             </div>

@@ -9,3 +9,17 @@
     color:white;
     font-size: 2em
 }
+
+.control-button{
+    color:white;
+    background-color: #458B00;
+    border: 1px solid #458B00;
+    border-radius: 25px;
+}
+
+.control-button:hover{
+    color:white;
+    background-color: #78AB46;
+    border: 1px solid #78AB46;
+    border-radius: 25px;
+}
