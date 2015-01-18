@@ -54,7 +54,8 @@ $("#reservationButton").click(function () {
 
     var name = $("#reservationName").val();
     var phone = $("#reservationPhone").val();
-
+    var weeks = $("#futureWeeks").val();
+    
     $.ajax(
         {
             type: 'POST',
@@ -63,7 +64,8 @@ $("#reservationButton").click(function () {
                 hour: hour,
                 date: date,
                 name: name,
-                phone: phone
+                phone: phone,
+                weeks: weeks
             },
             success: function(){
                 alert("Success");

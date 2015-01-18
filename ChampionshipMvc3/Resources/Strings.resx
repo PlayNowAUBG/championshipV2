@@ -237,4 +237,7 @@
   <data name="bgYes" xml:space="preserve">
     <value>Да</value>
   </data>
+  <data name="bgFutureWeeks" xml:space="preserve">
+    <value>Колко седмици напред?</value>
+  </data>
 </root>

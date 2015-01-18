@@ -384,22 +384,29 @@ namespace ChampionshipMvc3.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [HttpPost]
-        public ActionResult ReservePlayfield(string hour, string date, string name, string phone)
+        public ActionResult ReservePlayfield(string hour, string date, string name, 
+                                                    string phone, string weeks)
         {
             Playfield playfield = Session["Playfield"] as Playfield;
             Session.Remove("Playfield");
-            
-            Reservation reservation = new Reservation();
-            
-            reservation.ReservationID = Guid.NewGuid();
-            reservation.ReservedDateHour = DateTime.Parse(date + " " + hour + ":00");
-            reservation.SubmissionDate = DateTime.Now;
-            reservation.Name = name;
-            reservation.Phone = phone;
-            reservation.Playfield = playfield;
 
-            reservationRepository.AddNewReservation(reservation);
+            int weeksInteger = int.Parse(weeks);
+            DateTime nextDate = DateTime.Parse(date + " " + hour + ":00");
+            for (int weeksIndex = 0; weeksIndex < weeksInteger; weeksIndex++)
+            {
+                Reservation reservation = new Reservation();
 
+                reservation.ReservationID = Guid.NewGuid();
+                reservation.ReservedDateHour = nextDate;
+                reservation.SubmissionDate = DateTime.Now;
+                reservation.Name = name;
+                reservation.Phone = phone;
+                reservation.Playfield = playfield;
+
+                reservationRepository.AddNewReservation(reservation);
+
+                nextDate = nextDate.AddDays(7);
+            }
             return RedirectToAction("Index", "Home");
         }
 
