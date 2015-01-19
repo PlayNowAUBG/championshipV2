@@ -28,7 +28,7 @@
                         {
                             <tr>
                                 <td>
-                                    <label style="color: white">@hourIndex :00</label>
+                                    <label style="color: white; margin-left:5px; margin-right:5px">@hourIndex :00</label>
                                 </td>
                             </tr>
                         }
@@ -78,7 +78,7 @@
                                         @Html.Hidden("date", displayDate.ToShortDateString(), new { @class = "hiddenDateClass" })
                                         @Html.Hidden("hour", hourIndex, new { @class = "hiddenHourClass" })
                                     </a>
-                                    <div class="to-be-changed">
+                                    <div class="to-be-changed" style="width:100px">
                                         @isReserved
                                     </div>
                                 </td>

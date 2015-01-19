@@ -1,0 +1,11 @@
+﻿.button-container{
+    width: 600px;
+    margin: 0 auto !important;
+    margin-top: 50px !important;
+    text-align:center !important;
+}
+
+#mainCustom{
+    color:white;
+    font-size: 2em
+}
