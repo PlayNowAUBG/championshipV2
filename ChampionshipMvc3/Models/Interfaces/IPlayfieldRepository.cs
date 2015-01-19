@@ -16,6 +16,7 @@ namespace ChampionshipMvc3.Models.Interfaces
         Playfield GetPlayfieldById(Guid id);
         Playfield GetPlayfieldByScheduleId(Guid scheduleId);
         IList<PlayfieldOwner> GetAllPlayfieldsByCity(string city);
+        IList<PlayfieldOwner> GetAllPlayfieldsByCityE();
         IList<PlayfieldOwner> GetAllPlayfieldsByName(string name);
         IList<Playfield> GetAllPlayfieldsByOwner(Guid ownerId);
 

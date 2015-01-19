@@ -58,15 +58,20 @@ namespace ChampionshipMvc3.Models.Repositories
                 .Where(p => p.City.ToLower() == city.ToLower())
                 .ToList();
         }
-
-
+        public IList<PlayfieldOwner> GetAllPlayfieldsByCityE()
+        {
+            return RepositoryBase.DataContext.PlayfieldOwners.ToList();
+        }
         public IList<PlayfieldOwner> GetAllPlayfieldsByName(string name)
         {
             return RepositoryBase.DataContext.PlayfieldOwners
                 .Where(p => p.Name.ToLower().Contains(name.ToLower()))
                 .ToList();
         }
-
+        public IList<PlayfieldOwner> GetAllPlayfieldsByNameE()
+        {
+            return RepositoryBase.DataContext.PlayfieldOwners.ToList();
+        }
 
         public IList<Playfield> GetAllPlayfieldsByOwner(Guid ownerId)
         {

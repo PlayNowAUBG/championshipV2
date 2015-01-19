@@ -136,8 +136,16 @@ namespace ChampionshipMvc3.Controllers
         [HttpPost]
         public ActionResult SearchPlayfieldsByCity(string city)
         {
-            IList<PlayfieldOwner> playfieldsResult = playfieldRepository.GetAllPlayfieldsByCity(city);
-
+            IList<PlayfieldOwner> playfieldsResult;
+            if (city==string.Empty)
+            {
+                playfieldsResult = playfieldRepository.GetAllPlayfieldsByCityE();
+            }
+            else
+            {
+                playfieldsResult = playfieldRepository.GetAllPlayfieldsByCity(city);
+            }
+            
             return View("PlayfieldOwnerResult", playfieldsResult);
         }
 
