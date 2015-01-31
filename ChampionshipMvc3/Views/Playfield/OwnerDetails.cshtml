@@ -79,6 +79,38 @@
                                  
                                 </td>
                             </tr>
+                            <tr>
+                                <td><label>@Strings.bgSmallField</label></td>
+                                <td>@Html.DisplayFor(model => model.SmallField)</td>
+                            </tr>
+                            <tr>
+                                <td><label>@Strings.bgBigField:</label> </td>
+                                <td>
+                                    @if (Model.BigField != 0)
+                                    {
+                                        @Html.DisplayFor(model => model.BigField)
+                                    }
+                                    else
+                                    {
+                                        <label>n/a</label>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>@Strings.bgPriceLights: </label></td>
+                                <td>@Html.DisplayFor(model => model.PriceLights)</td>
+                            </tr>
+                            @if (!string.IsNullOrWhiteSpace(Model.Custom))
+                            {
+                                <tr>
+                                    <td>
+                                        <label>@Strings.bgCustom:</label>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Custom)
+                                    </td>
+                                </tr>
+                            }
                             
                         </table>
                     </td>

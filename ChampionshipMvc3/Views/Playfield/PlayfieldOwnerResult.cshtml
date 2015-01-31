@@ -14,6 +14,10 @@
    
     <tr>
         <td>
+            <h2>@item.Name</h2>
+            <h3 style="color:white">@item.Neighbourhood</h3>
+        </td>
+        <td>
              @{
                 string imagePath = "";
                 if (@item.Pictures != null && @item.Pictures.Count > 0)
@@ -25,53 +29,6 @@
         </td>
         <td>
            <div id="map_canvas" ></div>
-        </td>
-        <td>
-            <table class="ownerInformatinoNT">
-                <tr>
-                    <td colspan="2">@Html.DisplayFor(modelItem => item.Name)</td>
-                </tr>
-                <tr>
-                    <td><label>@Strings.bgAddress: </label></td>
-                    <td>@Html.DisplayFor(modelItem => item.Address)</td>
-                </tr>
-                <tr>
-                    <td>@Strings.bgPhone: </td>
-                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
-                </tr>
-                <tr>
-                    <td>@Strings.bgSmallField</td>
-                    <td>@Html.DisplayFor(modelItem => item.SmallField)</td>
-                </tr>
-                <tr>
-                    <td>@Strings.bgBigField: </td>
-                    <td>
-                        @if(item.BigField != 0)
-                        {
-                            @Html.DisplayFor(modelItem => item.BigField)
-                        }
-                        else
-                        {
-                            <label>n/a</label>
-                        }
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Strings.bgPriceLights: </td>
-                    <td>@Html.DisplayFor(modelItem => item.PriceLights)</td>
-                </tr>
-                @if(!string.IsNullOrWhiteSpace(@item.Custom))
-                {
-                    <tr>
-                        <td>
-                            @Strings.bgCustom:
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Custom)
-                        </td>
-                    </tr>
-                }
-            </table>
         </td>
         <td>
             @Html.ActionLink(Strings.bgDetails, "Details", new { id=item.PlayfieldOwnerID }, new { @class = "details" })
