@@ -264,6 +264,8 @@
     <Content Include="Global.asax" />
     <Content Include="Images\background2.jpg" />
     <Content Include="Images\find_your_field.png" />
+    <Content Include="Images\GreenCircle.png" />
+    <Content Include="Images\Red_Battle_X.png" />
     <Content Include="Images\Ria Sport.jpg" />
     <Content Include="Images\s_k_lovendom5.jpg" />
     <Content Include="Models\DataContext\PlayNow.dbml">

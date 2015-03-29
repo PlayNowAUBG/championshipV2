@@ -85,7 +85,16 @@
                                         @Html.Hidden("hour", hourIndex, new { @class = "hiddenHourClass" })
                                     </a>
                                     <div class="to-be-changed">
-                                        @isReserved
+                                        @{
+                                            if (isReserved)
+                                            {
+                                                <img src="http://upload.wikimedia.org/wikipedia/en/a/a6/Red_Battle_X.png" width="20" height="20" />
+                                            }
+                                            else
+                                            {
+                                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSRnFo252I-f68MRc0h_iWrx2bZfxqJs2TOW5P99vul1mJvTF8kecFsKA" width="20" height="20" />
+                                            }
+                                        }
                                     </div>
                                 </td>
 
