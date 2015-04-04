@@ -263,11 +263,13 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\background2.jpg" />
+    <Content Include="Images\cross.png" />
     <Content Include="Images\find_your_field.png" />
     <Content Include="Images\GreenCircle.png" />
     <Content Include="Images\Red_Battle_X.png" />
     <Content Include="Images\Ria Sport.jpg" />
     <Content Include="Images\s_k_lovendom5.jpg" />
+    <Content Include="Images\tick.png" />
     <Content Include="Models\DataContext\PlayNow.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <SubType>Designer</SubType>
